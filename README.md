@@ -1,7 +1,11 @@
-# ai_sketchpad
+# AI Sketchpad
 
-ho ho ho marry christmass
+Implementation of various AI algorithms
 
-[a relative link](index.html)
+## Reinforcement Learning
 
-[DS Link](UCL%20-%20Course%20on%20RL%20by%20David%20Silver/Lecture%2030%20-%20Planning%20by%20Dynamic%20Programming/Planning%20by%20Dynamic%20Programming.ipynb)
+### UCL Course on RL
+Amazing set of video lectures by David Silver ([course](http://www0.cs.ucl.ac.uk/staff/d.silver/web/Teaching.html), [playlist](https://www.youtube.com/playlist?list=PLMZdRRhAoLnKFxZlmFoFp0uHVvN2PSE9T))
+
+My implementations:
+* Lecture 3 - Dynamic Programming - Policy Evaluation, Policy Iteration, Value Iteration ([jupyter notebook](UCL%20-%20Course%20on%20RL%20by%20David%20Silver/Lecture%2030%20-%20Planning%20by%20Dynamic%20Programming/Planning%20by%20Dynamic%20Programming.ipynb))

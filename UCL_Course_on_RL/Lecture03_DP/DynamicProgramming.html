@@ -11778,6 +11778,7 @@ div#notebook {
 <p><br/></p>
 <p><!-- <p style="text-align:center;font-weight:bold;font-size:400%">Dynamic Programming</p> -->
 <img src="assets/title.png"/></p>
+<p>$$ \Huge{\underline{\mathbf{ Dynamic \ Programming }}} $$</p>
 <h1 id="Introduction">Introduction<a class="anchor-link" href="#Introduction">&#182;</a></h1><p>Implementation of algorithms presented in Lecture 3 of UCL RL course by David Silver.</p>
 <p>Contents:</p>
 <ul>
@@ -12010,15 +12011,7 @@ HFFG
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Iterative-Policy-Evaluation">Iterative Policy Evaluation<a class="anchor-link" href="#Iterative-Policy-Evaluation">&#182;</a></h1>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Policy Evaluation can be implemented in two ways:</p>
+<h1 id="Iterative-Policy-Evaluation">Iterative Policy Evaluation<a class="anchor-link" href="#Iterative-Policy-Evaluation">&#182;</a></h1><p>Policy Evaluation can be implemented in two ways:</p>
 <ul>
 <li>Iterate over every state s and perform backup using Bellman Expectation Equation</li>
 <li>Calculate matrix $\mathbf{P}^\pi$ and vector $\mathbf{R}^\pi$ and perform backup in matrix form</li>
@@ -12033,15 +12026,15 @@ HFFG
 </ul>
 </li>
 </ul>
-<p><img src="assets/eq_policy_eval.png"></p>
-<p>First we will calculate transition probability from state s to s' as follows
-<img src="assets/eq_P_pi.png"></p>
+<p>$$ \Large{ \mathbf{v}^{k+1} = \mathbf{R}^\pi + \gamma \mathbf{P}^\pi \mathbf{v}^k } $$</p>
+<p>First we will calculate transition probability from state s to s' as follows</p>
+<p>$$ \Large{ P^\pi_{s,s'}=\sum_{a \in A} \pi(a|s) P^a_{s,s'} } $$</p>
 <p>Then we use $P_{s,s'}^\pi$ to form transition probability matrix $\mathbf{P}^\pi$
 <img src="assets/eq_P_matrix.png"></p>
 <p>Second we calculate expected reward on transition from state-action pair</p>
-<p><img src="assets/eq_R_ssa.png"></p>
-<p>Now we can calculate expected reward from state s (not state-action!) to any next state
-<img src="assets/eq_R_pi.png"></p>
+<p>$$ \Large{ R^a_s = \sum_{s' \in S} P^a_{s,s'} R^a_{s,s'} } $$</p>
+<p>Now we can calculate expected reward from state s (not state-action!) to any next state</p>
+<p>$$ \Large{ R^\pi_s = \sum_{a \in A} \pi(a|s) R^a_s } $$</p>
 <p>Helper function to calculate both $\mathbf{P}^\pi$ and $\mathbf{R}^\pi$</p>
 
 </div>
@@ -12177,8 +12170,8 @@ HFFG
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Perform 100 steps of iterative policy evaluation according to equation
-<img src="assets/eq_policy_eval.png"></p>
+<p>Perform 100 steps of iterative policy evaluation according to equation</p>
+<p>$$ \Large{ \mathbf{v}^{k+1} = \mathbf{R}^\pi + \gamma \mathbf{P}^\pi \mathbf{v}^k } $$</p>
 
 </div>
 </div>
@@ -12479,8 +12472,8 @@ HFFG
 </ul>
 </li>
 </ul>
-<p>For reference
-<img src="assets/eq_v_k1.png"/></p>
+<p>For reference</p>
+<p>$$ \Large{ v_{k+1}(s) = \max\limits_{a \in A} q_k(s,a) } $$</p>
 
 </div>
 </div>

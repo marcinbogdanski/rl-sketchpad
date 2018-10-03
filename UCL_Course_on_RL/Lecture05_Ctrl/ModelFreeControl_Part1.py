@@ -11,6 +11,8 @@ class LinearEnv:
     """
     def __init__(self):
         size = 9
+        self.nb_st = size + 2   # nb states
+        self.nb_act = 2         # nb actions
         self._max_left = 1      # last non-terminal state to the left
         self._max_right = size  # last non-terminal state to the right
         self._start_state = 0
@@ -140,8 +142,8 @@ def plot_experiments(log, truth_ref, plot_title):
 
 
 
-def make_eps_greedy(Q, policy, eps):
-    policy = np.zeros(shape=st_act_shape) + eps
+def make_eps_greedy(Q, eps):
+    policy = np.zeros(shape=Q.shape) + eps
     maxq = np.argmax(Q, axis=-1)
     policy[range(len(policy)),maxq] = 1-eps
     return policy
@@ -152,17 +154,17 @@ def make_eps_greedy(Q, policy, eps):
 
 def mc_control(env, policy, N, alpha, eps):
     hist, perf = [], []
-    Q = np.zeros(shape=st_act_shape)
+    Q = np.zeros(shape=[env.nb_st, env.nb_act])
 
     for ep in range(N):
         trajectory = generate_episode(env, policy)
-        for i in range(len(trajectory)-1):
-            Gt = -(len(trajectory)-i-2)  # -1 * nb_steps_to_end; assumes disc==1
-            St, _, _, At = trajectory[i]
+        for t in range(len(trajectory)-1):
+            Gt = -(len(trajectory)-t-1)  # -1 * nb_steps_to_end; assumes disc==1
+            St, _, _, At = trajectory[t]
             # Q[St, At] = Q[St, At] + (1/C[St, At]) * (Gt - Q[St, At])  # old code
             Q[St, At] = Q[St, At] + alpha * (Gt - Q[St, At])  # replace 1/C with alpha
         
-        policy = make_eps_greedy(Q, policy, eps)  # Make policy e-greedy
+        policy = make_eps_greedy(Q, eps)  # Make policy e-greedy
             
         hist.append(Q.copy())
         perf.append(len(trajectory)-1)
@@ -174,16 +176,16 @@ def mc_control(env, policy, N, alpha, eps):
 
 def sarsa(env, policy, N, alpha, eps):
     hist, perf = [], []
-    Q = np.zeros(shape=st_act_shape)
+    Q = np.zeros(shape=[env.nb_st, env.nb_act])
     for ep in range(N):
         trajectory = generate_episode(env, policy)
         for t in range(len(trajectory)-1):
             St, _, _, At = trajectory[t]
             St_1, Rt_1, _, At_1 = trajectory[t+1]
-            target = Rt_1 + 1.0*Q[St_1, At_1]
+            target = Rt_1 + 1.0 * Q[St_1, At_1]
             Q[St, At] = Q[St, At] + alpha * (target - Q[St, At])
             
-        policy = make_eps_greedy(Q, policy, eps)  # Make policy e-greedy
+        policy = make_eps_greedy(Q, eps)  # Make policy e-greedy
 
         hist.append(Q.copy())
         perf.append(len(trajectory)-1)
@@ -230,7 +232,7 @@ def calc_Gt(trajectory, Q, t, disc, nstep=float('inf')):
 
 def nstep_sarsa(env, policy, N, alpha, eps, nstep):
     hist, perf = [], []
-    Q = np.zeros(shape=st_act_shape)
+    Q = np.zeros(shape=[env.nb_st, env.nb_act])
     for ep in range(N):
         trajectory = generate_episode(env, policy)
         for t in range(len(trajectory)-1):
@@ -238,7 +240,7 @@ def nstep_sarsa(env, policy, N, alpha, eps, nstep):
             Gt = calc_Gt(trajectory, Q, t, disc=1.0, nstep=nstep)
             target = Gt
             Q[St, At] = Q[St, At] + alpha * (target - Q[St, At])
-        policy = make_eps_greedy(Q, policy, eps)
+        policy = make_eps_greedy(Q, eps)
         
         hist.append(Q.copy())
         perf.append(len(trajectory))

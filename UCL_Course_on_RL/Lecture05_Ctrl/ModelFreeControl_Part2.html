@@ -11783,8 +11783,8 @@ div#notebook {
 <ul>
 <li><a href="#Sources">Sources</a></li>
 <li><a href="#Introduction">Introduction</a></li>
-<li><a href="#1D-Corridor">Imports</a> - import stuff from <a href="../Lecture05/ModelFreeControl_Part1.html">part 1</a></li>
-<li><a href="#SARSA---Refresher">SARSA - Refresher</a> - refresher from <a href="../Lecture05/ModelFreeControl_Part1.html#SARSA">part 1</a></li>
+<li><a href="#1D-Corridor">Imports</a> - import stuff from <a href="../Lecture05_Ctrl/ModelFreeControl_Part1.html">part 1</a></li>
+<li><a href="#SARSA---Refresher">SARSA - Refresher</a> - refresher from <a href="../Lecture05_Ctrl/ModelFreeControl_Part1.html#SARSA">part 1</a></li>
 </ul>
 </li>
 <li><p>Expectation Based Methods</p>
@@ -11820,7 +11820,7 @@ div#notebook {
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Introduction">Introduction<a class="anchor-link" href="#Introduction">&#182;</a></h1><p>This post roughly corresponds to part 2 of Lecture 5 of UCL RL course by David Silver.</p>
-<p>We will explore off-policy algorithms, as per vidoes like famous Q-Learning and Off-Policy MC. But we will also add more general versions that were excluded from videos, but I think will help understand whole picture. In addition we will look into Expected SARSA and Tree Backup algorithms.</p>
+<p>We will explore off-policy algorithms, as per videos like famous Q-Learning and Off-Policy MC. But we will also add more general versions that were excluded from videos, but I think will help understand whole picture. In addition we will look into Expected SARSA and Tree Backup algorithms.</p>
 <p>As terminology can be a bit confusing, let's have a quick look at our little zoo of RL algorithms</p>
 <p><img src="assets/alg_zoo.png"/></p>
 <center>Table: Numbers in bracket refer to chapters in Sutton and Barto 2018</center>
@@ -11839,7 +11839,7 @@ div#notebook {
 <ul>
 <li>Assume all Q-values are initialised to zero</li>
 <li>Assume no discounting</li>
-<li>$Q(ROOM,left)$ or $Q(R,l)$ - as long as it is being explored, it will evaluate to corect value +10, and it doesn't depend on policy, this isn't very interesting</li>
+<li>$Q(ROOM,left)$ or $Q(R,l)$ - as long as it is being explored, it will evaluate to correct value +10, and it doesn't depend on policy, this isn't very interesting</li>
 <li>$Q(ROOM,right)$ or $Q(R,r)$ - same as above</li>
 <li>$Q(START,forward)$ or $Q(S,f)$ - this one we are interested in. It very much depends on policy being executed, for example for random policy</li>
 </ul>
@@ -11950,8 +11950,8 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="SARSA---Refresher">SARSA - Refresher<a class="anchor-link" href="#SARSA---Refresher">&#182;</a></h1><p>Puropose of this section is to show how good old SARSA works on our mini-MDP. Show problems with on-policy exploration, and then in subsequnet sections we will show how Q-Learning, Expected SARSA and Importance Sampling solve these problems.</p>
-<p>Code for SARSA was introduced in <a href="ModelFreeControl_Part1.html">previous post</a>. I repeat it here for convinience. We will treat SARSA, N-Step SARSA and MC Control as together. The main difference between them is backup length. Other than that, the underlying principle is the same:</p>
+<h1 id="SARSA---Refresher">SARSA - Refresher<a class="anchor-link" href="#SARSA---Refresher">&#182;</a></h1><p>Puropose of this section is to show how good old SARSA works on our mini-MDP. Show problems with on-policy exploration, and then in subsequent sections we will show how Q-Learning, Expected SARSA and Importance Sampling solve these problems.</p>
+<p>Code for SARSA was introduced in <a href="ModelFreeControl_Part1.html">previous post</a>. I repeat it here for convenience. We will treat SARSA, N-Step SARSA and MC Control as together. The main difference between them is backup length. Other than that, the underlying principle is the same:</p>
 <ol>
 <li>update Q-value estimation</li>
 <li>update policy towards $\epsilon$-greedy</li>
@@ -11959,8 +11959,8 @@ div#notebook {
 <p>SARSA update formula</p>
 <p>$$ Q(S_t,A_t) \leftarrow Q(S_t,A_t) + \alpha \big[ \color{blue}{R_{t+1} + \gamma Q(S_{t+1},A_{t+1}) }\color{black}{} - Q(S_t,A_t) \big] $$</p>
 <p>How does SARSA update $Q(S,f)$? By repeated sampling, for example for random policy sometimes we backup from $Q(R,l)$, sometimes from $Q(R,r)$. Becouse we update only a little bit (this is by $\alpha$) towards each target every time, value eventually settles on weighted average between $Q(R,l)$ and $Q(R,r)$ plus reward +1.</p>
-<p>That is all nice and rosy as long as actually keep visiting all states. If policy is greedy, and it locks itself into always choosing left action before properly evauating $Q(R,r)$ then agent is doomed, it will never discover big treasure.</p>
-<p>This demonstrates the main problem with on-policy methods. We have to use $\epsilon$-greedy policy to guarantee continous exploration. But when we use $\epsilon$-greedy agent will not achieve optimal performance. We could decay $\epsilon$ with time, but that brings practical issues with estabilishing correct schedule.</p>
+<p>That is all nice and rosy as long as actually keep visiting all states. If policy is greedy, and it locks itself into always choosing left action before properly evaluating $Q(R,r)$ then agent is doomed, it will never discover big treasure.</p>
+<p>This demonstrates the main problem with on-policy methods. We have to use $\epsilon$-greedy policy to guarantee continuous exploration. But when we use $\epsilon$-greedy agent will not achieve optimal performance. We could decay $\epsilon$ with time, but that brings practical issues with establishing correct schedule.</p>
 <p>Let's import SARSA code from previous post and repeat the experiment.</p>
 
 </div>
@@ -12067,7 +12067,7 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Note-on-Exploring-Starts">Note on Exploring Starts<a class="anchor-link" href="#Note-on-Exploring-Starts">&#182;</a></h3><p>We could guarantee continous exploration by starting episode at random state and with random first action every time and then following given policy. This would guarantee all state-action pairs are evaluated, and subsequently fix the problem we encoutered above. After whole MDP is correctly evaulated we can switch off exploring starts and operate as normal in now solved MDP. This works disregarding if policy is greedy or not.</p>
+<h3 id="Note-on-Exploring-Starts">Note on Exploring Starts<a class="anchor-link" href="#Note-on-Exploring-Starts">&#182;</a></h3><p>We could guarantee continuous exploration by starting episode at random state and with random first action every time and then following given policy. This would guarantee all state-action pairs are evaluated, and subsequently fix the problem we encountered above. After whole MDP is correctly evaluated we can switch off exploring starts and operate as normal in now solved MDP. This works disregarding if policy is greedy or not.</p>
 <p>Problem with this is that it only works in small state spaces and usually can't be applied in real-world scenarios (how do you teleport robot into random initial states?).</p>
 
 </div>
@@ -12087,8 +12087,8 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Imagine yourself you are a wizard on a journey to find treasure. Tomorrow you will be allowed to enter mini-MDP for exactly one attempt to collect as much gold as possible. There will be no repeats. But being clever and powerful wizard, you figured out you can enter mini-MDP today in a ghost form, you won't be able collect gold today, but you can explore mini-MDP and prepare youself for tomorrow. Actually you can enter it in a ghost form as many times as you want.</p>
-<p>You want to make sure you explore all possible routes, so you follow random policy. But you are interested in maximum possible gold you can gather. So every time you visit a state-action pair you write down <em>maximum possible gold</em> you can collect from there onwards. After couple trials you note down values for $Q(R,l)$ and $Q(R,r)$ to be +10 and +100 respectively. Now you wonder what is <em>max</em> possible gold from $Q(S,f)$? Well, that is +1 gold coin, and then +100, because obviously on the actuall trial tomorrow you will pick righ door. So your backup looks like this</p>
+<p>Imagine yourself you are a wizard on a journey to find treasure. Tomorrow you will be allowed to enter mini-MDP for exactly one attempt to collect as much gold as possible. There will be no repeats. But being clever and powerful wizard, you figured out you can enter mini-MDP today in a ghost form, you won't be able collect gold today, but you can explore mini-MDP and prepare yourself for tomorrow. Actually you can enter it in a ghost form as many times as you want.</p>
+<p>You want to make sure you explore all possible routes, so you follow random policy. But you are interested in maximum possible gold you can gather. So every time you visit a state-action pair you write down <em>maximum possible gold</em> you can collect from there onwards. After couple trials you note down values for $Q(R,l)$ and $Q(R,r)$ to be +10 and +100 respectively. Now you wonder what is <em>max</em> possible gold from $Q(S,f)$? Well, that is +1 gold coin, and then +100, because obviously on the actual trial tomorrow you will pick right door. So your backup looks like this</p>
 <p>$$ Q(S,f) \leftarrow Q(S,f) + \alpha \big[ \color{blue}{R + \gamma \max[Q(R,l), Q(R,r)]} \color{black}{} - Q(S,f) \big] $$</p>
 <p>Or more generally</p>
 <p>$$ Q(S_t,A_t) \leftarrow Q(S_t,A_t) + \alpha \big[ \color{blue}{R_{t+1} + \gamma \max\limits_{a' \in A} Q(S_{t+1},a') }\color{black}{} - Q(S_t,A_t) \big] $$</p>
@@ -12337,7 +12337,7 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Notice low variance. Even thoug we are following skewed policy, expectation based backups converge much quicker than equivalent sample based backups. Compare this with TD Prediction <a href="ModelFreeControl_Part1.html#TD-Prediction">from previous part</a></p>
+<p>Notice low variance. Even though we are following skewed policy, expectation based backups converge much quicker than equivalent sample based backups. Compare this with TD Prediction <a href="ModelFreeControl_Part1.html#TD-Prediction">from previous part</a></p>
 
 </div>
 </div>

@@ -132,7 +132,7 @@ def plot_experiments(log, truth_ref, plot_title):
     ax1.set_title('Estimated State-Action Values')
     ax2.grid()
     ax2.set_title('Ground Truth Error')
-    ax3.set_ylim([0, 1000])
+    ax3.set_ylim([0, 1010])
     ax3.grid()
     ax3.set_title('Agent Performance')
     fig.suptitle(plot_title, fontsize=18)

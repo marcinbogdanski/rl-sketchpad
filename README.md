@@ -9,7 +9,7 @@ Implementation of various AI algorithms
 Implementation of selected algorithms from the book. I tried to make code minimalistic and as close to the book as possible.
 
 Part I: Tabular Solution Methods
-* 2.4 [Simple Bandit Algorithm](RL_An_Introduction_2018/0204_Simple_Bandit.html) (and figure 2.2)
+* Sections 2.1-2.4: [Simple Bandit Algorithm](RL_An_Introduction_2018/0204_Simple_Bandit.html) (includes figures 2.1, 2.2)
 
 ### UCL Course on RL
 By David Silver

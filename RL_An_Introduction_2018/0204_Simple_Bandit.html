@@ -11848,12 +11848,12 @@ div#notebook {
 <div class="text_cell_render border-box-sizing rendered_html">
 <table>
     <tr>
-        <td><img src="assets/fig_0201.png"/></td>
-        <td><img src="assets/fig_0202.png"/></td>
+        <td style="border-color: white;"><img src="assets/fig_0201.png"/></td>
+        <td style="border-color: white;"><img src="assets/fig_0202.png"/></td>
     </tr>
     <tr>
-        <td><center>Figure 2.1<center/></td>
-        <td><center>Figure 2.2<center/></td>
+        <td style="border-color: white;"><center>Figure 2.1<center/></td>
+        <td style="border-color: white;"><center>Figure 2.2<center/></td>
     </tr>
 </table>
 </div>
@@ -12069,7 +12069,7 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Calc and plot average reward</p>
+<p>Calc average reward and % optimal action</p>
 
 </div>
 </div>
@@ -12096,13 +12096,21 @@ div#notebook {
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Pretty plot</p>
+
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># fig = plt.figure(figsize=[8,10])</span>
-<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">211</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">avg_ep0_R</span><span class="p">,</span>   <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;e=0 (greedy)&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">avg_ep01_R</span><span class="p">,</span>  <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span>  <span class="n">label</span><span class="o">=</span><span class="s1">&#39;e=0.1&#39;</span><span class="p">)</span>

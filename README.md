@@ -4,6 +4,13 @@ Implementation of various AI algorithms
 
 ## Reinforcement Learning
 
+### Reinforcement Learning: An Introduction (2nd ed, 2018) by Sutton and Barto
+
+Implementation of selected algorithms from the book. I tried to make code minimalistic and as close to the book as possible.
+
+Part I: Tabular Solution Methods
+* 2.4 [Simple Bandit Algorithm](RL_An_Introduction_2018/0204_Simple_Bandit.html) (and figure 2.2)
+
 ### UCL Course on RL
 By David Silver
 * Lecture 3 - Dynamic Programming

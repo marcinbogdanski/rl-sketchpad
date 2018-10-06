@@ -10,10 +10,12 @@ Implementation of selected algorithms from the book. I tried to make code minima
 
 Part I: Tabular Solution Methods
 * Chapter 2: Multi-armed Bandits
-  * Sections 2.1 - 2.4: [Simple Bandit](RL_An_Introduction_2018/0204_Simple_Bandit.html) - figures 2.1, 2.2
-  * Sections 2.5 - 2.6: [Tracking Bandit](RL_An_Introduction_2018/0206_Tracking_Bandit.html) - figure 2.3
+  * Section 2.4: [Simple Bandit](RL_An_Introduction_2018/0204_Simple_Bandit.html) - figures 2.1, 2.2
+  * Section 2.6: [Tracking Bandit](RL_An_Introduction_2018/0206_Tracking_Bandit.html) - figure 2.3
 * Chapter 4: Dynamic Programming
-  * Section 4.1 __WIP__: [Iterative Policy Evaluation](RL_An_Introduction_2018/0401_Iterative_Policy_Evaluation.html)
+  * Section 4.1: [Iterative Policy Evaluation](RL_An_Introduction_2018/0401_Iterative_Policy_Evaluation.html) - uses FrozenLake-v0
+  * Section 4.3: [Policy Iteration](RL_An_Introduction_2018/0403_Policy_Iteration.html) - uses FrozenLake-v0
+  * Section 4.4: [Value Iteration](RL_An_Introduction_2018/0404_Value_Iteration.html) - uses FrozenLake-v0
 
 
 ### UCL Course on RL

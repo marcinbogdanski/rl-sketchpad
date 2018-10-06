@@ -11792,6 +11792,17 @@ div#notebook {
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Naive implementation (for loops are slow), but matches the box exactly</span>
 <span class="k">def</span> <span class="nf">iter_policy_eval</span><span class="p">(</span><span class="n">env</span><span class="p">,</span> <span class="n">policy</span><span class="p">,</span> <span class="n">gamma</span><span class="p">,</span> <span class="n">theta</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Iterative Policy Evaluation</span>
+<span class="sd">    </span>
+<span class="sd">    Params:</span>
+<span class="sd">        env - environment with following required memebers:</span>
+<span class="sd">            env.nb_states - number of states</span>
+<span class="sd">            env.nb_action - number of actions</span>
+<span class="sd">            env.model     - prob-transitions and rewards for all states and actions, see note #1</span>
+<span class="sd">        policy (2d array) - probability of taking various actions from each state, rows must sum to 1</span>
+<span class="sd">        gamma (float) - discount factor</span>
+<span class="sd">        theta (float) - termination condition</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">V</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">env</span><span class="o">.</span><span class="n">nb_states</span><span class="p">)</span>
     
     <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
@@ -11889,6 +11900,7 @@ div#notebook {
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">flatten_mdp</span><span class="p">(</span><span class="n">env</span><span class="p">,</span> <span class="n">policy</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Flatten MDP to MRP&quot;&quot;&quot;</span>
     <span class="c1"># Could use sparse matrices to save memory</span>
     <span class="n">P_pi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="n">env</span><span class="o">.</span><span class="n">nb_states</span><span class="p">,</span> <span class="n">env</span><span class="o">.</span><span class="n">nb_states</span><span class="p">])</span>  <span class="c1"># transition probability matrix (s) to (s&#39;)</span>
     <span class="n">R_pi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="n">env</span><span class="o">.</span><span class="n">nb_states</span><span class="p">])</span>                 <span class="c1"># exp. reward from state (s) to any next state</span>

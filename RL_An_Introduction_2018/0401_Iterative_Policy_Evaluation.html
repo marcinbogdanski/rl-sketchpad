@@ -11777,10 +11777,8 @@ div#notebook {
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><br/></p>
 <p>$$ \huge{\underline{\textbf{ Iterative Policy Evaluation }}} $$</p>
-<p>$$ \color{red}{ \large{\textbf{ WORK IN PROGRESS } }} $$</p>
 <p><br/></p>
-<p>Implementation of Iterative Policy Evaluation from Sutton and Barto 2018, chapter 4.1</p>
-<p><br/></p>
+<center> Implementation of Iterative Policy Evaluation from Sutton and Barto 2018, chapter 4.1 </center><p><br/></p>
 <p><img src="assets/0401_iter_policy_eval.png"/></p>
 <p><br/></p>
 
@@ -11789,28 +11787,33 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Naive implementation but matches the box exactly</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Naive implementation (for loops are slow), but matches the box exactly</span>
 <span class="k">def</span> <span class="nf">iter_policy_eval</span><span class="p">(</span><span class="n">env</span><span class="p">,</span> <span class="n">policy</span><span class="p">,</span> <span class="n">gamma</span><span class="p">,</span> <span class="n">theta</span><span class="p">):</span>
     <span class="n">V</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">env</span><span class="o">.</span><span class="n">nb_states</span><span class="p">)</span>
     
+    <span class="n">st</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">st</span> <span class="o">+=</span> <span class="mi">1</span>
         <span class="n">delta</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">env</span><span class="o">.</span><span class="n">nb_states</span><span class="p">):</span>
             <span class="n">v</span> <span class="o">=</span> <span class="n">V</span><span class="p">[</span><span class="n">s</span><span class="p">]</span>
             
             <span class="n">tmp</span> <span class="o">=</span> <span class="mi">0</span>
             <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">env</span><span class="o">.</span><span class="n">nb_actions</span><span class="p">):</span>
-                <span class="k">for</span> <span class="n">p</span><span class="p">,</span> <span class="n">s_</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">env</span><span class="o">.</span><span class="n">model</span><span class="p">[</span><span class="n">s</span><span class="p">][</span><span class="n">a</span><span class="p">]:</span>              <span class="c1"># see note #1</span>
+                <span class="k">for</span> <span class="n">p</span><span class="p">,</span> <span class="n">s_</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">env</span><span class="o">.</span><span class="n">model</span><span class="p">[</span><span class="n">s</span><span class="p">][</span><span class="n">a</span><span class="p">]:</span>                   <span class="c1"># see note #1 !</span>
+                    <span class="c1"># p  - transition probability from (s,a) to (s&#39;)</span>
+                    <span class="c1"># s_ - next state (s&#39;)</span>
+                    <span class="c1"># r  - reward on transition from (s,a) to (s&#39;)</span>
                     <span class="n">tmp</span> <span class="o">+=</span> <span class="n">policy</span><span class="p">[</span><span class="n">s</span><span class="p">,</span><span class="n">a</span><span class="p">]</span> <span class="o">*</span> <span class="n">p</span> <span class="o">*</span> <span class="p">(</span><span class="n">r</span> <span class="o">+</span> <span class="n">gamma</span> <span class="o">*</span> <span class="n">V</span><span class="p">[</span><span class="n">s_</span><span class="p">])</span>
             <span class="n">V</span><span class="p">[</span><span class="n">s</span><span class="p">]</span> <span class="o">=</span> <span class="n">tmp</span>
             
             <span class="n">delta</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">delta</span><span class="p">,</span> <span class="nb">abs</span><span class="p">(</span><span class="n">v</span> <span class="o">-</span> <span class="n">V</span><span class="p">[</span><span class="n">s</span><span class="p">]))</span>
     
         <span class="k">if</span> <span class="n">delta</span> <span class="o">&lt;</span> <span class="n">theta</span><span class="p">:</span> <span class="k">break</span>
-    
+                
     <span class="k">return</span> <span class="n">V</span>
 </pre></div>
 
@@ -11845,43 +11848,26 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="More-proper-version">More proper version<a class="anchor-link" href="#More-proper-version">&#182;</a></h3>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>TODO!!</p>
+<h1 id="Vectorised-implementation">Vectorised implementation<a class="anchor-link" href="#Vectorised-implementation">&#182;</a></h1><p>Vectorised Implementation. Updates V "on copy", while non-vectorised updates "in place", so numerically intermediate steps will differ.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Faster, but potentially uses more memory</span>
-<span class="k">def</span> <span class="nf">iter_policy_eval</span><span class="p">(</span><span class="n">env</span><span class="p">,</span> <span class="n">policy</span><span class="p">,</span> <span class="n">gamma</span><span class="p">,</span> <span class="n">theta</span><span class="p">):</span>
-    <span class="n">V</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">env</span><span class="o">.</span><span class="n">nb_states</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">iter_policy_eval_vec</span><span class="p">(</span><span class="n">env</span><span class="p">,</span> <span class="n">policy</span><span class="p">,</span> <span class="n">gamma</span><span class="p">,</span> <span class="n">theta</span><span class="p">):</span>
+    <span class="n">V</span><span class="p">,</span> <span class="n">v</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">env</span><span class="o">.</span><span class="n">nb_states</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">env</span><span class="o">.</span><span class="n">nb_states</span><span class="p">)</span>
+    <span class="n">P_pi</span><span class="p">,</span> <span class="n">R_pi</span> <span class="o">=</span> <span class="n">flatten_mdp</span><span class="p">(</span><span class="n">env</span><span class="p">,</span> <span class="n">policy</span><span class="p">)</span>
     
     <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
-        <span class="n">delta</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">env</span><span class="o">.</span><span class="n">nb_states</span><span class="p">):</span>
-            <span class="n">v</span> <span class="o">=</span> <span class="n">V</span><span class="p">[</span><span class="n">s</span><span class="p">]</span>
-            
-            <span class="n">tmp</span> <span class="o">=</span> <span class="mi">0</span>
-            <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">env</span><span class="o">.</span><span class="n">nb_actions</span><span class="p">):</span>
-                <span class="k">for</span> <span class="n">p_</span><span class="p">,</span> <span class="n">s_</span><span class="p">,</span> <span class="n">r_</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">env</span><span class="o">.</span><span class="n">model</span><span class="p">[</span><span class="n">s</span><span class="p">][</span><span class="n">a</span><span class="p">]:</span>
-                    <span class="n">tmp</span> <span class="o">+=</span> <span class="n">policy</span><span class="p">[</span><span class="n">s</span><span class="p">,</span><span class="n">a</span><span class="p">]</span> <span class="o">*</span> <span class="n">p_</span> <span class="o">*</span> <span class="p">(</span><span class="n">r_</span> <span class="o">+</span> <span class="n">gamma</span><span class="o">*</span><span class="n">V</span><span class="p">[</span><span class="n">s_</span><span class="p">])</span>
-            <span class="n">V</span><span class="p">[</span><span class="n">s</span><span class="p">]</span> <span class="o">=</span> <span class="n">tmp</span>
-            
-            <span class="n">delta</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">delta</span><span class="p">,</span> <span class="nb">abs</span><span class="p">(</span><span class="n">v</span> <span class="o">-</span> <span class="n">V</span><span class="p">[</span><span class="n">s</span><span class="p">]))</span>
-    
+        <span class="n">np</span><span class="o">.</span><span class="n">copyto</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">V</span><span class="p">)</span>
+        <span class="n">V</span> <span class="o">=</span> <span class="n">R_pi</span> <span class="o">+</span> <span class="n">gamma</span> <span class="o">*</span> <span class="n">P_pi</span> <span class="o">@</span> <span class="n">V</span>
+        <span class="n">delta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">v</span> <span class="o">-</span> <span class="n">V</span><span class="p">))</span>
         <span class="k">if</span> <span class="n">delta</span> <span class="o">&lt;</span> <span class="n">theta</span><span class="p">:</span> <span class="k">break</span>
-    
+
     <span class="k">return</span> <span class="n">V</span>
 </pre></div>
 
@@ -11894,13 +11880,49 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Experiment-Setup">Experiment Setup<a class="anchor-link" href="#Experiment-Setup">&#182;</a></h1>
+<p>Helper functions</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">flatten_mdp</span><span class="p">(</span><span class="n">env</span><span class="p">,</span> <span class="n">policy</span><span class="p">):</span>
+    <span class="c1"># Could use sparse matrices to save memory</span>
+    <span class="n">P_pi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="n">env</span><span class="o">.</span><span class="n">nb_states</span><span class="p">,</span> <span class="n">env</span><span class="o">.</span><span class="n">nb_states</span><span class="p">])</span>  <span class="c1"># transition probability matrix (s) to (s&#39;)</span>
+    <span class="n">R_pi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="n">env</span><span class="o">.</span><span class="n">nb_states</span><span class="p">])</span>                 <span class="c1"># exp. reward from state (s) to any next state</span>
+    <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">env</span><span class="o">.</span><span class="n">nb_states</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">env</span><span class="o">.</span><span class="n">nb_actions</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">p</span><span class="p">,</span> <span class="n">s_</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">env</span><span class="o">.</span><span class="n">model</span><span class="p">[</span><span class="n">s</span><span class="p">][</span><span class="n">a</span><span class="p">]:</span>
+                <span class="c1"># p  - transition probability from (s,a) to (s&#39;)</span>
+                <span class="c1"># s_ - next state (s&#39;)</span>
+                <span class="c1"># r  - reward on transition from (s,a) to (s&#39;)</span>
+                <span class="n">P_pi</span><span class="p">[</span><span class="n">s</span><span class="p">,</span> <span class="n">s_</span><span class="p">]</span> <span class="o">+=</span> <span class="n">policy</span><span class="p">[</span><span class="n">s</span><span class="p">,</span><span class="n">a</span><span class="p">]</span> <span class="o">*</span> <span class="n">p</span>    <span class="c1"># transition probability (s) -&gt; (s&#39;)</span>
+                <span class="n">R_pi</span><span class="p">[</span><span class="n">s</span><span class="p">]</span> <span class="o">+=</span> <span class="n">policy</span><span class="p">[</span><span class="n">s</span><span class="p">,</span><span class="n">a</span><span class="p">]</span> <span class="o">*</span> <span class="n">p</span> <span class="o">*</span> <span class="n">r</span>    <span class="c1"># exp. reward from (s) to any next state</span>
+    <span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">alltrue</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">P_pi</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span><span class="o">==</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">([</span><span class="n">env</span><span class="o">.</span><span class="n">nb_states</span><span class="p">]))</span>  <span class="c1"># rows should sum to 1</span>
+    <span class="k">return</span> <span class="n">P_pi</span><span class="p">,</span> <span class="n">R_pi</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Solve-FrozenLake-v0">Solve FrozenLake-v0<a class="anchor-link" href="#Solve-FrozenLake-v0">&#182;</a></h1><p>Too lazy to recreate gridworld from the book. Using OpenAI Gym FrozenLake-v0 instead. See description <a href="https://gym.openai.com/envs/FrozenLake-v0/">here</a></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -11915,7 +11937,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">env</span> <span class="o">=</span> <span class="n">gym</span><span class="o">.</span><span class="n">make</span><span class="p">(</span><span class="s1">&#39;FrozenLake-v0&#39;</span><span class="p">)</span>
@@ -11954,22 +11976,19 @@ HFFG
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Rename some members, don't break stuff!</p>
+<p>Rename some members, but don't break stuff!</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">assert</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">env</span><span class="p">,</span> <span class="s1">&#39;nb_states&#39;</span><span class="p">)</span>
-<span class="k">assert</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">env</span><span class="p">,</span> <span class="s1">&#39;nb_actions&#39;</span><span class="p">)</span>
-<span class="k">assert</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">env</span><span class="p">,</span> <span class="s1">&#39;model&#39;</span><span class="p">)</span>
-<span class="n">env</span><span class="o">.</span><span class="n">nb_states</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">nS</span>
-<span class="n">env</span><span class="o">.</span><span class="n">nb_actions</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">nA</span>
-<span class="n">env</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">P</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">env</span><span class="p">,</span> <span class="s1">&#39;nb_states&#39;</span><span class="p">):</span>  <span class="n">env</span><span class="o">.</span><span class="n">nb_states</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">nS</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">env</span><span class="p">,</span> <span class="s1">&#39;nb_actions&#39;</span><span class="p">):</span> <span class="n">env</span><span class="o">.</span><span class="n">nb_actions</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">nA</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">env</span><span class="p">,</span> <span class="s1">&#39;model&#39;</span><span class="p">):</span>      <span class="n">env</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">P</span>
 </pre></div>
 
 </div>
@@ -11977,38 +11996,23 @@ HFFG
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Eval random policy</p>
+
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">policy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">([</span><span class="n">env</span><span class="o">.</span><span class="n">nb_states</span><span class="p">,</span> <span class="n">env</span><span class="o">.</span><span class="n">nb_actions</span><span class="p">])</span> <span class="o">/</span> <span class="n">env</span><span class="o">.</span><span class="n">nb_actions</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[34]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">V_pi</span> <span class="o">=</span> <span class="n">iter_policy_eval</span><span class="p">(</span><span class="n">env</span><span class="p">,</span> <span class="n">policy</span><span class="p">,</span> <span class="n">gamma</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">theta</span><span class="o">=</span><span class="mf">0.00001</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[35]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">V_pi</span><span class="o">.</span><span class="n">reshape</span><span class="p">([</span><span class="mi">4</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+<span class="n">V_pi</span> <span class="o">=</span> <span class="n">iter_policy_eval</span><span class="p">(</span><span class="n">env</span><span class="p">,</span> <span class="n">policy</span><span class="p">,</span> <span class="n">gamma</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">theta</span><span class="o">=</span><span class="mf">1e-8</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">V_pi</span><span class="o">.</span><span class="n">reshape</span><span class="p">([</span><span class="mi">4</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
 </pre></div>
 
 </div>
@@ -12025,10 +12029,10 @@ HFFG
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>[[0.014 0.012 0.021 0.01 ]
- [0.016 0.    0.041 0.   ]
- [0.035 0.088 0.142 0.   ]
- [0.    0.176 0.439 0.   ]]
+<pre>[[0.01393977 0.01163091 0.02095297 0.01047648]
+ [0.01624865 0.         0.04075153 0.        ]
+ [0.03480619 0.08816993 0.14205316 0.        ]
+ [0.         0.17582037 0.43929118 0.        ]]
 </pre>
 </div>
 </div>
@@ -12037,12 +12041,47 @@ HFFG
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Check if correct</p>
+
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[38]:</div>
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">env</span><span class="o">.</span><span class="n">model</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">correct_V_pi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">0.0139398</span> <span class="p">,</span> <span class="mf">0.01163093</span><span class="p">,</span> <span class="mf">0.02095299</span><span class="p">,</span> <span class="mf">0.01047649</span><span class="p">],</span>
+                         <span class="p">[</span><span class="mf">0.01624867</span><span class="p">,</span> <span class="mf">0.</span>        <span class="p">,</span> <span class="mf">0.04075154</span><span class="p">,</span> <span class="mf">0.</span>        <span class="p">],</span>
+                         <span class="p">[</span><span class="mf">0.0348062</span> <span class="p">,</span> <span class="mf">0.08816993</span><span class="p">,</span> <span class="mf">0.14205316</span><span class="p">,</span> <span class="mf">0.</span>        <span class="p">],</span>
+                         <span class="p">[</span><span class="mf">0.</span>        <span class="p">,</span> <span class="mf">0.17582037</span><span class="p">,</span> <span class="mf">0.43929118</span><span class="p">,</span> <span class="mf">0.</span>        <span class="p">]])</span>
+<span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">V_pi</span><span class="o">.</span><span class="n">reshape</span><span class="p">([</span><span class="mi">4</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">]),</span> <span class="n">correct_V_pi</span><span class="p">,</span> <span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Timing-Test">Timing Test<a class="anchor-link" href="#Timing-Test">&#182;</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">timeit</span> iter_policy_eval(env, policy, gamma=1.0, theta=1e-8)
+<span class="o">%</span><span class="k">timeit</span> iter_policy_eval_vec(env, policy, gamma=1.0, theta=1e-8)
 </pre></div>
 
 </div>
@@ -12055,17 +12094,14 @@ HFFG
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[38]:</div>
+<div class="prompt"></div>
 
 
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>[(0.3333333333333333, 0, 0.0, False),
- (0.3333333333333333, 0, 0.0, False),
- (0.3333333333333333, 4, 0.0, False)]</pre>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>6.9 ms ± 69.4 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
+1.1 ms ± 1.68 µs per loop (mean ± std. dev. of 7 runs, 1000 loops each)
+</pre>
 </div>
-
 </div>
 
 </div>

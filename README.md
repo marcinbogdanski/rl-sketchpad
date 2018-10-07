@@ -16,7 +16,23 @@ Part I: Tabular Solution Methods
   * Section 4.1: [Iterative Policy Evaluation](RL_An_Introduction_2018/0401_Iterative_Policy_Evaluation.html) - uses FrozenLake-v0
   * Section 4.3: [Policy Iteration](RL_An_Introduction_2018/0403_Policy_Iteration.html) - uses FrozenLake-v0
   * Section 4.4: [Value Iteration](RL_An_Introduction_2018/0404_Value_Iteration.html) - uses FrozenLake-v0
+* Chapter 5: Monte Carlo Methods
+  * Section 5.1: [First-Visit MC Prediction](RL_An_Introduction_2018/0501_First_Visit_MC_Prediction.html) - figure 5.1
+  * Section 5.3: __TODO__ [Monte Carlo ES Control](RL_An_Introduction_2018/0503_Monte_Carlo_ES_Control.html) - figure 5.2
+  * Section 5.4: __TODO__ [On-Policy First-Visit MC Control](RL_An_Introduction_2018/On_Policy_First_Visit_MC_Control.html)
+  * Section 5.6: __TODO__ [Off-Policy MC Prediction](RL_An_Introduction_2018/Off_Policy_MC_Prediction.html)
+  * Section 5.7: __TODO__ [Off-Policy MC Control](RL_An_Introduction_2018/Off_Policy_MC_Control.html)
 
+
+[//]: # (a)
+[//]: # (Chapter 1: Tic-Tac-Toe)
+[//]: # (2.7 UCB Bandit, fig 2.4)
+[//]: # (2.8 Gradient Bandit, fig 2.5)
+[//]: # (2.10 comparison, fig 2.6)
+
+[//]: # (4.2, figure 4.1 - gridworld environment)
+[//]: # (4.3, figure 4.2 - car rental env)
+[//]: # (4.4, figure 4.3 - coin flip environment)
 
 ### UCL Course on RL
 By David Silver

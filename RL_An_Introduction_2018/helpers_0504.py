@@ -1,9 +1,10 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import axes3d
+from collections import defaultdict
 
-def plot_blackjack(Q, pi):
-    """Plot policy and state-values.
+def plot_blackjack(Q):
+    """Plot policy and state-values. Policy if infered from state-values.
     
     Params:
         Q - dictionary with keys in following format:
@@ -12,6 +13,18 @@ def plot_blackjack(Q, pi):
     """
     
     # Note to self: when updating this, update 0503 version as well
+    
+    def convert_Q_to_pi(Q):
+        pi = defaultdict(float)
+        eps = 0.1
+        for ps in range(12, 22):
+            for dc in range(1, 11):
+                for ha in [0, 1]:
+                    for a in [0, 1]:
+                        St = (ps, dc, ha)
+                        A_star = np.argmax([Q[(St,a)] for a in [0, 1]])  # int
+                        pi[(St,a)] = 1 if a == A_star else 0
+        return pi
     
     def plot_policy_helper(ax, arr):
         assert arr.shape == (10, 10)
@@ -26,6 +39,8 @@ def plot_blackjack(Q, pi):
         player_points = list(range(12, 22))
         X, Y = np.meshgrid(dealer_card, player_points)
         ax.plot_wireframe(X, Y, Z)
+        
+    pi = convert_Q_to_pi(Q)
     
     pi_no_ace = np.zeros([10,10])
     pi_has_ace = np.zeros([10,10])
@@ -34,10 +49,7 @@ def plot_blackjack(Q, pi):
             # store -1 if no data, this should almost never happen
             pi_no_ace[ps-12, dc-1] =  np.argmax([ pi[((ps,dc,False),0)], pi[((ps,dc,False),1)] ])
             pi_has_ace[ps-12, dc-1] = np.argmax([ pi[((ps,dc,True),0)],  pi[((ps,dc,True),1)] ])
-            
-    #import pdb
-    #pdb.set_trace()
-            
+                       
     V_has_ace = np.zeros([10,10])
     V_no_ace = np.zeros([10,10])
     for ps in range(12, 22):     # convert player sum from 12-21 to 0-9

@@ -19,9 +19,9 @@ Part I: Tabular Solution Methods
 * Chapter 5: Monte Carlo Methods
   * Section 5.1: [First-Visit MC Prediction](RL_An_Introduction_2018/0501_First_Visit_MC_Prediction.html) - figure 5.1
   * Section 5.3: [Monte Carlo ES Control](RL_An_Introduction_2018/0503_Monte_Carlo_ES_Control.html) - figure 5.2
-  * Section 5.4: [On-Policy First-Visit MC Control](RL_An_Introduction_2018/On_Policy_First_Visit_MC_Control.html)
-<!--  * Section 5.6: __TODO__ [Off-Policy MC Prediction](RL_An_Introduction_2018/Off_Policy_MC_Prediction.html)  -->
-<!--  * Section 5.7: __TODO__ [Off-Policy MC Control](RL_An_Introduction_2018/Off_Policy_MC_Control.html) -->
+  * Section 5.4: [On-Policy First-Visit MC Control](RL_An_Introduction_2018/0504_On_Policy_First_Visit_MC_Control.html)
+<!--  * Section 5.6: __TODO__ [Off-Policy MC Prediction](RL_An_Introduction_2018/0506_Off_Policy_MC_Prediction.html)  -->
+<!--  * Section 5.7: __TODO__ [Off-Policy MC Control](RL_An_Introduction_2018/0507_Off_Policy_MC_Control.html) -->
 
 
 [//]: # (a)

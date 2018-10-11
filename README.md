@@ -23,7 +23,7 @@ Part I: Tabular Solution Methods
 <!--  * Section 5.6: __TODO__ [Off-Policy MC Prediction](RL_An_Introduction_2018/0506_Off_Policy_MC_Prediction.html)  -->
 <!--  * Section 5.7: __TODO__ [Off-Policy MC Control](RL_An_Introduction_2018/0507_Off_Policy_MC_Control.html) -->
 * Chapter 6: Temporal-Difference Learning
-  * Section 6.1: [TD Prediction](RL_An_Introduction_2018/0601_TD_Prediction.html) - example 6.2, Blackjack-v0, *Running-Mean MC Prediction* <!-- figure 6.2 -->
+  * Section 6.1: [TD Prediction](RL_An_Introduction_2018/0601_TD_Prediction.html) - example 6.2, Blackjack-v0, includes [Running-Mean MC Prediction](RL_An_Introduction_2018/0601_TD_Prediction.html#Right-figure) <!-- figure 6.2 -->
 
 [//]: # (a)
 [//]: # (Chapter 1: Tic-Tac-Toe)

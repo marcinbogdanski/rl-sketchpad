@@ -38,7 +38,7 @@ Part I: Tabular Solution Methods
 [//]: # (4.3, figure 4.2 - car rental env)
 [//]: # (4.4, figure 4.3 - coin flip environment)
 
-### UCL Course on RL (2016) Youtube lectures by David Silver - 
+### UCL Course on RL (2016) Youtube lectures by David Silver
 
 A bit more in-depth explanation of selected concepts from David Sivler lectures and Sutton and Barto book.
 

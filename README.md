@@ -6,7 +6,7 @@ Implementation of various AI algorithms
 
 ### Reinforcement Learning: An Introduction (2nd ed, 2018) by Sutton and Barto
 
-Implementation of selected algorithms from the book. I tried to make code minimalistic and as close to the book as possible.
+Implementation of selected algorithms from the book. Code snippets are as clean, minimal and close to the book as possible.
 
 <!--* Chapter 1: Introduction -->
 <!--  * Section 1.5: [Tic-Tac-Toe]() -->
@@ -38,8 +38,10 @@ Part I: Tabular Solution Methods
 [//]: # (4.3, figure 4.2 - car rental env)
 [//]: # (4.4, figure 4.3 - coin flip environment)
 
-### UCL Course on RL
-By David Silver
+### UCL Course on RL (2016) Youtube lectures by David Silver - 
+
+A bit more in-depth explanation of selected concepts from David Sivler lectures and Sutton and Barto book.
+
 * Lecture 3 - Dynamic Programming
   * [Dynamic Programming](UCL_Course_on_RL/Lecture03_DP/DynamicProgramming.ipynb) - Iterative Policy Evaluation, Policy Iteration, Value Iteration
 * Lecture 4 - Model Free Prediction

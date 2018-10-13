@@ -32,7 +32,38 @@ Part I: Tabular Solution Methods
 * Chapter 6: Temporal-Difference Learning
   * Section 6.1: [TD Prediction](RL_An_Introduction_2018/0601_TD_Prediction.ipynb) - Blackjack-v0, example 6.2, [Running-Mean MC Prediction](RL_An_Introduction_2018/0601_TD_Prediction.ipynb#Right-figure) alg.
   * Section 6.4: [Sarsa](RL_An_Introduction_2018/0604_Sarsa.ipynb) - WindyGridworld, example 6.5
+  * Section 6.5: [Q-Learning](RL_An_Introduction_2018/0605_Q_Learning.ipynb) - CliffWalking, example 6.6
 <!--  * Section 6.3: batch TD and MC - figure 6.2 -->
+<!--  * Section 6.6: Expected Sarsa - figure 6.3, compare corridor? -->
+<!--  * Section 6.7: Double Q-Learning - example 6.5 -->
+
+<!--  * Section 7.1: N-Step TD Prediction - figure 7.2 -->
+<!--  * Section 7.2: N-Step Sarsa - figure 7.4, +compare corridor? -->
+<!--  * Section 7.3: Off-Policy N-Step Sarsa - importance sampling -->
+<!--  * Section 7.5: N-Step Tree Backup -->
+<!--  * Section 7.6: N-Step Q(phi?) - unifying algorithm -->
+
+<!--  * Section 8.1: Random-Sample One-Step Tabular Q-Planning -->
+<!--  * Section 8.2: Tabular Dyna-Q - dyna maze, fig 8.2, 8.3 -->
+<!--  * Section 8.3: Fig 8.4, 8.5 (model is wrong) -->
+<!--  * Section 8.4: Prioritized sweeping - example 8.4 -->
+<!--  * Section 8.5: expected vs sample updates - figure 8.7 -->
+<!--  * Section 8.6: trajectorry sampling - figure 8.8 -->
+<!--  * Section 8.8, 8.9, 8.10, 8.11: planning at decision time - .. - MCTS -->
+
+Part II: Approximate Solution Methods
+
+<!-- * [Gradient MC & Semi-Gradient TD]() - fig. 9.1 -->
+<!-- * [N-Step Semi-Gradient TD]() - fig 9.2? -->
+
+* Linear Functions
+  * Buckets
+  * Tiles
+* On-policy control - mountain car
+* average reward [...]
+* eligibility traces[...]
+* policy gradients [...]
+
 
 [//]: # (4.2, figure 4.1 - gridworld environment)
 [//]: # (4.3, figure 4.2 - car rental env)

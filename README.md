@@ -56,9 +56,10 @@ Part II: Approximate Solution Methods
 * Chapter 9: On-Policy Prediction with Approximation
   * Section 9.3a: [Gradient Monte Carlo](RL_An_Introduction_2018/0903a_Gradient_MC.ipynb) - example 9.1, fig. 9.1 <!-- calc "true" -->
   * Section 9.3b: [Semi-Gradient TD](RL_An_Introduction_2018/0903b_Semi_Gradient_TD.ipynb) - example 9.2, fig. 9.2 (left)
+  * Section 9.5a: [Linear Models - Polynomial and Fourier Bases](RL_An_Introduction_2018/0905a_LM_Poly_Fourier) - fig. 9.5
 
 <!-- * Section 9.4 [N-Step Semi-Gradient TD]() - fig 9.2 (right)? -->
-<!-- * Section 9.5 [Gradient MC - Polynomial and Fourier Basis]() - fig. 9.5 -->
+
 <!-- * Section 9.5 [Coarse Coding]() - square wave, fig 9.8 -->
 <!-- * Section 9.5 [Tile Coding]() - fig 9.10 -->
 

@@ -54,10 +54,11 @@ Part I: Tabular Solution Methods
 Part II: Approximate Solution Methods
 
 * Chapter 9: On-Policy Prediction with Approximation
-  * Section 9.3a: [Gradient Monte Carlo](RL_An_Introduction_2018/0903a_Gradient_MC.ipynb) - example 9.1, fig. 9.1
+  * Section 9.3a: [Gradient Monte Carlo](RL_An_Introduction_2018/0903a_Gradient_MC.ipynb) - example 9.1, fig. 9.1 <!-- calc "true" -->
+  * Section 9.3b: [Semi-Gradient TD](RL_An_Introduction_2018/0903b_Semi_Gradient_TD.ipynb) - example 9.2, fig. 9.2 (left)
 
 <!-- * [Gradient MC & Semi-Gradient TD]() - fig. 9.1 -->
-<!-- * [N-Step Semi-Gradient TD]() - fig 9.2? -->
+<!-- * Section 9.4 [N-Step Semi-Gradient TD]() - fig 9.2 (right)? -->
 
 * Linear Functions
   * Buckets

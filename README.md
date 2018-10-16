@@ -56,13 +56,15 @@ Part II: Approximate Solution Methods
 * Chapter 9: On-Policy Prediction with Approximation
   * Section 9.3a: [Gradient Monte Carlo](RL_An_Introduction_2018/0903a_Gradient_MC.ipynb) - example 9.1, fig. 9.1 <!-- calc "true" -->
   * Section 9.3b: [Semi-Gradient TD](RL_An_Introduction_2018/0903b_Semi_Gradient_TD.ipynb) - example 9.2, fig. 9.2 (left)
-  * Section 9.5a: [Linear Models - Polynomial and Fourier Bases](RL_An_Introduction_2018/0905a_LM_Poly_Fourier) - fig. 9.5
-
+  * Section 9.5a: [Linear Models - Polynomial and Fourier Bases](RL_An_Introduction_2018/0905a_LM_Poly_Fourier.ipynb) - fig. 9.5
+  * Section 9.5b: [Linear Models - Tile Coding](RL_An_Introduction_2018/0905b_LM_Tile_Coding.ipynb) - fig. 9.10
 <!-- * Section 9.4 [N-Step Semi-Gradient TD]() - fig 9.2 (right)? -->
-
 <!-- * Section 9.5 [Coarse Coding]() - square wave, fig 9.8 -->
-<!-- * Section 9.5 [Tile Coding]() - fig 9.10 -->
 
+* Chapter 10: On-Policy Control with Approximation
+  * Section 10.1: [Episodic Semi-Gradient Sarsa](RL_An_Introduction_2018/1001_Episodic_Semi_Gradient_Sarsa.ipynb)
+
+<!--
 
 * Linear Functions
   * Buckets
@@ -72,10 +74,7 @@ Part II: Approximate Solution Methods
 * eligibility traces[...]
 * policy gradients [...]
 
-
-[//]: # (4.2, figure 4.1 - gridworld environment)
-[//]: # (4.3, figure 4.2 - car rental env)
-[//]: # (4.4, figure 4.3 - coin flip environment)
+-->
 
 ### UCL Course on RL (2016) Youtube lectures by David Silver
 

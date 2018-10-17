@@ -9,18 +9,13 @@ Implementation of various AI algorithms
 
 ### Reinforcement Learning: An Introduction (2nd ed, 2018) by Sutton and Barto
 
-    
 <table>
-  <tr>
-    <td colspan="2">
-      <center>Part I: Tabular Solution Methods</center>
-    <td/>
-  </tr>
+  <tr><td> Part I: Tabular Solution Methods <td/></tr>
  
   <tr>
     <td>
       <div>
-        Chapter 2: Multi-armed Bandits<br/>
+        Chapter 2: Multi-armed Bandits
         <ul>
           <li> 2.4: <a href="RL_An_Introduction_2018/0204_Simple_Bandit.ipynb">Simple Bandit</a> - fig. 2.1, 2.2 </li>
           <li> 2.6: <a href="RL_An_Introduction_2018/0206_Tracking_Bandit.ipynb"> Tracking Bandit</a> - fig. 2.3 </li>
@@ -35,7 +30,7 @@ Implementation of various AI algorithms
   <tr>
     <td>
       <div>
-        Chapter 4: Dynamic Programming<br/>
+        Chapter 4: Dynamic Programming
         <ul>
           <li> 4.1: <a href="RL_An_Introduction_2018/0401_Iterative_Policy_Evaluation.ipynb">Iterative Policy Evaluation</a> - FrozenLake-v0 <!--gw 4.1 --> </li>
           <li> 4.3: <a href="RL_An_Introduction_2018/0403_Policy_Iteration.ipynb">Policy Iteration</a> - FrozenLake-v0 <!--gw, car-re, e4.2 f4.2 --> </li>
@@ -45,6 +40,56 @@ Implementation of various AI algorithms
     </td>
     <td style="border-color: white;">
       <img height="100" src="RL_An_Introduction_2018/assets/0401_model_diagram.png"/>
+    </td>
+  </tr>
+  
+  
+  <tr>
+    <td>
+      <div>
+        Chapter 5: Monte Carlo Methods
+        <ul>
+          <li> 5.1: <a href="RL_An_Introduction_2018/0501_First_Visit_MC_Prediction.ipynb">First-Visit MC Prediction</a> - Blackjack-v0, fig. 5.1 </li>
+          <li> 5.3: <a href="RL_An_Introduction_2018/0503_Monte_Carlo_ES_Control.ipynb">Monte Carlo ES Control</a> - Blackjack-v0, fig. 5.2 </li>
+          <li> 5.4: <a href="RL_An_Introduction_2018/0504_On_Policy_First_Visit_MC_Control.ipynb">On-Policy First-Visit MC Control</a> - Blackjack-v0 </li>
+        </ul>
+      </div>
+    </td>
+    <td style="border-color: white;">
+      <img height="100" src="RL_An_Introduction_2018/assets/fig_0503.png"/>
+    </td>
+  </tr>
+  
+  <tr>
+    <td>
+      <div>
+        Chapter 6: Temporal-Difference Learning
+        <ul>
+          <li> 6.1: <a href="RL_An_Introduction_2018/0601_TD_Prediction.ipynb">TD Prediction</a> - Blackjack-v0, example 6.2 
+              <ul><li> Also: <a href="RL_An_Introduction_2018/0601_TD_Prediction.ipynb">Running-Mean MC Prediction</a> </li></ul>
+          </li>
+          <li> 6.4: <a href="RL_An_Introduction_2018/0604_Sarsa.ipynb">Sarsa</a> - WindyGridworld, example 6.5 </li>
+          <li> 6.5: <a href="RL_An_Introduction_2018/0605_Q_Learning.ipynb">Q-Learning</a> - CliffWalking, example 6.6 </li>
+        </ul>
+      </div>
+    </td>
+    <td style="border-color: white;">
+      <img height="100" src="RL_An_Introduction_2018/assets/fig_0604a.png"/>
+    </td>
+  </tr>
+  
+  <tr>
+    <td>
+      <div>
+        Chapter Chapter
+        <ul>
+          <li> <a href=""></a> </li>
+          <li> <a href=""></a> </li>
+        </ul>
+      </div>
+    </td>
+    <td style="border-color: white;">
+      <img height="100" src=""/>
     </td>
   </tr>
   

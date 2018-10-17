@@ -9,7 +9,7 @@ Implementation of various AI algorithms
 -->
 
 * [RL](#Reinforcement-Learning)
-* [UCL Course on RL (2016) Youtube lectures by David Silver](#UCL-Course-on-RL-%282016%29-Youtube-lectures-by-David-Silver)
+* [UCL Course on RL](#UCL-Course-on-RL-%282016%29-Youtube-lectures-by-David-Silver) (2016) Youtube lectures by David Silver
 
 # Reinforcement Learning
 
@@ -238,7 +238,8 @@ Implementation of selected algorithms from the book. Code snippets are as clean,
 
 <br/>
 
-## UCL Course on RL (2016) Youtube lectures by David Silver
+## UCL Course on RL
+(2016) Youtube lectures by David Silver
 
 A bit more in-depth explanation of selected concepts from David Sivler lectures and Sutton and Barto book.
 

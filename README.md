@@ -13,7 +13,10 @@ AI Algorithms from various places:
 Implementation of selected algorithms from the book. Code snippets are as clean, minimal and close to the book as possible.
 
 <table>
-  <tr><td> Part I: Tabular Solution Methods </td></tr>
+  <tr>
+    <td> Part I: Tabular Solution Methods </td>
+    <td> </td>
+  </tr>
  
   <tr>
     <td>
@@ -81,7 +84,10 @@ Implementation of selected algorithms from the book. Code snippets are as clean,
     </td>
   </tr>
 
-  <tr><td> Part II: Approximate Solution Methods <td/></tr>
+  <tr>
+    <td> Part II: Approximate Solution Methods </td>
+    <td> </td>
+  </tr>
   
   <tr>
     <td>

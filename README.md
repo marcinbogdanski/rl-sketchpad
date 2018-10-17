@@ -237,7 +237,8 @@ Implementation of selected algorithms from the book. Code snippets are as clean,
 
 <br/>
 
-### UCL Course on RL (2016) Youtube lectures by David Silver
+## UCL Course on RL (2016)
+### Youtube lectures by David Silver
 
 A bit more in-depth explanation of selected concepts from David Sivler lectures and Sutton and Barto book.
 

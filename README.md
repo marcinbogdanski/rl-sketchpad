@@ -37,9 +37,9 @@ Implementation of selected algorithms from the book. Code snippets are as clean,
       <div>
         Chapter 4: Dynamic Programming
         <ul>
-          <li> 4.1: <a href="RL_An_Introduction_2018/0401_Iterative_Policy_Evaluation.ipynb">Iterative Policy Evaluation</a> - FrozenLake-v0 <!--gw 4.1 --> </li>
-          <li> 4.3: <a href="RL_An_Introduction_2018/0403_Policy_Iteration.ipynb">Policy Iteration</a> - FrozenLake-v0 <!--gw, car-re, e4.2 f4.2 --> </li>
-          <li> 4.4: <a href="RL_An_Introduction_2018/0404_Value_Iteration.ipynb">Value Iteration</a> - FrozenLake-v0 <!-- gambler problem, fig 4.3 --> </li>
+          <li> 4.1: <a href="https://marcinbogdanski.github.io/ai_sketchpad/RL_An_Introduction_2018/0401_Iterative_Policy_Evaluation.html">Iterative Policy Evaluation</a> - FrozenLake-v0 <!--gw 4.1 --> </li>
+          <li> 4.3: <a href="https://marcinbogdanski.github.io/ai_sketchpad/RL_An_Introduction_2018/0403_Policy_Iteration.html">Policy Iteration</a> - FrozenLake-v0 <!--gw, car-re, e4.2 f4.2 --> </li>
+          <li> 4.4: <a href="https://marcinbogdanski.github.io/ai_sketchpad/RL_An_Introduction_2018/0404_Value_Iteration.html">Value Iteration</a> - FrozenLake-v0 <!-- gambler problem, fig 4.3 --> </li>
         </ul>
       </div>
     </td>
@@ -54,9 +54,9 @@ Implementation of selected algorithms from the book. Code snippets are as clean,
       <div>
         Chapter 5: Monte Carlo Methods
         <ul>
-          <li> 5.1: <a href="RL_An_Introduction_2018/0501_First_Visit_MC_Prediction.ipynb">First-Visit MC Prediction</a> - Blackjack-v0, fig. 5.1 </li>
-          <li> 5.3: <a href="RL_An_Introduction_2018/0503_Monte_Carlo_ES_Control.ipynb">Monte Carlo ES Control</a> - Blackjack-v0, fig. 5.2 </li>
-          <li> 5.4: <a href="RL_An_Introduction_2018/0504_On_Policy_First_Visit_MC_Control.ipynb">On-Policy First-Visit MC Control</a> - Blackjack-v0 </li>
+          <li> 5.1: <a href="https://marcinbogdanski.github.io/ai_sketchpad/RL_An_Introduction_2018/0501_First_Visit_MC_Prediction.html">First-Visit MC Prediction</a> - Blackjack-v0, fig. 5.1 </li>
+          <li> 5.3: <a href="https://marcinbogdanski.github.io/ai_sketchpad/RL_An_Introduction_2018/0503_Monte_Carlo_ES_Control.html">Monte Carlo ES Control</a> - Blackjack-v0, fig. 5.2 </li>
+          <li> 5.4: <a href="https://marcinbogdanski.github.io/ai_sketchpad/RL_An_Introduction_2018/0504_On_Policy_First_Visit_MC_Control.html">On-Policy First-Visit MC Control</a> - Blackjack-v0 </li>
         </ul>
       </div>
     </td>
@@ -70,11 +70,11 @@ Implementation of selected algorithms from the book. Code snippets are as clean,
       <div>
         Chapter 6: Temporal-Difference Learning
         <ul>
-          <li> 6.1: <a href="RL_An_Introduction_2018/0601_TD_Prediction.ipynb">TD Prediction</a> - Blackjack-v0, example 6.2 
-              <ul><li> Also: <a href="RL_An_Introduction_2018/0601_TD_Prediction.ipynb">Running-Mean MC Prediction</a> </li></ul>
+          <li> 6.1: <a href="https://marcinbogdanski.github.io/ai_sketchpad/RL_An_Introduction_2018/0601_TD_Prediction.html">TD Prediction</a> - Blackjack-v0, example 6.2 
+              <ul><li> Also: <a href="https://marcinbogdanski.github.io/ai_sketchpad/RL_An_Introduction_2018/0601_TD_Prediction.html">Running-Mean MC Prediction</a> </li></ul>
           </li>
-          <li> 6.4: <a href="RL_An_Introduction_2018/0604_Sarsa.ipynb">Sarsa</a> - WindyGridworld, example 6.5 </li>
-          <li> 6.5: <a href="RL_An_Introduction_2018/0605_Q_Learning.ipynb">Q-Learning</a> - CliffWalking, example 6.6 </li>
+          <li> 6.4: <a href="https://marcinbogdanski.github.io/ai_sketchpad/RL_An_Introduction_2018/0604_Sarsa.html">Sarsa</a> - WindyGridworld, example 6.5 </li>
+          <li> 6.5: <a href="https://marcinbogdanski.github.io/ai_sketchpad/RL_An_Introduction_2018/0605_Q_Learning.html">Q-Learning</a> - CliffWalking, example 6.6 </li>
         </ul>
       </div>
     </td>
@@ -93,10 +93,10 @@ Implementation of selected algorithms from the book. Code snippets are as clean,
       <div>
         Chapter 9: On-Policy Prediction with Approximation
         <ul>
-          <li> 9.3a: <a href="RL_An_Introduction_2018/0903a_Gradient_MC.ipynb">Gradient Monte Carlo</a> - example 9.1, fig. 9.1 <!-- calc "true" --> </li>
-          <li> 9.3b: <a href="RL_An_Introduction_2018/0903b_Semi_Gradient_TD.ipynb">Semi-Gradient TD</a> - example 9.2, fig. 9.2 (left) </li>
-          <li> 9.5a: <a href="RL_An_Introduction_2018/0905a_LM_Poly_Fourier.ipynb">Linear Models - Polynomial and Fourier Bases</a> - fig. 9.5 </li>
-          <li> 9.5b: <a href="RL_An_Introduction_2018/0905b_LM_Tile_Coding.ipynb">Linear Models - Tile Coding</a> - fig. 9.10 </li>
+          <li> 9.3a: <a href="https://marcinbogdanski.github.io/ai_sketchpad/RL_An_Introduction_2018/0903a_Gradient_MC.html">Gradient Monte Carlo</a> - example 9.1, fig. 9.1 <!-- calc "true" --> </li>
+          <li> 9.3b: <a href="https://marcinbogdanski.github.io/ai_sketchpad/RL_An_Introduction_2018/0903b_Semi_Gradient_TD.html">Semi-Gradient TD</a> - example 9.2, fig. 9.2 (left) </li>
+          <li> 9.5a: <a href="https://marcinbogdanski.github.io/ai_sketchpad/RL_An_Introduction_2018/0905a_LM_Poly_Fourier.html">Linear Models - Polynomial and Fourier Bases</a> - fig. 9.5 </li>
+          <li> 9.5b: <a href="https://marcinbogdanski.github.io/ai_sketchpad/RL_An_Introduction_2018/0905b_LM_Tile_Coding.html">Linear Models - Tile Coding</a> - fig. 9.10 </li>
         </ul>
       </div>
     </td>
@@ -110,7 +110,7 @@ Implementation of selected algorithms from the book. Code snippets are as clean,
       <div>
         Chapter 10: On-Policy Control with Approximation
         <ul>
-          <li> 10.1: <a href="RL_An_Introduction_2018/1001_Episodic_Semi_Gradient_Sarsa.ipynb">Episodic Semi-Gradient Sarsa</a> - MountainCar, fig 10.1, 10.2 </li>
+          <li> 10.1: <a href="https://marcinbogdanski.github.io/ai_sketchpad/RL_An_Introduction_2018/1001_Episodic_Semi_Gradient_Sarsa.html">Episodic Semi-Gradient Sarsa</a> - MountainCar, fig 10.1, 10.2 </li>
         </ul>
       </div>
     </td>
@@ -248,24 +248,24 @@ A bit more in-depth explanation of selected concepts from David Sivler lectures 
   <li>
     Lecture 3 - Dynamic Programming
     <ul>
-      <li><a href="UCL_Course_on_RL/Lecture03_DP/DynamicProgramming.ipynb">Dynamic Programming</a> - Iterative Policy Evaluation, Policy Iteration, Value Iteration</li>    
+      <li><a href="https://marcinbogdanski.github.io/ai_sketchpad/UCL_Course_on_RL/Lecture03_DP/DynamicProgramming.html">Dynamic Programming</a> - Iterative Policy Evaluation, Policy Iteration, Value Iteration</li>    
     </ul>
   </li>
   
   <li>
     Lecture 4 - Model Free Prediction
     <ul>
-      <li><a href="UCL_Course_on_RL/Lecture04_Pred/ModelFreePrediction_Part1.ipynb">MC and TD Prediction</a></li>
-      <li><a href="UCL_Course_on_RL/Lecture04_Pred/ModelFreePrediction_Part2.ipynb">N-Step and TD(λ) Prediction</a> - Forward TD(λ) and Backward TD(λ) with Eligibility Traces</li>    
+      <li><a href="https://marcinbogdanski.github.io/ai_sketchpad/UCL_Course_on_RL/Lecture04_Pred/ModelFreePrediction_Part1.html">MC and TD Prediction</a></li>
+      <li><a href="https://marcinbogdanski.github.io/ai_sketchpad/UCL_Course_on_RL/Lecture04_Pred/ModelFreePrediction_Part2.html">N-Step and TD(λ) Prediction</a> - Forward TD(λ) and Backward TD(λ) with Eligibility Traces</li>    
     </ul>
   </li>
   
   <li>
     Lecture 4 - Model-Free Control
     <ul>
-      <li><a href="UCL_Course_on_RL/Lecture05_Ctrl/ModelFreeControl_Part1.ipynb">On-Policy Control</a> - MC, TD, N-Step, Forward TD(λ), Backward TD(λ) with Eligibility Traces</li>
-      <li><a href="UCL_Course_on_RL/Lecture05_Ctrl/ModelFreeControl_Part2.ipynb">Off-Policy Control - Expectation Based</a> - Q-Learning, Expected SARSA, Tree Backup</li>
-      <li><a href="UCL_Course_on_RL/Lecture05_Ctrl/ModelFreeControl_Part3.ipynb">Off-Policy Control - Importance Sampling</a> - I.S. SARSA, N-Step I.S. SARSA, Off-Policy MC Control</li>
+      <li><a href="https://marcinbogdanski.github.io/ai_sketchpad/UCL_Course_on_RL/Lecture05_Ctrl/ModelFreeControl_Part1.html">On-Policy Control</a> - MC, TD, N-Step, Forward TD(λ), Backward TD(λ) with Eligibility Traces</li>
+      <li><a href="https://marcinbogdanski.github.io/ai_sketchpad/UCL_Course_on_RL/Lecture05_Ctrl/ModelFreeControl_Part2.html">Off-Policy Control - Expectation Based</a> - Q-Learning, Expected SARSA, Tree Backup</li>
+      <li><a href="https://marcinbogdanski.github.io/ai_sketchpad/UCL_Course_on_RL/Lecture05_Ctrl/ModelFreeControl_Part3.html">Off-Policy Control - Importance Sampling</a> - I.S. SARSA, N-Step I.S. SARSA, Off-Policy MC Control</li>
     </ul>
   </li>
 </ul>

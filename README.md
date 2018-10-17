@@ -28,7 +28,7 @@ Implementation of selected algorithms from the book. Code snippets are as clean,
       </div>
     </td>
     <td style="border-color: white;">
-      <img height="120" src="RL_An_Introduction_2018/assets/fig_0201.png"/>
+      <img height="120" src="RL_An_Introduction_2018/assets/fig_0201.png" alt="fig_0201.png"/>
     </td>
   </tr>
 
@@ -44,7 +44,7 @@ Implementation of selected algorithms from the book. Code snippets are as clean,
       </div>
     </td>
     <td style="border-color: white;">
-      <img height="120" src="RL_An_Introduction_2018/assets/0401_model_diagram.png"/>
+      <img height="120" src="RL_An_Introduction_2018/assets/0401_model_diagram.png" alt="0401_model_diagram.png"/>
     </td>
   </tr>
   
@@ -61,7 +61,7 @@ Implementation of selected algorithms from the book. Code snippets are as clean,
       </div>
     </td>
     <td style="border-color: white;">
-      <img height="120" src="RL_An_Introduction_2018/assets/fig_0503.png"/>
+      <img height="120" src="RL_An_Introduction_2018/assets/fig_0503.png" alt="fig_0503.png"/>
     </td>
   </tr>
   
@@ -79,7 +79,7 @@ Implementation of selected algorithms from the book. Code snippets are as clean,
       </div>
     </td>
     <td style="border-color: white;">
-      <img height="120" src="RL_An_Introduction_2018/assets/fig_0604a.png"/>
+      <img height="120" src="RL_An_Introduction_2018/assets/fig_0604a.png" alt="fig_0604a.png"/>
     </td>
   </tr>
 
@@ -101,7 +101,7 @@ Implementation of selected algorithms from the book. Code snippets are as clean,
       </div>
     </td>
     <td style="border-color: white;">
-      <img height="120" src="RL_An_Introduction_2018/assets/fig_0901.png"/>
+      <img height="120" src="RL_An_Introduction_2018/assets/fig_0901.png" alt="fig_0901.png"/>
     </td>
   </tr>
   
@@ -115,7 +115,7 @@ Implementation of selected algorithms from the book. Code snippets are as clean,
       </div>
     </td>
     <td style="border-color: white;">
-      <img height="120" src="RL_An_Introduction_2018/assets/fig_1001.png"/>
+      <img height="120" src="RL_An_Introduction_2018/assets/fig_1001.png" alt="fig_1001.png"/>
     </td>
   </tr>
 

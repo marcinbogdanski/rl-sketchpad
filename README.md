@@ -8,32 +8,30 @@ Implementation of various AI algorithms
 
 Implementation of selected algorithms from the book. Code snippets are as clean, minimal and close to the book as possible.
 
-Part I: Tabular Solution Methods
-* Chapter 2: Multi-armed Bandits
-  * Section 2.4: [Simple Bandit](RL_An_Introduction_2018/0204_Simple_Bandit.ipynb) - fig. 2.1, 2.2
-  * Section 2.6: [Tracking Bandit](RL_An_Introduction_2018/0206_Tracking_Bandit.ipynb) - fig. 2.3
-* Chapter 4: Dynamic Programming
-  * Section 4.1: [Iterative Policy Evaluation](RL_An_Introduction_2018/0401_Iterative_Policy_Evaluation.ipynb) - FrozenLake-v0 <!--gw 4.1 -->
-  * Section 4.3: [Policy Iteration](RL_An_Introduction_2018/0403_Policy_Iteration.ipynb) - FrozenLake-v0 <!--gw, car-re, e4.2 f4.2 -->
-  * Section 4.4: [Value Iteration](RL_An_Introduction_2018/0404_Value_Iteration.ipynb) - FrozenLake-v0 <!-- gambler problem, fig 4.3 -->
-* Chapter 5: Monte Carlo Methods
-  * Section 5.1: [First-Visit MC Prediction](RL_An_Introduction_2018/0501_First_Visit_MC_Prediction.ipynb) - Blackjack-v0, fig. 5.1
-  * Section 5.3: [Monte Carlo ES Control](RL_An_Introduction_2018/0503_Monte_Carlo_ES_Control.ipynb) - Blackjack-v0, fig. 5.2
-  * Section 5.4: [On-Policy First-Visit MC Control](RL_An_Introduction_2018/0504_On_Policy_First_Visit_MC_Control.ipynb) - Blackjack-v0
-* Chapter 6: Temporal-Difference Learning
-  * Section 6.1: [TD Prediction](RL_An_Introduction_2018/0601_TD_Prediction.ipynb) - Blackjack-v0, example 6.2, [Running-Mean MC Prediction](RL_An_Introduction_2018/0601_TD_Prediction.ipynb#Right-figure) alg.
-  * Section 6.4: [Sarsa](RL_An_Introduction_2018/0604_Sarsa.ipynb) - WindyGridworld, example 6.5
-  * Section 6.5: [Q-Learning](RL_An_Introduction_2018/0605_Q_Learning.ipynb) - CliffWalking, example 6.6
-
-Part II: Approximate Solution Methods
-
-* Chapter 9: On-Policy Prediction with Approximation
-  * Section 9.3a: [Gradient Monte Carlo](RL_An_Introduction_2018/0903a_Gradient_MC.ipynb) - example 9.1, fig. 9.1 <!-- calc "true" -->
-  * Section 9.3b: [Semi-Gradient TD](RL_An_Introduction_2018/0903b_Semi_Gradient_TD.ipynb) - example 9.2, fig. 9.2 (left)
-  * Section 9.5a: [Linear Models - Polynomial and Fourier Bases](RL_An_Introduction_2018/0905a_LM_Poly_Fourier.ipynb) - fig. 9.5
-  * Section 9.5b: [Linear Models - Tile Coding](RL_An_Introduction_2018/0905b_LM_Tile_Coding.ipynb) - fig. 9.10
-* Chapter 10: On-Policy Control with Approximation
-  * Section 10.1: [Episodic Semi-Gradient Sarsa](RL_An_Introduction_2018/1001_Episodic_Semi_Gradient_Sarsa.ipynb) - MountainCar, fig 10.1, 10.2
+* Part I: Tabular Solution Methods
+  * Chapter 2: Multi-armed Bandits
+    * 2.4: [Simple Bandit](RL_An_Introduction_2018/0204_Simple_Bandit.ipynb) - fig. 2.1, 2.2
+    * 2.6: [Tracking Bandit](RL_An_Introduction_2018/0206_Tracking_Bandit.ipynb) - fig. 2.3
+  * Chapter 4: Dynamic Programming
+    * 4.1: [Iterative Policy Evaluation](RL_An_Introduction_2018/0401_Iterative_Policy_Evaluation.ipynb) - FrozenLake-v0 <!--gw 4.1 -->
+    * 4.3: [Policy Iteration](RL_An_Introduction_2018/0403_Policy_Iteration.ipynb) - FrozenLake-v0 <!--gw, car-re, e4.2 f4.2 -->
+    * 4.4: [Value Iteration](RL_An_Introduction_2018/0404_Value_Iteration.ipynb) - FrozenLake-v0 <!-- gambler problem, fig 4.3 -->
+  * Chapter 5: Monte Carlo Methods
+    * 5.1: [First-Visit MC Prediction](RL_An_Introduction_2018/0501_First_Visit_MC_Prediction.ipynb) - Blackjack-v0, fig. 5.1
+    * 5.3: [Monte Carlo ES Control](RL_An_Introduction_2018/0503_Monte_Carlo_ES_Control.ipynb) - Blackjack-v0, fig. 5.2
+    * 5.4: [On-Policy First-Visit MC Control](RL_An_Introduction_2018/0504_On_Policy_First_Visit_MC_Control.ipynb) - Blackjack-v0
+  * Chapter 6: Temporal-Difference Learning
+    * 6.1: [TD Prediction](RL_An_Introduction_2018/0601_TD_Prediction.ipynb) - Blackjack-v0, example 6.2, [Running-Mean MC Prediction](RL_An_Introduction_2018/0601_TD_Prediction.ipynb#Right-figure) alg.
+    * 6.4: [Sarsa](RL_An_Introduction_2018/0604_Sarsa.ipynb) - WindyGridworld, example 6.5
+    * 6.5: [Q-Learning](RL_An_Introduction_2018/0605_Q_Learning.ipynb) - CliffWalking, example 6.6
+* Part II: Approximate Solution Methods
+  * Chapter 9: On-Policy Prediction with Approximation
+    * 9.3a: [Gradient Monte Carlo](RL_An_Introduction_2018/0903a_Gradient_MC.ipynb) - example 9.1, fig. 9.1 <!-- calc "true" -->
+    * 9.3b: [Semi-Gradient TD](RL_An_Introduction_2018/0903b_Semi_Gradient_TD.ipynb) - example 9.2, fig. 9.2 (left)
+    * 9.5a: [Linear Models - Polynomial and Fourier Bases](RL_An_Introduction_2018/0905a_LM_Poly_Fourier.ipynb) - fig. 9.5
+    * 9.5b: [Linear Models - Tile Coding](RL_An_Introduction_2018/0905b_LM_Tile_Coding.ipynb) - fig. 9.10
+  * Chapter 10: On-Policy Control with Approximation
+    * 10.1: [Episodic Semi-Gradient Sarsa](RL_An_Introduction_2018/1001_Episodic_Semi_Gradient_Sarsa.ipynb) - MountainCar, fig 10.1, 10.2
 
 
 

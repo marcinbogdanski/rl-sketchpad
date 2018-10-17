@@ -242,12 +242,12 @@ A bit more in-depth explanation of selected concepts from David Sivler lectures 
   <li>Lecture 3 - Dynamic Programming</li>
   <li><a href="UCL_Course_on_RL/Lecture03_DP/DynamicProgramming.ipynb">Dynamic Programming</a> - Iterative Policy Evaluation, Policy Iteration, Value Iteration</li>
   <li>Lecture 4 - Model Free Prediction</li>
-  <li>[MC and TD Prediction](UCL_Course_on_RL/Lecture04_Pred/ModelFreePrediction_Part1.ipynb)</li>
-  <li>[N-Step and TD(λ) Prediction](UCL_Course_on_RL/Lecture04_Pred/ModelFreePrediction_Part2.ipynb) - Forward TD(λ) and Backward TD(λ) with Eligibility Traces</li>
+  <li><a href="UCL_Course_on_RL/Lecture04_Pred/ModelFreePrediction_Part1.ipynb">MC and TD Prediction</a></li>
+  <li><a href="UCL_Course_on_RL/Lecture04_Pred/ModelFreePrediction_Part2.ipynb">N-Step and TD(λ) Prediction</a> - Forward TD(λ) and Backward TD(λ) with Eligibility Traces</li>
   <li>Lecture 4 - Model-Free Control</li>
-  <li>[On-Policy Control](UCL_Course_on_RL/Lecture05_Ctrl/ModelFreeControl_Part1.ipynb) - MC, TD, N-Step, Forward TD(λ), Backward TD(λ) with Eligibility Traces</li>
-  <li>[Off-Policy Control - Expectation Based](UCL_Course_on_RL/Lecture05_Ctrl/ModelFreeControl_Part2.ipynb) - Q-Learning, Expected SARSA, Tree Backup</li>
-  <li>[Off-Policy Control - Importance Sampling](UCL_Course_on_RL/Lecture05_Ctrl/ModelFreeControl_Part3.ipynb) - Importance Sampling SARSA, N-Step Importance Sampling SARSA, Off-Policy MC Control</li>
+  <li><a href="UCL_Course_on_RL/Lecture05_Ctrl/ModelFreeControl_Part1.ipynb">On-Policy Control</a> - MC, TD, N-Step, Forward TD(λ), Backward TD(λ) with Eligibility Traces</li>
+  <li><a href="UCL_Course_on_RL/Lecture05_Ctrl/ModelFreeControl_Part2.ipynb">Off-Policy Control - Expectation Based</a> - Q-Learning, Expected SARSA, Tree Backup</li>
+  <li><a href="UCL_Course_on_RL/Lecture05_Ctrl/ModelFreeControl_Part3.ipynb">Off-Policy Control - Importance Sampling</a> - Importance Sampling SARSA, N-Step Importance Sampling SARSA, Off-Policy MC Control</li>
 <ul>
 
 

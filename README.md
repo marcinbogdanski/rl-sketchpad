@@ -2,6 +2,57 @@
 
 Implementation of various AI algorithms
 
+
+
+
+## Reinforcement Learning
+
+### Reinforcement Learning: An Introduction (2nd ed, 2018) by Sutton and Barto
+
+    
+<table>
+  <tr>
+    <td colspan="2">
+      <center>Part I: Tabular Solution Methods</center>
+    <td/>
+  </tr>
+ 
+  <tr>
+    <td>
+      <div>
+        Chapter 2: Multi-armed Bandits<br/>
+        <ul>
+          <li> 2.4: <a href="RL_An_Introduction_2018/0204_Simple_Bandit.ipynb">Simple Bandit</a> - fig. 2.1, 2.2 </li>
+          <li> 2.6: <a href="RL_An_Introduction_2018/0206_Tracking_Bandit.ipynb"> Tracking Bandit</a> - fig. 2.3 </li>
+        </ul>
+      </div>
+    </td>
+    <td style="border-color: white;">
+      <img height="100" src="RL_An_Introduction_2018/assets/fig_0201.png"/>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+      <div>
+        Chapter 4: Dynamic Programming<br/>
+        <ul>
+          <li> 4.1: <a href="RL_An_Introduction_2018/0401_Iterative_Policy_Evaluation.ipynb">Iterative Policy Evaluation</a> - FrozenLake-v0 <!--gw 4.1 --> </li>
+          <li> 4.3: <a href="RL_An_Introduction_2018/0403_Policy_Iteration.ipynb">Policy Iteration</a> - FrozenLake-v0 <!--gw, car-re, e4.2 f4.2 --> </li>
+          <li> 4.4: <a href="RL_An_Introduction_2018/0404_Value_Iteration.ipynb">Value Iteration</a> - FrozenLake-v0 <!-- gambler problem, fig 4.3 --> </li>
+        </ul>
+      </div>
+    </td>
+    <td style="border-color: white;">
+      <img height="100" src="RL_An_Introduction_2018/assets/0401_model_diagram.png"/>
+    </td>
+  </tr>
+  
+</table>
+
+
+
+
 ## Reinforcement Learning
 
 ### Reinforcement Learning: An Introduction (2nd ed, 2018) by Sutton and Barto

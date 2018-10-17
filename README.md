@@ -2,10 +2,15 @@
 
 Implementation of various AI algorithms
 
+<!--
+%3A  :
+%28  (
+%29  )
+-->
 
+[Reinforcement Learning: An Introduction (2nd ed, 2018) by Sutton and Barto](Reinforcement-Learning%3A-An-Introduction-%282nd-ed,-2018%29-by-Sutton-and-Barto)
 
-
-## Reinforcement Learning
+## Reinforcement Learning: An Introduction (2nd ed, 2018) by Sutton and Barto
 
 ### Reinforcement Learning: An Introduction (2nd ed, 2018) by Sutton and Barto
 

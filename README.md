@@ -25,7 +25,7 @@ Implementation of selected algorithms from the book. Code snippets are as clean,
       </div>
     </td>
     <td style="border-color: white;">
-      <img height="100" src="RL_An_Introduction_2018/assets/fig_0201.png"/>
+      <img height="120" src="RL_An_Introduction_2018/assets/fig_0201.png"/>
     </td>
   </tr>
 
@@ -41,7 +41,7 @@ Implementation of selected algorithms from the book. Code snippets are as clean,
       </div>
     </td>
     <td style="border-color: white;">
-      <img height="100" src="RL_An_Introduction_2018/assets/0401_model_diagram.png"/>
+      <img height="120" src="RL_An_Introduction_2018/assets/0401_model_diagram.png"/>
     </td>
   </tr>
   
@@ -58,7 +58,7 @@ Implementation of selected algorithms from the book. Code snippets are as clean,
       </div>
     </td>
     <td style="border-color: white;">
-      <img height="100" src="RL_An_Introduction_2018/assets/fig_0503.png"/>
+      <img height="120" src="RL_An_Introduction_2018/assets/fig_0503.png"/>
     </td>
   </tr>
   
@@ -76,7 +76,7 @@ Implementation of selected algorithms from the book. Code snippets are as clean,
       </div>
     </td>
     <td style="border-color: white;">
-      <img height="100" src="RL_An_Introduction_2018/assets/fig_0604a.png"/>
+      <img height="120" src="RL_An_Introduction_2018/assets/fig_0604a.png"/>
     </td>
   </tr>
 
@@ -95,7 +95,7 @@ Implementation of selected algorithms from the book. Code snippets are as clean,
       </div>
     </td>
     <td style="border-color: white;">
-      <img height="100" src="RL_An_Introduction_2018/assets/fig_0901.png"/>
+      <img height="120" src="RL_An_Introduction_2018/assets/fig_0901.png"/>
     </td>
   </tr>
   
@@ -109,7 +109,7 @@ Implementation of selected algorithms from the book. Code snippets are as clean,
       </div>
     </td>
     <td style="border-color: white;">
-      <img height="100" src="RL_An_Introduction_2018/assets/fig_1001.png"/>
+      <img height="120" src="RL_An_Introduction_2018/assets/fig_1001.png"/>
     </td>
   </tr>
 
@@ -229,6 +229,8 @@ Implementation of selected algorithms from the book. Code snippets are as clean,
 * eligibility traces[...]
 * policy gradients [...]
 -->
+
+<br/>
 
 ### UCL Course on RL (2016) Youtube lectures by David Silver
 

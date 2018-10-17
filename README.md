@@ -268,7 +268,7 @@ A bit more in-depth explanation of selected concepts from David Sivler lectures 
       <li><a href="UCL_Course_on_RL/Lecture05_Ctrl/ModelFreeControl_Part3.ipynb">Off-Policy Control - Importance Sampling</a> - I.S. SARSA, N-Step I.S. SARSA, Off-Policy MC Control</li>
     </ul>
   </li>
-<ul>
+</ul>
 
 
 

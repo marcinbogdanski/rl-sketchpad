@@ -9,6 +9,8 @@ Implementation of various AI algorithms
 
 ### Reinforcement Learning: An Introduction (2nd ed, 2018) by Sutton and Barto
 
+Implementation of selected algorithms from the book. Code snippets are as clean, minimal and close to the book as possible.
+
 <table>
   <tr><td> Part I: Tabular Solution Methods <td/></tr>
  
@@ -131,20 +133,17 @@ Implementation of various AI algorithms
 </table>
 
 
+<!--
 ## Reinforcement Learning
-
 ### Reinforcement Learning: An Introduction (2nd ed, 2018) by Sutton and Barto
-
-Implementation of selected algorithms from the book. Code snippets are as clean, minimal and close to the book as possible.
-
 * Part I: Tabular Solution Methods
   * Chapter 2: Multi-armed Bandits
     * 2.4: [Simple Bandit](RL_An_Introduction_2018/0204_Simple_Bandit.ipynb) - fig. 2.1, 2.2
     * 2.6: [Tracking Bandit](RL_An_Introduction_2018/0206_Tracking_Bandit.ipynb) - fig. 2.3
   * Chapter 4: Dynamic Programming
-    * 4.1: [Iterative Policy Evaluation](RL_An_Introduction_2018/0401_Iterative_Policy_Evaluation.ipynb) - FrozenLake-v0 <!--gw 4.1 -->
-    * 4.3: [Policy Iteration](RL_An_Introduction_2018/0403_Policy_Iteration.ipynb) - FrozenLake-v0 <!--gw, car-re, e4.2 f4.2 -->
-    * 4.4: [Value Iteration](RL_An_Introduction_2018/0404_Value_Iteration.ipynb) - FrozenLake-v0 <!-- gambler problem, fig 4.3 -->
+    * 4.1: [Iterative Policy Evaluation](RL_An_Introduction_2018/0401_Iterative_Policy_Evaluation.ipynb) - FrozenLake-v0 
+    * 4.3: [Policy Iteration](RL_An_Introduction_2018/0403_Policy_Iteration.ipynb) - FrozenLake-v0 
+    * 4.4: [Value Iteration](RL_An_Introduction_2018/0404_Value_Iteration.ipynb) - FrozenLake-v0 
   * Chapter 5: Monte Carlo Methods
     * 5.1: [First-Visit MC Prediction](RL_An_Introduction_2018/0501_First_Visit_MC_Prediction.ipynb) - Blackjack-v0, fig. 5.1
     * 5.3: [Monte Carlo ES Control](RL_An_Introduction_2018/0503_Monte_Carlo_ES_Control.ipynb) - Blackjack-v0, fig. 5.2
@@ -155,13 +154,19 @@ Implementation of selected algorithms from the book. Code snippets are as clean,
     * 6.5: [Q-Learning](RL_An_Introduction_2018/0605_Q_Learning.ipynb) - CliffWalking, example 6.6
 * Part II: Approximate Solution Methods
   * Chapter 9: On-Policy Prediction with Approximation
-    * 9.3a: [Gradient Monte Carlo](RL_An_Introduction_2018/0903a_Gradient_MC.ipynb) - example 9.1, fig. 9.1 <!-- calc "true" -->
+    * 9.3a: [Gradient Monte Carlo](RL_An_Introduction_2018/0903a_Gradient_MC.ipynb) - example 9.1, fig. 9.1 
     * 9.3b: [Semi-Gradient TD](RL_An_Introduction_2018/0903b_Semi_Gradient_TD.ipynb) - example 9.2, fig. 9.2 (left)
     * 9.5a: [Linear Models - Polynomial and Fourier Bases](RL_An_Introduction_2018/0905a_LM_Poly_Fourier.ipynb) - fig. 9.5
     * 9.5b: [Linear Models - Tile Coding](RL_An_Introduction_2018/0905b_LM_Tile_Coding.ipynb) - fig. 9.10
   * Chapter 10: On-Policy Control with Approximation
     * 10.1: [Episodic Semi-Gradient Sarsa](RL_An_Introduction_2018/1001_Episodic_Semi_Gradient_Sarsa.ipynb) - MountainCar, fig 10.1, 10.2
+-->
 
+
+<!-- 4.1    gw 4.1 -->
+<!-- 4.3    gw, car-re, e4.2 f4.2 -->
+<!-- 4.4    gambler problem, fig 4.3 -->
+<!-- 9.3a   calc "true" -->
 
 <!--* Chapter 1: Introduction -->
 <!--  * Section 1.5: [Tic-Tac-Toe]() -->
@@ -213,8 +218,9 @@ Implementation of selected algorithms from the book. Code snippets are as clean,
 <!-- * Section 13.3: REINFORCE -->
 <!-- * Section 13.4: REINFORCE with Baseline -->
 <!-- * Section 13.5: One-Step Actor-Critic & Actor-Critic with Eligibility Traces (episodic) -->
-<!-- * Section 13.6: Actor-Critic with Eligibility Traces (continuing)
+<!-- * Section 13.6: Actor-Critic with Eligibility Traces (continuing) -->
 
+<!--
 * Linear Functions
   * Buckets
   * Tiles
@@ -222,7 +228,6 @@ Implementation of selected algorithms from the book. Code snippets are as clean,
 * average reward [...]
 * eligibility traces[...]
 * policy gradients [...]
-
 -->
 
 ### UCL Course on RL (2016) Youtube lectures by David Silver

@@ -239,15 +239,29 @@ Implementation of selected algorithms from the book. Code snippets are as clean,
 A bit more in-depth explanation of selected concepts from David Sivler lectures and Sutton and Barto book.
 
 <ul>
-  <li>Lecture 3 - Dynamic Programming</li>
-  <li><a href="UCL_Course_on_RL/Lecture03_DP/DynamicProgramming.ipynb">Dynamic Programming</a> - Iterative Policy Evaluation, Policy Iteration, Value Iteration</li>
-  <li>Lecture 4 - Model Free Prediction</li>
-  <li><a href="UCL_Course_on_RL/Lecture04_Pred/ModelFreePrediction_Part1.ipynb">MC and TD Prediction</a></li>
-  <li><a href="UCL_Course_on_RL/Lecture04_Pred/ModelFreePrediction_Part2.ipynb">N-Step and TD(λ) Prediction</a> - Forward TD(λ) and Backward TD(λ) with Eligibility Traces</li>
-  <li>Lecture 4 - Model-Free Control</li>
-  <li><a href="UCL_Course_on_RL/Lecture05_Ctrl/ModelFreeControl_Part1.ipynb">On-Policy Control</a> - MC, TD, N-Step, Forward TD(λ), Backward TD(λ) with Eligibility Traces</li>
-  <li><a href="UCL_Course_on_RL/Lecture05_Ctrl/ModelFreeControl_Part2.ipynb">Off-Policy Control - Expectation Based</a> - Q-Learning, Expected SARSA, Tree Backup</li>
-  <li><a href="UCL_Course_on_RL/Lecture05_Ctrl/ModelFreeControl_Part3.ipynb">Off-Policy Control - Importance Sampling</a> - Importance Sampling SARSA, N-Step Importance Sampling SARSA, Off-Policy MC Control</li>
+  <li>
+    Lecture 3 - Dynamic Programming
+    <ul>
+      <li><a href="UCL_Course_on_RL/Lecture03_DP/DynamicProgramming.ipynb">Dynamic Programming</a> - Iterative Policy Evaluation, Policy Iteration, Value Iteration</li>    
+    </ul>
+  </li>
+  
+  <li>
+    Lecture 4 - Model Free Prediction
+    <ul>
+      <li><a href="UCL_Course_on_RL/Lecture04_Pred/ModelFreePrediction_Part1.ipynb">MC and TD Prediction</a></li>
+      <li><a href="UCL_Course_on_RL/Lecture04_Pred/ModelFreePrediction_Part2.ipynb">N-Step and TD(λ) Prediction</a> - Forward TD(λ) and Backward TD(λ) with Eligibility Traces</li>    
+    </ul>
+  </li>
+  
+  <li>
+    Lecture 4 - Model-Free Control
+    <ul>
+      <li><a href="UCL_Course_on_RL/Lecture05_Ctrl/ModelFreeControl_Part1.ipynb">On-Policy Control</a> - MC, TD, N-Step, Forward TD(λ), Backward TD(λ) with Eligibility Traces</li>
+      <li><a href="UCL_Course_on_RL/Lecture05_Ctrl/ModelFreeControl_Part2.ipynb">Off-Policy Control - Expectation Based</a> - Q-Learning, Expected SARSA, Tree Backup</li>
+      <li><a href="UCL_Course_on_RL/Lecture05_Ctrl/ModelFreeControl_Part3.ipynb">Off-Policy Control - Importance Sampling</a> - I.S. SARSA, N-Step I.S. SARSA, Off-Policy MC Control</li>
+    </ul>
+  </li>
 <ul>
 
 

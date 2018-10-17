@@ -7,8 +7,7 @@ AI Algorithms from various places:
   <li><a href="#ucl-course-on-rl">UCL Course on RL</a> (2016) Youtube lectures by David Silver</li>
 </ul>
 
-<a name="rl-introduction"></a>
-<h2> Reinforcement Learning: An Introduction (2nd ed, 2018) by Sutton and Barto </h2>
+<h2 id="rl-introduction"> Reinforcement Learning: An Introduction (2nd ed, 2018) by Sutton and Barto </h2>
 
 Implementation of selected algorithms from the book. Code snippets are as clean, minimal and close to the book as possible.
 
@@ -239,8 +238,9 @@ Implementation of selected algorithms from the book. Code snippets are as clean,
 
 <br/>
 
-<a name="ucl-course-on-rl"></a>
-<h2> UCL Course on RL (2016) Youtube lectures by David Silver </h2>
+
+
+<h2 id="ucl-course-on-rl"> UCL Course on RL (2016) Youtube lectures by David Silver </h2>
 
 A bit more in-depth explanation of selected concepts from David Sivler lectures and Sutton and Barto book.
 

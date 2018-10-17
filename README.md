@@ -22,8 +22,8 @@ Implementation of selected algorithms from the book. Code snippets are as clean,
       <div>
         Chapter 2: Multi-armed Bandits
         <ul>
-          <li> 2.4: <a href="RL_An_Introduction_2018/0204_Simple_Bandit.html">Simple Bandit</a> - fig. 2.1, 2.2 </li>
-          <li> 2.6: <a href="RL_An_Introduction_2018/0206_Tracking_Bandit.html"> Tracking Bandit</a> - fig. 2.3 </li>
+          <li> 2.4: <a href="https://marcinbogdanski.github.io/ai_sketchpad/RL_An_Introduction_2018/0204_Simple_Bandit.html">Simple Bandit</a> - fig. 2.1, 2.2 </li>
+          <li> 2.6: <a href="https://marcinbogdanski.github.io/ai_sketchpad/RL_An_Introduction_2018/0206_Tracking_Bandit.html"> Tracking Bandit</a> - fig. 2.3 </li>
         </ul>
       </div>
     </td>

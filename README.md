@@ -60,11 +60,27 @@ Part II: Approximate Solution Methods
   * Section 9.5b: [Linear Models - Tile Coding](RL_An_Introduction_2018/0905b_LM_Tile_Coding.ipynb) - fig. 9.10
 <!-- * Section 9.4 [N-Step Semi-Gradient TD]() - fig 9.2 (right)? -->
 <!-- * Section 9.5 [Coarse Coding]() - square wave, fig 9.8 -->
+<!-- * Section 9.8 [Least-Squares TD]() -->
 
 * Chapter 10: On-Policy Control with Approximation
-  * Section 10.1: [Episodic Semi-Gradient Sarsa](RL_An_Introduction_2018/1001_Episodic_Semi_Gradient_Sarsa.ipynb)
+  * Section 10.1: [Episodic Semi-Gradient Sarsa](RL_An_Introduction_2018/1001_Episodic_Semi_Gradient_Sarsa.ipynb) - MountainCar, fig 10.1, 10.2
+<!-- * Section 10.2: [Semi-Gradient N-Step Sarsa]() - fig 10.3, 10.4 -->
+<!-- * Section 10.3: [Differential Semi-Gradient Sarsa]() - avg. reward, fig. 10.5 -->
+<!-- * Section 10.3: [Differential Semi-Gradient N-Step Sarsa]() -->
 
-<!--
+<!-- * Section 11.2* Off-policy divergence, fig 11.2 -->
+<!-- * Section 11.7* Gradient-TD Methods fig 11.5 -->
+<!-- * Section 11.8* Emphatic-TD Methods fig 11.5 -->
+
+<!-- * Section 12.2: TD(λ) fig 12.3 -->
+<!-- * Section 12.5: True Online TD(λ) fig 12.8 -->
+<!-- * Section 12.7: Sarsa(λ) and True Online Sarsa(λ) - fig. 12.10, 12.11 -->
+<!-- * Section 12.13: fig 12.14 -->
+
+<!-- * Section 13.3: REINFORCE -->
+<!-- * Section 13.4: REINFORCE with Baseline -->
+<!-- * Section 13.5: One-Step Actor-Critic & Actor-Critic with Eligibility Traces (episodic) -->
+<!-- * Section 13.6: Actor-Critic with Eligibility Traces (continuing)
 
 * Linear Functions
   * Buckets

@@ -77,7 +77,41 @@ Implementation of various AI algorithms
       <img height="100" src="RL_An_Introduction_2018/assets/fig_0604a.png"/>
     </td>
   </tr>
+
+  <tr><td> Part II: Approximate Solution Methods <td/></tr>
   
+  <tr>
+    <td>
+      <div>
+        Chapter 9: On-Policy Prediction with Approximation
+        <ul>
+          <li> 9.3a: <a href="RL_An_Introduction_2018/0903a_Gradient_MC.ipynb">Gradient Monte Carlo</a> - example 9.1, fig. 9.1 <!-- calc "true" --> </li>
+          <li> 9.3b: <a href="RL_An_Introduction_2018/0903b_Semi_Gradient_TD.ipynb">Semi-Gradient TD</a> - example 9.2, fig. 9.2 (left) </li>
+          <li> 9.5a: <a href="RL_An_Introduction_2018/0905a_LM_Poly_Fourier.ipynb">Linear Models - Polynomial and Fourier Bases</a> - fig. 9.5 </li>
+          <li> 9.5b: <a href="RL_An_Introduction_2018/0905b_LM_Tile_Coding.ipynb">Linear Models - Tile Coding</a> - fig. 9.10 </li>
+        </ul>
+      </div>
+    </td>
+    <td style="border-color: white;">
+      <img height="100" src="RL_An_Introduction_2018/assets/fig_0901.png"/>
+    </td>
+  </tr>
+  
+  <tr>
+    <td>
+      <div>
+        Chapter 10: On-Policy Control with Approximation
+        <ul>
+          <li> 10.1: <a href="RL_An_Introduction_2018/1001_Episodic_Semi_Gradient_Sarsa.ipynb">Episodic Semi-Gradient Sarsa</a> - MountainCar, fig 10.1, 10.2 </li>
+        </ul>
+      </div>
+    </td>
+    <td style="border-color: white;">
+      <img height="100" src="RL_An_Introduction_2018/assets/fig_1001.png"/>
+    </td>
+  </tr>
+
+<!--
   <tr>
     <td>
       <div>
@@ -92,10 +126,9 @@ Implementation of various AI algorithms
       <img height="100" src=""/>
     </td>
   </tr>
+-->
   
 </table>
-
-
 
 
 ## Reinforcement Learning
@@ -128,7 +161,6 @@ Implementation of selected algorithms from the book. Code snippets are as clean,
     * 9.5b: [Linear Models - Tile Coding](RL_An_Introduction_2018/0905b_LM_Tile_Coding.ipynb) - fig. 9.10
   * Chapter 10: On-Policy Control with Approximation
     * 10.1: [Episodic Semi-Gradient Sarsa](RL_An_Introduction_2018/1001_Episodic_Semi_Gradient_Sarsa.ipynb) - MountainCar, fig 10.1, 10.2
-
 
 
 <!--* Chapter 1: Introduction -->

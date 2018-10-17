@@ -1,15 +1,18 @@
 <h1> AI Sketchpad </h1>
 
-AI Algorithms from various places:
+Implementations of various AI Algorithms
 
+Contents:
 <ul>
   <li><a href="#rl-introduction">Reinforcement Learning: An Introduction</a> (2nd ed, 2018) by Sutton and Barto</li>
   <li><a href="#ucl-course-on-rl">UCL Course on RL</a> (2016) Youtube lectures by David Silver</li>
 </ul>
 
+<br/>
+
 <h2 id="rl-introduction"> Reinforcement Learning: An Introduction (2nd ed, 2018) by Sutton and Barto </h2>
 
-Implementation of selected algorithms from the book. Code snippets are as clean, minimal and close to the book as possible.
+Implementation of selected algorithms from the book. I tried to make code snippets minimal and faithful to the book.
 
 <table>
   <tr>

@@ -9,7 +9,7 @@ Implementation of various AI algorithms
 -->
 
 * [RL](#Reinforcement-Learning)
-* [UCL Course on RL](#UCL-Course-on-RL-%282016%29-Youtube-lectures-by-David-Silver) (2016) Youtube lectures by David Silver
+* [UCL Course on RL](#ucl-course-on-rl) (2016) Youtube lectures by David Silver
 
 # Reinforcement Learning
 

@@ -8,7 +8,7 @@ Implementation of various AI algorithms
 %29  )
 -->
 
-* [Reinforcement Learning](#Reinforcement-Learning)
+* [RL](#hoho)
 
 # Reinforcement Learning
 

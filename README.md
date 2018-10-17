@@ -1,19 +1,18 @@
 # AI Sketchpad
 
-Implementation of various AI algorithms
-
 <!--
 %3A  :
 %28  (
 %29  )
 -->
 
-* [RL](#Reinforcement-Learning)
-* [UCL Course on RL](#original) Youtube lectures by David Silver
+AI Algorithms from various places:
 
-# Reinforcement Learning
+* [Reinforcement Learning: An Introduction](#rl-introduction) (2nd ed, 2018) by Sutton and Barto
+* [UCL Course on RL](#ucl-course-on-rl) (2016) Youtube lectures by David Silver
 
-### Reinforcement Learning: An Introduction (2nd ed, 2018) by Sutton and Barto
+<a name="rl-introduction"></a>
+## Reinforcement Learning: An Introduction (2nd ed, 2018) by Sutton and Barto
 
 Implementation of selected algorithms from the book. Code snippets are as clean, minimal and close to the book as possible.
 
@@ -238,9 +237,8 @@ Implementation of selected algorithms from the book. Code snippets are as clean,
 
 <br/>
 
-<a name="original"></a>
-## UCL Course on RL (2016)
-Youtube lectures by David Silver
+<a name="ucl-course-on-rl"></a>
+## UCL Course on RL (2016) Youtube lectures by David Silver
 
 A bit more in-depth explanation of selected concepts from David Sivler lectures and Sutton and Barto book.
 
@@ -253,7 +251,3 @@ A bit more in-depth explanation of selected concepts from David Sivler lectures 
   * [On-Policy Control](UCL_Course_on_RL/Lecture05_Ctrl/ModelFreeControl_Part1.ipynb) - MC, TD, N-Step, Forward TD(λ), Backward TD(λ) with Eligibility Traces
   * [Off-Policy Control - Expectation Based](UCL_Course_on_RL/Lecture05_Ctrl/ModelFreeControl_Part2.ipynb) - Q-Learning, Expected SARSA, Tree Backup
   * [Off-Policy Control - Importance Sampling](UCL_Course_on_RL/Lecture05_Ctrl/ModelFreeControl_Part3.ipynb) - Importance Sampling SARSA, N-Step Importance Sampling SARSA, Off-Policy MC Control
-
-# hoho
-## hoho2
-### hoho3

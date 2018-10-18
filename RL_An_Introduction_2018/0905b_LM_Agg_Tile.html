@@ -12302,7 +12302,7 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Quick test #2: now with <strong>four</strong> sets of tiles, each offset by 1/4 of tile width</p>
+<p>Quick test #2: now with <strong>four</strong> sets of tiles, each offset by 1/4 of tile width. Note that small 'steps' are not completly independent, tiles still have same width as before.</p>
 
 </div>
 </div>
@@ -12467,7 +12467,7 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>And for tilings=50. Not that alpha is automatically divided by nb_tilings, so we are still in line with the book.</p>
+<p>And for tilings=50. Note that alpha is automatically divided by nb_tilings, so we are still in line with the book.</p>
 
 </div>
 </div>
@@ -12567,74 +12567,6 @@ div#notebook {
 
 </div>
 </div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[23]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ts</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
-<span class="n">model_1</span> <span class="o">=</span> <span class="n">TileCodingFuncApprox</span><span class="p">(</span><span class="n">learn_rate</span><span class="o">=</span><span class="mf">0.0001</span><span class="p">,</span> <span class="n">tile_size</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">nb_tilings</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">nb_states</span><span class="o">=</span><span class="mi">1001</span><span class="p">)</span>
-<span class="n">tiles_1</span> <span class="o">=</span> <span class="n">experiment</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">env</span><span class="p">,</span> <span class="n">policy</span><span class="p">,</span> <span class="n">ep</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span> <span class="n">gamma</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="n">model_1</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="n">callback</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Time took:&#39;</span><span class="p">,</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span><span class="o">-</span><span class="n">ts</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>Time took: 35.851943254470825
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[24]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ts</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
-<span class="n">model_50</span> <span class="o">=</span> <span class="n">TileCodingFuncApprox</span><span class="p">(</span><span class="n">learn_rate</span><span class="o">=</span><span class="mf">0.0001</span><span class="p">,</span> <span class="n">tile_size</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">nb_tilings</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">nb_states</span><span class="o">=</span><span class="mi">1001</span><span class="p">)</span>
-<span class="n">tiles_50</span> <span class="o">=</span> <span class="n">experiment</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">env</span><span class="p">,</span> <span class="n">policy</span><span class="p">,</span> <span class="n">ep</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span> <span class="n">gamma</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="n">model_50</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="n">callback</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Time took:&#39;</span><span class="p">,</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span><span class="o">-</span><span class="n">ts</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>Time took: 95.60778164863586
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">

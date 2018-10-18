@@ -6,6 +6,7 @@ Contents:
 <ul>
   <li><a href="#rl-introduction">Reinforcement Learning: An Introduction</a> (2nd ed, 2018) by Sutton and Barto</li>
   <li><a href="#ucl-course-on-rl">UCL Course on RL</a> (2016) Youtube lectures by David Silver</li>
+  <li><a href="#mini-posts">Mini Posts</a> - other algorithms</li>
 </ul>
 
 <br/>
@@ -273,7 +274,15 @@ A bit more in-depth explanation of selected concepts from David Sivler lectures 
   </li>
 </ul>
 
+<br/>
 
+<h2 id="mini-posts"> Mini Posts </h2>
+
+
+
+<ul>
+  <li><a href="https://marcinbogdanski.github.io/ai_sketchpad/Mini_Posts/ANN_Correlated_Data.html">ANN and Correlated Data</a> - simplest possible example showing why <b>memory reply</b> is necessary</li>    
+</ul>
 
 <!--
 %3A  :

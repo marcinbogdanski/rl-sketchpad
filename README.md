@@ -282,7 +282,10 @@ A bit more in-depth explanation of selected concepts from David Sivler lectures 
 
 
 <ul>
-  <li><a href="https://marcinbogdanski.github.io/ai_sketchpad/Mini_Posts/ANN_Correlated_Data.html">ANN and Correlated Data</a> - simplest possible example showing why <b>memory reply</b> is necessary</li>    
+  <li><a href="https://marcinbogdanski.github.io/ai_sketchpad/Mini_Posts/ANN_Correlated_Data.html">ANN and Correlated Data</a> - simplest possible example showing why <b>memory reply</b> is necessary</li>
+  <li><a href="https://marcinbogdanski.github.io/ai_sketchpad/Mini_Posts/Minimal_TF_Keras.html">Minimal TF Keras</a> - fit sine wave</li>
+    
+    
 </ul>
 
 <!--

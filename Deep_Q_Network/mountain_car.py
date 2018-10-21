@@ -8,7 +8,7 @@ class MountainCarEnv:
         self._vel = 0
         self.state_low = np.array([-1.2, -0.07])   # min pos, min vel
         self.state_high = np.array([0.5, 0.07])    # max pos, max vel
-        self.act_space = [0, 1, 2]                 # [left, idle, right]
+        self.act_space = np.array([0, 1, 2])       # [left, idle, right]
         self.reset()
 
     def reset(self):

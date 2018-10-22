@@ -61,7 +61,7 @@ class MountainCarEnv:
             obs = np.array([self._pos, self._vel], dtype=float)
             reward = -1
             self._done = True
-            return obs, reward, self._done
+            return obs, reward, self._done, None
         else:
             obs = np.array([self._pos, self._vel], dtype=float)
             reward = -1

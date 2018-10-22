@@ -82,7 +82,8 @@ class MountainCarEnv:
 
 
 
-def plot_mountain_car(env, episode, total_tstep, steps_to_plot, trace, mem):
+def plot_mountain_car(env, episode, total_tstep, steps_to_plot, trace, mem,
+    axis_labels, action_labels, action_colors):
     
     q_arr = trace.q_values[total_tstep]
     states = trace.states[-steps_to_plot:]
@@ -95,22 +96,22 @@ def plot_mountain_car(env, episode, total_tstep, steps_to_plot, trace, mem):
     if q_arr is not None:
         ax = fig.add_subplot(231, projection='3d')
         plot_q_max_3d(q_arr, env, title='Q_Max', 
-                      labels=['Position', 'Velocity', ''], alpha=.4, axis=ax)
+                      labels=axis_labels, alpha=.4, axis=ax)
 
     ax = fig.add_subplot(232)
-    plot_trajectory(states, actions, env, title='Trajectory', labels=['Position', 'Velocity'], axis=ax)
+    plot_trajectory(states, actions, env, title='Trajectory', labels=axis_labels, axis=ax)
     
     ax = fig.add_subplot(233)
     # ax.plot(epsilons)
     
     if q_arr is not None:
         ax = fig.add_subplot(234)
-        plot_policy(q_arr, env, labels=['Position', 'Velocity'],
-                    colors=['red', 'blue','green'], collab=['left', 'idle', 'right'], axis=ax)
+        plot_policy(q_arr, env, labels=axis_labels,
+                    colors=action_colors, collab=action_labels, axis=ax)
         
     ax = fig.add_subplot(235)
     st, act, rew_1, st_1, dones_1, _ = mem.pick_last(len(mem))
-    plot_trajectory(st, act, env, title='Memory Buffer', labels=['Position', 'Velocity'], alpha=0.1, axis=ax)
+    plot_trajectory(st, act, env, title='Memory Buffer', labels=axis_labels, alpha=0.1, axis=ax)
     
     ax = fig.add_subplot(236)
     plot_episode_rewards(trace.ep_end_idx, trace.ep_rewards, ax)
@@ -205,7 +206,7 @@ def plot_policy(q_arr, env, labels, colors, collab, axis=None):
 
 
 def plot_q_max_3d(q_arr, env, color='#1f77b4', alpha=1.,
-                  title='', labels=['x','y','z'], axis=None):
+                  title='', labels=['x','y'], axis=None):
     """Plot 3D wireframe
     
     Params:
@@ -233,7 +234,6 @@ def plot_q_max_3d(q_arr, env, color='#1f77b4', alpha=1.,
     axis.plot_wireframe(X, Y, q_max, color=color, alpha=alpha)
     axis.set_xlabel(labels[0])
     axis.set_ylabel(labels[1])
-    axis.set_zlabel(labels[2])
     axis.set_xticks([x_min, x_max])
     axis.set_yticks([y_min, y_max])
     axis.set_title(title)

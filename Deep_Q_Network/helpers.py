@@ -3,6 +3,8 @@ import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import axes3d
 from matplotlib.colors import ListedColormap
 
+import tiles3           # by Richard Sutton, http://incompleteideas.net/tiles/tiles3.html
+
 from collections import namedtuple
 ObsSpace = namedtuple('ObsSpace', 'shape low high')
 
@@ -127,19 +129,19 @@ def plot_episode_rewards(ep_end_dict, rew_dict, axis=None):
         tsteps.append(end_tstep)
         rewards.append(rew_dict[ep])
     
-    rewards_avg = running_mean(rewards, 10)
+    rewards_avg = running_mean(rewards, 100)
     
     if axis is None:
         fig = plt.figure()
         axis = fig.add_subplot(111)
     
     if len(tsteps) > 0:
-        axis.scatter(tsteps, rewards, alpha=0.5, marker='.')
-        axis.plot(tsteps, rewards_avg, alpha=1)
+        axis.scatter(tsteps, rewards, alpha=0.5, s=1)
+        axis.plot(tsteps, rewards_avg, alpha=1, color='orange')
         axis.plot([0, tsteps[-1]], [-200, -200], color='gray', linestyle='--')
     axis.set_xlabel('Time Step')
     axis.set_ylabel('Episode Reward')
-    axis.set_yscale('symlog')
+    # axis.set_yscale('symlog')
     axis.set_title('Episode Rewards')
 
 

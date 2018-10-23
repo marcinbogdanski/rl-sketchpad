@@ -241,6 +241,32 @@ def plot_q_max_3d(q_arr, env, color='#1f77b4', alpha=1.,
     axis.view_init(40, -70)
 
 
+# old version
+# def eval_state_action_space(model, env, split=[32,32]):
+#     """Evaluate 2d Q-function on area and return as 3d array
+    
+#     Params:
+#         model     - function approximator with method: model.eval(state, action) -> float
+#         env       - environment with members:
+#                       st_low - state space low boundry e.g. [-1.2, -0.07]
+#                       st_high - state space high boundry
+#                       act_space - action space, e.g. [0, 1, 2]
+#         split     - number of data points in each dimensions, e.g. [20, 20]
+#     """
+#     x_min, x_max = env.observation_space.low[0], env.observation_space.high[0]
+#     y_min, y_max = env.observation_space.low[1], env.observation_space.high[1]
+#     x_split, y_split = split
+    
+#     q_arr = np.zeros([x_split, y_split, env.action_space.n])
+
+#     for pi, pos in enumerate(np.linspace(x_min, x_max, x_split)):
+#         for vi, vel in enumerate(np.linspace(y_min, y_max, y_split)):
+#             q_values = model.eval(states=np.array([[pos, vel]]))[0]
+#             for act in range(env.action_space.n):
+#                 q_arr[pi, vi, act] = q_values[act]
+                
+#     return q_arr
+
 
 def eval_state_action_space(model, env, split=[32,32]):
     """Evaluate 2d Q-function on area and return as 3d array
@@ -253,19 +279,20 @@ def eval_state_action_space(model, env, split=[32,32]):
                       act_space - action space, e.g. [0, 1, 2]
         split     - number of data points in each dimensions, e.g. [20, 20]
     """
+    # prep states to evaluate
     x_min, x_max = env.observation_space.low[0], env.observation_space.high[0]
     y_min, y_max = env.observation_space.low[1], env.observation_space.high[1]
     x_split, y_split = split
+    x_space = np.linspace(x_min, x_max, x_split)
+    y_space = np.linspace(y_min, y_max, y_split)
+    Y, X = np.meshgrid(y_space, x_space)
+    states = np.stack([X, Y], axis=-1)
+    states = states.reshape([-1, 2])
     
-    q_arr = np.zeros([x_split, y_split, env.action_space.n])
+    q_arr = model.eval(states=states)
+    return q_arr.reshape([128,128,-1])
 
-    for pi, pos in enumerate(np.linspace(x_min, x_max, x_split)):
-        for vi, vel in enumerate(np.linspace(y_min, y_max, y_split)):
-            q_values = model.eval(states=np.array([[pos, vel]]))[0]
-            for act in range(env.action_space.n):
-                q_arr[pi, vi, act] = q_values[act]
-                
-    return q_arr
+
 
 
 

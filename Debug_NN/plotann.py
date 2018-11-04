@@ -262,9 +262,11 @@ def plot_3d_histogram(data, es, neuron_nb, funct=None,
     ax.view_init(30, -85)
     
     for epoch in range(len(data_ia)):
+        
+        hist_0 = np.count_nonzero(data_ia[epoch,:]>0) / len(data_ia[epoch,:])
+        
         data = funct(data_ia[epoch,:])
         
-        hist_0 = np.count_nonzero(data>0)
         if skip_first:
             data = data[data>0]
         
@@ -272,14 +274,6 @@ def plot_3d_histogram(data, es, neuron_nb, funct=None,
         bins = (bins[:-1] + bins[1:])/2
         if np.sum(hist) != 0:
             hist = hist / np.sum(hist)
-        
-#         print('bins', bins)
-#         print('hist', hist)
-        
-        hist_0 = hist[0]
-        if skip_first:
-            bins = bins[1:]
-            hist = hist[1:]
         
         ax.plot(xs=bins, ys=hist,
                 zs=-epoch,
@@ -293,7 +287,7 @@ def plot_3d_histogram(data, es, neuron_nb, funct=None,
             ax.plot(xs=[bins[0],bins[-1]], ys=[0,0], zs=-nb_epochs, zdir='y', color='k')
     
     if skip_first:
-        ax.set_xlabel('value ('+str(round((1-hist_0)*100, 2)) + '%)'); ax.set_ylabel('epoch'); ax.set_zlabel('n')
+        ax.set_xlabel('value ('+str(round(hist_0*100, 2)) + '%)'); ax.set_ylabel('epoch'); ax.set_zlabel('n')
     else:
         ax.set_xlabel('value'); ax.set_ylabel('epoch'); ax.set_zlabel('n')
         

@@ -46,9 +46,6 @@ class MountainCarEnv:
         
         self._pos = 0
         self._vel = 0
-        #self.state_low = np.array([-1.2, -0.07])   # min pos, min vel
-        #self.state_high = np.array([0.5, 0.07])    # max pos, max vel
-        #self.act_space = np.array([0, 1, 2])       # [left, idle, right]
         self.reset()
 
     def reset(self):
@@ -101,8 +98,15 @@ def plot_mountain_car(env, episode, total_tstep, steps_to_plot, trace, mem,
     ax = fig.add_subplot(232)
     plot_trajectory(states, actions, env, title='Trajectory', labels=axis_labels, axis=ax)
     
-    ax = fig.add_subplot(233)
-    # ax.plot(epsilons)
+    
+    if q_arr is not None:
+        ax = fig.add_subplot(233)
+        xx = trace.q_values.keys()
+        values_tmp = np.array(list(trace.q_values.values()))  # shape [n, 128, 128, act]
+        values = values_tmp[:,values_tmp.shape[1]//2, values_tmp.shape[2]//2,:]
+        for i in range(values.shape[-1]):
+            ax.plot(values[:,i], color=action_colors[i])
+        ax.grid()
     
     if q_arr is not None:
         ax = fig.add_subplot(234)
@@ -139,10 +143,10 @@ def plot_episode_rewards(ep_end_dict, rew_dict, axis=None):
     if len(tsteps) > 0:
         axis.scatter(tsteps, rewards, alpha=0.5, s=1)
         axis.plot(tsteps, rewards_avg, alpha=1, color='orange')
-        axis.plot([0, tsteps[-1]], [-200, -200], color='gray', linestyle='--')
+        
+    axis.grid()
     axis.set_xlabel('Time Step')
     axis.set_ylabel('Episode Reward')
-    # axis.set_yscale('symlog')
     axis.set_title('Episode Rewards')
 
 

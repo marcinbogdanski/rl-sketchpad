@@ -5,9 +5,6 @@ from matplotlib.colors import ListedColormap
 
 import tiles3           # by Richard Sutton, http://incompleteideas.net/tiles/tiles3.html
 
-from collections import namedtuple
-ObsSpace = namedtuple('ObsSpace', 'shape low high')
-
 def running_mean(x, n):
     # res = []
     # for i in range(len(x)):
@@ -18,68 +15,41 @@ def running_mean(x, n):
     return res
 
 
-class BoxSpace():
-    def __init__(self, shape, low, high):
-        assert isinstance(shape, tuple)
-        assert isinstance(low, list)
-        assert isinstance(high, list)
-        self.shape = shape
-        self.low = np.array(low)
-        self.high = np.array(high)
-        
-class DiscreteSpace():
-    def __init__(self, n):
-        assert isinstance(n, int)
-        self.n = n
-    def sample(self):
-        return np.random.randint(self.n)
+def plot_generic_environment(env, total_tstep, steps_to_plot, trace, mem):
+    
+    fig, ax = plt.subplots(figsize=[16,4])
+    tmp_x = np.array(list(trace.q_values.keys()))
+    tmp_y_hat = np.array(list(trace.q_values.values()))
+    tmp_y_hat = np.average(tmp_y_hat, axis=-1)           # average over actions
+    lines = ax.plot(tmp_x, tmp_y_hat, alpha=.5)
+    if trace.test_labels is not None:
+        ax.legend(lines, trace.test_labels)
+    ax.grid()
+    ax.set_title('Q-Values')
+    ax.set_xlabel('Time Step')
+    ax.set_ylabel('Q-Values')
+    plt.show()
+
+    fig, ax = plt.subplots(figsize=[16,4])
+    plot_episode_rewards(trace.ep_end_idx, trace.ep_rewards, ax)
+    plt.show()
+
+    fig, ax = plt.subplots(figsize=[16,4])
+    states_tmp = np.array(trace.states[-1000:])
+    tsteps_tmp = np.array(range(len(states_tmp))) + trace.total_tstep - trace.eval_every
+    lines = ax.plot(tsteps_tmp, states_tmp, alpha=.5)
+    if trace.state_labels is not None:
+        ax.legend(lines, trace.state_labels)
+    ax.grid()
+    ax.set_title('Trajectory')
+    ax.set_xlabel('Time Step')
+    ax.set_ylabel('State Values')
+    plt.show()
+    
+    
     
 
-class MountainCarEnv:
-    """Mountain Car as described in Sutton & Barto (2018), example 10.1"""
-    def __init__(self):
-        
-        self.observation_space = BoxSpace(
-            shape=(2,), low=[-1.2, -0.07], high=[0.5, 0.07])
-        
-        self.action_space = DiscreteSpace(n=3)
-        
-        self._pos = 0
-        self._vel = 0
-        self.reset()
-
-    def reset(self):
-        self._pos = np.random.uniform(-0.6, -0.4)  # start pos
-        self._vel = 0.0
-        self._done = False
-        return np.array([self._pos, self._vel], dtype=float)  # use np arrays everywhere
-
-    def step(self, action):
-        assert self._done == False
-        assert 0 <= action < self.action_space.n
-
-        self._vel = self._vel + 0.001*(action-1) - 0.0025*np.cos(3*self._pos)
-        self._vel = min(max(self._vel, -0.07), 0.07)
-
-        self._pos = self._pos + self._vel
-        self._pos = min(max(self._pos, -1.2), 0.5)
-
-        if self._pos == -1.2:
-            self._vel = 0.0
-
-        if self._pos == 0.5:
-            obs = np.array([self._pos, self._vel], dtype=float)
-            reward = -1
-            self._done = True
-            return obs, reward, self._done, None
-        else:
-            obs = np.array([self._pos, self._vel], dtype=float)
-            reward = -1
-            return obs, reward, self._done, None
-
-
-
-def plot_mountain_car(env, episode, total_tstep, steps_to_plot, trace, mem,
+def plot_2d_environment(env, total_tstep, steps_to_plot, trace, mem,
     axis_labels, action_labels, action_colors):
     
     q_arr = trace.q_values[total_tstep]
@@ -141,8 +111,8 @@ def plot_episode_rewards(ep_end_dict, rew_dict, axis=None):
         axis = fig.add_subplot(111)
     
     if len(tsteps) > 0:
-        axis.scatter(tsteps, rewards, alpha=0.5, s=1)
-        axis.plot(tsteps, rewards_avg, alpha=1, color='orange')
+        axis.scatter(tsteps, rewards, alpha=1, s=1, label='Episode reward')
+        axis.plot(tsteps, rewards_avg, alpha=1, color='orange', label='Avg. 100 episodes')
         
     axis.grid()
     axis.set_xlabel('Time Step')

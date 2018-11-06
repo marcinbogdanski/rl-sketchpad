@@ -17,14 +17,16 @@ def running_mean(x, n):
 
 def plot_generic_environment(env, total_tstep, steps_to_plot, trace, mem):
     
+    # Plot test states
     fig, ax = plt.subplots(figsize=[16,4])
     tmp_x = np.array(list(trace.q_values.keys()))
-    tmp_y_hat = np.array(list(trace.q_values.values()))
-    tmp_y_hat = np.average(tmp_y_hat, axis=-1)           # average over actions
-    lines = ax.plot(tmp_x, tmp_y_hat, alpha=.5)
-    if trace.test_labels is not None:
-        ax.legend(lines, trace.test_labels)
-    ax.grid()
+    if len(tmp_x) > 0:
+        tmp_y_hat = np.array(list(trace.q_values.values()))
+        tmp_y_hat = np.average(tmp_y_hat, axis=-1)           # average over actions
+        lines = ax.plot(tmp_x, tmp_y_hat, alpha=.5)
+        if trace.test_labels is not None:
+            ax.legend(lines, trace.test_labels)
+        ax.grid()
     ax.set_title('Q-Values')
     ax.set_xlabel('Time Step')
     ax.set_ylabel('Q-Values')

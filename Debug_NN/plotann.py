@@ -4,7 +4,7 @@ from mpl_toolkits.mplot3d import axes3d
 
 
 
-def show_neurons_weights(weights_iwn, gradients_iwn, neurons, title_prefix='', color='black', figsize=None):
+def show_neurons_weights(weights_iwn, gradients_iwn, neurons, title_prefix='', mode='median', color='black', figsize=None):
     assert weights_iwn.ndim == 3
     assert gradients_iwn.ndim == 3
     assert weights_iwn.shape == gradients_iwn.shape
@@ -12,30 +12,30 @@ def show_neurons_weights(weights_iwn, gradients_iwn, neurons, title_prefix='', c
     for n in neurons:
         fig, [ax1, ax2, ax3] = plt.subplots(1, 3, figsize=figsize)
         plot_weights(weights_iwn, neuron_nb=n, title=title_prefix+' weights #'+str(n), axis=ax1)
-        plot_update_ratios(weights_iwn, neuron_nb=n, title=title_prefix+' ratios #'+str(n), color=color, axis=ax2)
-        plot_gradients(gradients_iwn, neuron_nb=n, title=title_prefix+' gradients #'+str(n), color=color, axis=ax3)
+        plot_update_ratios(weights_iwn, neuron_nb=n, title=title_prefix+' ratios #'+str(n), mode=mode, color=color, axis=ax2)
+        plot_gradients(gradients_iwn, neuron_nb=n, title=title_prefix+' gradients #'+str(n), mode=mode, color=color, axis=ax3)
         fig.tight_layout()
         
-def show_biases(biases_in, gradients_in, title_prefix='', color='black', figsize=None):
+def show_biases(biases_in, gradients_in, title_prefix='', mode='median', color='black', figsize=None):
     assert biases_in.ndim == 2
     assert gradients_in.ndim == 2
     assert biases_in.shape == gradients_in.shape
     
     fig, [ax1, ax2, ax3] = plt.subplots(1, 3, figsize=figsize)
     plot_weights(biases_in[:,:,np.newaxis], neuron_nb=0, title=title_prefix+' biases', axis=ax1)
-    plot_update_ratios(biases_in[:,:,np.newaxis], neuron_nb=0, title=title_prefix+' ratios', color=color, axis=ax2)
-    plot_gradients(gradients_in[:,:,np.newaxis], neuron_nb=0, title=title_prefix+' gradients', color=color, axis=ax3)
+    plot_update_ratios(biases_in[:,:,np.newaxis], neuron_nb=0, title=title_prefix+' ratios', mode=mode, color=color, axis=ax2)
+    plot_gradients(gradients_in[:,:,np.newaxis], neuron_nb=0, title=title_prefix+' gradients', mode=mode, color=color, axis=ax3)
     fig.tight_layout()
 
-def show_layer_summary(weights_iwn, gradients_iwn, title_prefix='', color='black', figsize=None):
+def show_layer_summary(weights_iwn, gradients_iwn, title_prefix='', mode='median', color='black', figsize=None):
     assert weights_iwn.ndim == 3
     assert gradients_iwn.ndim == 3
     assert weights_iwn.shape == gradients_iwn.shape
     
     # Hidden 1: Summary
     fig, [ax1, ax2] = plt.subplots(nrows=1, ncols=2, figsize=figsize)
-    plot_update_ratios(weights_iwn, neuron_nb='all', title=title_prefix+' ratios', color=color, axis=ax1)
-    plot_gradients(gradients_iwn, neuron_nb='all', title=title_prefix+' gradients', color=color, axis=ax2)
+    plot_update_ratios(weights_iwn, neuron_nb='all', title=title_prefix+' ratios', mode=mode, color=color, axis=ax1)
+    plot_gradients(gradients_iwn, neuron_nb='all', title=title_prefix+' gradients', mode=mode, color=color, axis=ax2)
     fig.tight_layout()
 
     
@@ -138,6 +138,16 @@ def plot_gradients(data, neuron_nb, title=None, mode='median', color='black', ax
         axis.plot(np.percentile(ratio_abs, 10, axis=-1), alpha=.3, color=color);
         axis.plot(np.percentile(ratio_abs, 90, axis=-1), alpha=.3, color=color);
         axis.plot(np.median(ratio_abs, axis=-1), alpha=1, color=color);
+        
+    if mode == 'norms':
+        data_norm_i = np.linalg.norm(data_iw, axis=-1)
+        axis.plot(data_norm_i, alpha=1, color=color)
+        #data_delta_norm_i = np.linalg.norm(data_delta_iw, axis=-1)
+        #axis.plot(data_delta_norm_i/data_norm_i[:-1], alpha=1, color='green')
+        
+    if mode == 'dl4j':
+        tmp_ = np.mean(np.abs(data_iw), axis=-1)
+        axis.plot(tmp_, color=color)
     
     axis.plot([0,len(ratio_abs)],[.1, .1], ls='--', c='black')
     axis.plot([0,len(ratio_abs)],[.01, .01], ls='-', c='black')
@@ -186,11 +196,11 @@ def plot_update_ratios(data, neuron_nb, title=None, mode='median', color='red', 
         if mode == 'norms':
             data_norm_i = np.linalg.norm(data_iw, axis=-1)
             data_delta_norm_i = np.linalg.norm(data_delta_iw, axis=-1)
-            axis.plot(data_delta_norm_i/data_norm_i[:-1], alpha=1, color='green')
+            axis.plot(data_delta_norm_i/data_norm_i[:-1], alpha=1, color=color)
 
-        if mode == 'DL4J':
+        if mode == 'dl4j':
             tmp_ = np.mean(np.abs(data_delta_iw), axis=-1) / np.mean(np.abs(data_iw[:-1,:]), axis=1)
-            axis.plot(tmp_, color='blue')
+            axis.plot(tmp_, color=color)
 
         if mode == 'mean+std':
             mean_ = np.mean(ratio_abs, axis=-1)

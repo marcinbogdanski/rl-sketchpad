@@ -23,8 +23,6 @@ def plot_generic_environment(env, total_tstep, steps_to_plot, trace, mem):
         tmp_y_hat = np.array(list(trace.q_values.values()))
         tmp_y_hat = np.average(tmp_y_hat, axis=-1)           # average over actions
         lines = ax.plot(tmp_x, tmp_y_hat, alpha=.5)
-        if trace.test_labels is not None:
-            ax.legend(lines, trace.test_labels)
         ax.grid()
     ax.set_title('Q-Values')
     ax.set_xlabel('Time Step')

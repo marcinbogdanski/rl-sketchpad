@@ -30,7 +30,7 @@ def plot_generic_environment(env, total_tstep, steps_to_plot, trace, mem):
     plt.show()
 
     fig, ax = plt.subplots(figsize=[16,4])
-    plot_episode_rewards(trace.ep_end_idx, trace.ep_rewards, ax)
+    plot_episode_rewards(trace.ep_rewards, ax)
     plt.show()
 
     fig, ax = plt.subplots(figsize=[16,4])
@@ -87,21 +87,21 @@ def plot_2d_environment(env, total_tstep, steps_to_plot, trace, mem,
     plot_trajectory(st, act, env, title='Memory Buffer', labels=axis_labels, alpha=0.5, axis=ax)
     
     ax = fig.add_subplot(236)
-    plot_episode_rewards(trace.ep_end_idx, trace.ep_rewards, ax)
+    plot_episode_rewards(trace.ep_rewards, ax)
 
     plt.tight_layout()
     plt.show()
 
 
 
-def plot_episode_rewards(ep_end_dict, rew_dict, axis=None):
+def plot_episode_rewards(episode_rewards_dict, axis=None):
     
     tsteps = []    # episodes end tsteps
     rewards = []   # episodes rewards
     
-    for ep, end_tstep in ep_end_dict.items():
-        tsteps.append(end_tstep)
-        rewards.append(rew_dict[ep])
+    for time_step, reward in episode_rewards_dict.items():
+        tsteps.append(time_step)
+        rewards.append(reward)
     
     rewards_avg = running_mean(rewards, 100)
     

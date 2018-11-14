@@ -62,7 +62,7 @@ def plot_2d_environment(env, total_tstep, steps_to_plot, trace, mem,
     if q_arr is not None:
         ax = fig.add_subplot(231, projection='3d')
         plot_q_max_3d(q_arr, env, title='Q_Max', 
-                      labels=axis_labels, alpha=.4, axis=ax)
+                      labels=axis_labels, alpha=.5, axis=ax)
 
     ax = fig.add_subplot(232)
     plot_trajectory(states, actions, env, title='Trajectory', labels=axis_labels, axis=ax)
@@ -84,7 +84,7 @@ def plot_2d_environment(env, total_tstep, steps_to_plot, trace, mem,
         
     ax = fig.add_subplot(235)
     st, act, rew_1, st_1, dones_1, _ = mem.pick_last(len(mem))
-    plot_trajectory(st, act, env, title='Memory Buffer', labels=axis_labels, alpha=0.1, axis=ax)
+    plot_trajectory(st, act, env, title='Memory Buffer', labels=axis_labels, alpha=0.5, axis=ax)
     
     ax = fig.add_subplot(236)
     plot_episode_rewards(trace.ep_end_idx, trace.ep_rewards, ax)

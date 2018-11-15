@@ -37,6 +37,9 @@ def show_layer_summary(weights_iwn, gradients_iwn, title_prefix='', mode='median
     plot_update_ratios(weights_iwn, neuron_nb='all', title=title_prefix+' ratios', mode=mode, color=color, axis=ax1)
     plot_gradients(gradients_iwn, neuron_nb='all', title=title_prefix+' gradients', mode=mode, color=color, axis=ax2)
     fig.tight_layout()
+    
+    return fig
+
 
     
 def show_neurons_activations(activations_ian, epoch_size, activation_function, neurons, title_prefix='', color=(0,0,0,1)):
@@ -73,7 +76,8 @@ def show_neurons_activations(activations_ian, epoch_size, activation_function, n
     fig.tight_layout()
     
     
-def show_layer_activations(activations_ian, epoch_size, activation_function, title_prefix='', color=(0,0,0,1), figsize=None):
+def show_layer_activations(activations_ian, epoch_size, activation_function, title_prefix='',
+                           color=(0,0,0,1), lines_01=True, figsize=None):
     assert activations_ian.ndim == 3
     #assert len(activations_ian) % epoch_size == 0
     
@@ -85,14 +89,10 @@ def show_layer_activations(activations_ian, epoch_size, activation_function, tit
     
     fig, [ax1, ax2] = plt.subplots(nrows=1, ncols=2, subplot_kw=dict(projection='3d'), figsize=figsize)
     plot_3d_histogram(activations_ian, es=epoch_size, neuron_nb='all', title=title_prefix+' raw',
-                      funct=None, color=colorB, ax=ax1)
+                      funct=None, color=colorB, lines_01=lines_01, ax=ax1)
     plot_3d_histogram(activations_ian, es=epoch_size, neuron_nb='all', title=title_prefix,
-                      skip_first=skip_first, funct=activation_function, color=color, ax=ax2)
+                      skip_first=skip_first, funct=activation_function, color=color, lines_01=lines_01, ax=ax2)
     fig.tight_layout()
-
-    
-    
-    
     
     
     

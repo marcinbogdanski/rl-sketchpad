@@ -52,7 +52,7 @@ class MovingDotEnv(gym.Env):
     def _reset(self):
         if self.random_start:
             x = self.np_random.randint(low=0, high=160)
-            y = self.np_random.randint(low=0, high=210)
+            y = self.np_random.randint(low=40, high=210-40)
             self.pos = [x, y]
         else:
             self.pos = [0, 0]
@@ -74,7 +74,7 @@ class MovingDotEnv(gym.Env):
         y = self.pos[1]
         w = self.dot_size[0]
         h = self.dot_size[1]
-        ob[y-h:y+h, x-w:x+w, :] = 255
+        ob[ max(y-h,0):min(y+h,210), max(x-w,0):min(x+w,160), :] = 255
         return ob
 
     def get_action_meanings(self):

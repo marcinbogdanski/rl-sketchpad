@@ -100,7 +100,7 @@ Implementation of selected algorithms from the book. I tried to make code snippe
           <li> 9.3a: <a href="https://marcinbogdanski.github.io/ai_sketchpad/RL_An_Introduction_2018/0903a_Gradient_MC.html">Gradient Monte Carlo</a> - example 9.1, fig. 9.1 <!-- calc "true" --> </li>
           <li> 9.3b: <a href="https://marcinbogdanski.github.io/ai_sketchpad/RL_An_Introduction_2018/0903b_Semi_Gradient_TD.html">Semi-Gradient TD</a> - example 9.2, fig. 9.2 (left) </li>
           <li> 9.5a: <a href="https://marcinbogdanski.github.io/ai_sketchpad/RL_An_Introduction_2018/0905a_LM_Poly_Fourier.html">Linear Models - Polynomial and Fourier Bases</a> - fig. 9.5 </li>
-          <li> 9.5b: <a href="https://marcinbogdanski.github.io/ai_sketchpad/RL_An_Introduction_2018/0905b_LM_Tile_Coding.html">Linear Models - Tile Coding</a> - fig. 9.10 </li>
+          <li> 9.5b: <a href="https://marcinbogdanski.github.io/ai_sketchpad/RL_An_Introduction_2018/0905b_LM_Agg_Tile.html">Linear Models - Tile Coding</a> - fig. 9.10 </li>
           <li> 9.7: <a href="https://marcinbogdanski.github.io/ai_sketchpad/RL_An_Introduction_2018/0907_ANN.html">Neural Network with Memory Reply</a> </li>
         </ul>
       </div>

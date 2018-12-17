@@ -11845,15 +11845,7 @@ $$ \huge{\underline{\textbf{ 1-Layer Neural Network }}} $$
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Symbols</strong></p>
-<p>All symbols are also defined in text through the notebook in <strong>bold</strong> on first mention.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
+<p>All symbols are also defined in the text through the notebook.</p>
 <table>
 <thead><tr>
 <th>math</th>
@@ -12046,11 +12038,13 @@ $$</p>
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>$$
 x = 
-\begin{matrix}
- ↑ \\ 
- \scriptsize{\text{n_batch}} \\ 
- ↓
-\end{matrix}
+\scriptsize{
+  \begin{matrix}
+  ↑ \\ 
+  \text{n_batch} \\ 
+  ↓
+  \end{matrix}
+}\normalsize{}
 \overset{\text{← n_in →}}{
   \begin{bmatrix}
   \cdot &amp; \cdot  \\  
@@ -12060,23 +12054,22 @@ x =
 }
 \quad\quad\quad
 W =
-\begin{matrix}
- \uparrow \\ 
- \scriptsize{\text{n_in}} \\ 
- \downarrow
-\end{matrix}
+\scriptsize{
+  \begin{matrix}
+  ↑ \\ 
+  \text{n_in} \\ 
+  ↓
+  \end{matrix}
+}\normalsize{}
 \overset{\text{n_out}}{
   \begin{bmatrix}
   \cdot  \\ 
-  \cdot  \\ 
-  \cdot 
+  \cdot  
   \end{bmatrix}
 }
 \quad\quad\quad
 b =
-\begin{matrix}
- \scriptsize{\text{1}}
-\end{matrix}
+\scriptsize{\text{1}}\normalsize{}
 \overset{\text{n_out}}{
   \begin{bmatrix}
   \cdot \\ 
@@ -12151,11 +12144,13 @@ J(y,\hat{y}) =
 \end{matrix}
 \quad\quad\quad
 y = 
-\begin{matrix}
- \uparrow \\ 
- \scriptsize{\text{n_batch}} \\ 
- \downarrow
-\end{matrix}
+\scriptsize{
+  \begin{matrix}
+  ↑ \\ 
+  \text{n_batch} \\ 
+  ↓
+  \end{matrix}
+}\normalsize{}
 \overset{\text{n_out}}{
   \begin{bmatrix}
   \cdot  \\ 
@@ -12165,11 +12160,13 @@ y =
 }
 \quad\quad\quad
 \hat{y} =
-\begin{matrix}
- \uparrow \\ 
- \scriptsize{\text{n_batch}} \\ 
- \downarrow
-\end{matrix}
+\scriptsize{
+  \begin{matrix}
+  ↑ \\ 
+  \text{n_batch} \\ 
+  ↓
+  \end{matrix}
+}\normalsize{}
 \overset{\text{n_out}}{
   \begin{bmatrix}
   \cdot  \\ 
@@ -12229,7 +12226,7 @@ $$</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Derivative of <em>both</em> sigmoid and binary cross-entropy. Proof is trully beautiful, see <a href="https://www.ics.uci.edu/~pjsadows/notes.pdf">proof</a></p>
+<p>Derivative of <em>both</em> sigmoid and binary cross-entropy. Proof is rather nice, see <a href="https://www.ics.uci.edu/~pjsadows/notes.pdf">here</a></p>
 
 </div>
 </div>

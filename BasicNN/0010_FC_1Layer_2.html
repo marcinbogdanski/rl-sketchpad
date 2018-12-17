@@ -11786,22 +11786,6 @@ $$ \huge{\underline{\textbf{ 1-Layer Neural Network }}} $$
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Contents:</p>
-<ul>
-<li><a href="#Introduction">Introduction</a></li>
-<li><a href="#Neural-Network">Neural Network</a></li>
-<li><a href="#Solve-AND">Solve AND</a></li>
-<li><a href="#Solve-College-Admissions">Solve College Admissions</a></li>
-<li><a href="#Numerical-Gradient-Check">Numerical Gradient Check</a></li>
-</ul>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Introduction">Introduction<a class="anchor-link" href="#Introduction">&#182;</a></h1>
 </div>
 </div>
@@ -11887,7 +11871,7 @@ $$ \huge{\underline{\textbf{ 1-Layer Neural Network }}} $$
 <td>n_out</td>
 <td>n_out</td>
 <td>int</td>
-<td>number of outputs</td>
+<td>number of outputs (**)</td>
 </tr>
 <tr>
 <td>$x$</td>
@@ -11939,7 +11923,10 @@ $$ \huge{\underline{\textbf{ 1-Layer Neural Network }}} $$
 </tr>
 </tbody>
 </table>
-<p>(*) - for simplicity we feed in whole dataset all at once, so in this notebook n_batch and n_dataset are always equal</p>
+<ul>
+<li>(*) - for simplicity we feed in whole dataset all at once, so in this notebook n_batch and n_dataset are always equal</li>
+<li>(**) - in this notebook <em>n_out</em> is always one, but depending on problem, model could have more than one output</li>
+</ul>
 
 </div>
 </div>
@@ -11996,7 +11983,7 @@ $$ \huge{\underline{\textbf{ 1-Layer Neural Network }}} $$
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Forward Pass</strong></p>
-<p>All variables are 2d arrays. <strong>x, W</strong> and <strong>b</strong> denote input mini-batch, weights and biases respectively. <strong>n_batch</strong> is size of mini-batch, but in this notebook we always feed full dataset all at once. <strong>n_in</strong>, <strong>n_out</strong> are number of input features and number of outputs from the model (in this notebook nb_out is always one). Shapes are as follows:</p>
+<p>All variables are 2d arrays. $x$, $W$ and $b$ denote input mini-batch, weights and biases respectively. <em>n_batch</em> is size of mini-batch, but in this notebook we always feed full dataset all at once. <em>n_in, n_out</em> are number of input features and number of outputs from the model (in this notebook nb_out is always one). Shapes are as follows:</p>
 
 </div>
 </div>
@@ -12052,7 +12039,7 @@ $$</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>$\mathbf{\hat{y}}$ is output from the model. Shape is denoted in next section.</p>
+<p>$\hat{y}$ is output from the model. Shape is denoted in next section.</p>
 
 </div>
 </div>

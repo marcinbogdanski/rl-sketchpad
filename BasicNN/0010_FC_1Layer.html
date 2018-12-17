@@ -11811,7 +11811,8 @@ $$ \huge{\underline{\textbf{ 1-Layer Neural Network }}} $$
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>This notebook presents simplest possible <strong>1-layer neural network</strong> trained with backpropagation. I say "neural network", but this is really just linear combination of features passed through sigmoid with binary cross-entropy loss function, which is actually just a binary logistic regression.</p>
+<p>This notebook presents reference implementation of <strong>1-layer neural network</strong> trained with backpropagation.</p>
+<p>I say "neural network", but whole neural network is just single neuron with sigmoid activaiton function. We are going to use binary cross-entropy loss function because it has better convergence properties than mean squared error (as explained <a href="http://neuralnetworksanddeeplearning.com/chap3.html#the_cross-entropy_cost_function">here</a>. Fitting such single-layer single-neuron model is also called binary logistic regression.</p>
 <p><strong>Model</strong></p>
 <ul>
 <li>one layer: <strong>fully connected</strong> with <strong>sigmoid</strong> activation</li>
@@ -11820,16 +11821,8 @@ $$ \huge{\underline{\textbf{ 1-Layer Neural Network }}} $$
 </ul>
 <p><strong>Recommended Reading</strong></p>
 <ul>
-<li>for great intro to neural networks overall, see Michael Nilsen book <a href="http://neuralnetworksanddeeplearning.com/">here</a></li>
-<li>if sigmoid, softmax, cross entropy and binary cross-entropy are confusing, <a href="https://gombru.github.io/2018/05/23/cross_entropy_loss/">here</a> is a great resource placing all of them in context</li>
-</ul>
-<p><strong>Dependencies</strong></p>
-<ul>
-<li>numpy, matplotlib - neural net and backprop</li>
-<li>optional:<ul>
-<li>pandas - for college admission problem</li>
-</ul>
-</li>
+<li><em>Neural Networks and Deep Learning</em> by Michael Nilsen - great free introductory book <a href="http://neuralnetworksanddeeplearning.com/">here</a></li>
+<li><em>Understanding Categorical Cross-Entropy Loss, Binary Cross-Entropy Loss, Softmax Loss, Logistic Loss, Focal Loss and all those confusing names</em> - great post explaining loss functions <a href="https://gombru.github.io/2018/05/23/cross_entropy_loss/">here</a></li>
 </ul>
 
 </div>
@@ -11866,6 +11859,51 @@ $$ \huge{\underline{\textbf{ 1-Layer Neural Network }}} $$
 </div>
 </div>
 </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>$$ 
+\begin{matrix}
+ \uparrow \\ 
+ \small{\text{batch_size}} \\ 
+ \downarrow
+\end{matrix}
+\quad
+\underset{z}{
+  \begin{bmatrix}
+  \cdot \\  
+  \cdot \\ 
+  \cdot
+  \end{bmatrix}
+} = 
+\underset{x}{
+  \begin{bmatrix}
+  \cdot &amp; \cdot &amp; \cdot \\  
+  \cdot &amp; \cdot &amp; \cdot \\ 
+  \cdot &amp; \cdot &amp; \cdot
+  \end{bmatrix}
+}
+\underset{W}{
+  \begin{bmatrix}
+  \cdot  \\ 
+  \cdot  \\ 
+  \cdot 
+  \end{bmatrix}
+}
++
+\underset{b}{
+  \begin{bmatrix}
+  \cdot \\ 
+  \downarrow  \\ 
+  \
+  \end{bmatrix}
+}
+$$</p>
+
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[2]:</div>
@@ -11877,8 +11915,9 @@ $$ \huge{\underline{\textbf{ 1-Layer Neural Network }}} $$
 <span class="sd">        y - targets - shape: (batch_size, nb_outputs)</span>
 <span class="sd">        W - weights, modified in place - shape: (nb_inputs, nb_outputs)</span>
 <span class="sd">        b - biases, modified in place  - shape: (1, nb_outputs)</span>
+<span class="sd">    Note: in this notebook nb_outputs is always equal to one</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">losses</span> <span class="o">=</span> <span class="p">[]</span>     <span class="c1"># keep track of losses for plotting</span>
+    <span class="n">losses</span> <span class="o">=</span> <span class="p">[]</span>                                                 <span class="c1"># keep track of losses for plotting</span>
 
     <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nb_epochs</span><span class="p">):</span>
                 
@@ -12351,11 +12390,11 @@ loss  0.0096
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">y_hat</span> <span class="o">=</span> <span class="n">forward</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">W</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;x1, x2   y     y_hat&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;[0, 0]  [0]   &#39;</span><span class="p">,</span> <span class="n">y_hat</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;[0, 1]  [0]   &#39;</span><span class="p">,</span> <span class="n">y_hat</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;[1, 0]  [0]   &#39;</span><span class="p">,</span> <span class="n">y_hat</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;[1, 1]  [1]   &#39;</span><span class="p">,</span> <span class="n">y_hat</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;x1, x2  target     model &#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;[0, 0]    [0]    &#39;</span><span class="p">,</span> <span class="n">y_hat</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;[0, 1]    [0]    &#39;</span><span class="p">,</span> <span class="n">y_hat</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;[1, 0]    [0]    &#39;</span><span class="p">,</span> <span class="n">y_hat</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;[1, 1]    [1]    &#39;</span><span class="p">,</span> <span class="n">y_hat</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
 </pre></div>
 
 </div>
@@ -12372,11 +12411,11 @@ loss  0.0096
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>x1, x2   y     y_hat
-[0, 0]  [0]    [0.]
-[0, 1]  [0]    [0.01]
-[1, 0]  [0]    [0.01]
-[1, 1]  [1]    [0.99]
+<pre>x1, x2  target     model 
+[0, 0]    [0]     [0.]
+[0, 1]    [0]     [0.01]
+[1, 0]    [0]     [0.01]
+[1, 1]    [1]     [0.99]
 </pre>
 </div>
 </div>
@@ -12409,7 +12448,7 @@ loss  0.0096
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>[&lt;matplotlib.lines.Line2D at 0x7f797e6ff748&gt;]</pre>
+<pre>[&lt;matplotlib.lines.Line2D at 0x7fc403c867b8&gt;]</pre>
 </div>
 
 </div>
@@ -12939,7 +12978,7 @@ loss  0.5708
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>[&lt;matplotlib.lines.Line2D at 0x7f79771844a8&gt;]</pre>
+<pre>[&lt;matplotlib.lines.Line2D at 0x7fc3f0a19908&gt;]</pre>
 </div>
 
 </div>
@@ -13045,6 +13084,15 @@ loss  0.5708
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Numerical-Gradient-Check">Numerical Gradient Check<a class="anchor-link" href="#Numerical-Gradient-Check">&#182;</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Run this cell if you want to perform numerical gradient check in train_classifier()</p>
+
 </div>
 </div>
 </div>

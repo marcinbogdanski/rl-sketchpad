@@ -12166,7 +12166,7 @@ $$</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Derivatives wrt $W$ and $b$. This is basically backpropagation through matrix multiplication. Note that we are <em>not</em> calculating intermediate Jacobians (which would be sparse 4d-tensors). Instead at each backprop step we compute intermediate $\frac{\partial J}{\partial \dots}$. $J$ is a scalar, and every other intermediate variable ($W$, $z$, $\hat{y}$) is at most 2d-matrix ($b$ is a vector), as such every intermediate partial derivative $\frac{\partial J}{\partial \dots}$ will be at most 2d-matrix as well. For more details how to derive these equations, see <a href="http://cs231n.stanford.edu/handouts/linear-backprop.pdf">here</a> and <a href="http://cs231n.stanford.edu/handouts/derivatives.pdf">here</a></p>
+<p>Derivatives wrt $W$ and $b$. This is basically backpropagation through matrix multiplication. Note that we are <em>not</em> calculating intermediate Jacobians (which would be sparse 4d-tensors). Instead at each backprop step we compute derivative wrt output $J$, which is $\frac{\partial J}{\partial \dots}$. $J$ is a scalar, and every other intermediate variable ($W$, $z$, $\hat{y}$) is at most 2d-matrix ($b$ is a vector), as such every intermediate partial derivative $\frac{\partial J}{\partial \dots}$ will be at most 2d-matrix as well. For more details how to derive these equations, see <a href="http://cs231n.stanford.edu/handouts/linear-backprop.pdf">here</a> and <a href="http://cs231n.stanford.edu/handouts/derivatives.pdf">here</a></p>
 
 </div>
 </div>
@@ -12282,6 +12282,15 @@ $$</p>
 </div>
 </div>
 
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This concludes neural netwrok definiton.</p>
+
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>

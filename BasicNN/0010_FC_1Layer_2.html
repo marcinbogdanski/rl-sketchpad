@@ -12027,7 +12027,6 @@ $$</p>
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Forward Pass</strong></p>
 <p>All variables are 2d arrays. $x$, $W$ and $b$ denote input mini-batch, weights and biases respectively. <em>n_batch</em> is size of mini-batch, but in this notebook we always feed full dataset all at once. <em>n_in, n_out</em> are number of input features and number of outputs from the model (in this notebook nb_out is always one). $\hat{y}$ is output from the model.</p>
-<p>Shapes are as follows</p>
 
 </div>
 </div>
@@ -12036,55 +12035,7 @@ $$</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>$$
-x = 
-\scriptsize{
-  \begin{matrix}
-  ↑ \\ 
-  \text{n_batch} \\ 
-  ↓
-  \end{matrix}
-}\normalsize{}
-\overset{\text{← n_in →}}{
-  \begin{bmatrix}
-  \cdot &amp; \cdot  \\  
-  \cdot &amp; \cdot \\ 
-  \cdot &amp; \cdot 
-  \end{bmatrix}
-}
-\quad\quad\quad
-W =
-\scriptsize{
-  \begin{matrix}
-  ↑ \\ 
-  \text{n_in} \\ 
-  ↓
-  \end{matrix}
-}\normalsize{}
-\overset{\text{n_out}}{
-  \begin{bmatrix}
-  \cdot  \\ 
-  \cdot  
-  \end{bmatrix}
-}
-\quad\quad\quad
-b =
-\scriptsize{\text{1}}\normalsize{}
-\overset{\text{n_out}}{
-  \begin{bmatrix}
-  \cdot \\ 
-  \end{bmatrix}
-}
-$$</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Forward pass</p>
+<p>Formulas</p>
 
 </div>
 </div>
@@ -12103,6 +12054,24 @@ $$</p>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>$$ \hat{y} = \sigma(z) \tag{eq 3}$$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>As computational graph</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><img src="assets/0010_diag_fwd.png"/></p>
 
 </div>
 </div>
@@ -12128,53 +12097,6 @@ $$</p>
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Loss</strong></p>
 <p>$J(y,\hat{y})$ is a loss function. As mentioned before, we are using binary cross-entropy loss function. Binary CE is calculated element-wise for each $y$ and $\hat{y}$. Then if there is more than one output, sum over all outputs - note that some examples on the internet use average instead of summing, this doesn't really make much difference. At the end average over batch size. It's best to average here so when we change batch size we won't affect loss magnitude.</p>
-<p>Shapes are as follows</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>$$
-J(y,\hat{y}) = 
-\begin{matrix}
-\scriptsize{\text{(scalar)}} \\ 
-\end{matrix}
-\quad\quad\quad
-y = 
-\scriptsize{
-  \begin{matrix}
-  ↑ \\ 
-  \text{n_batch} \\ 
-  ↓
-  \end{matrix}
-}\normalsize{}
-\overset{\text{n_out}}{
-  \begin{bmatrix}
-  \cdot  \\ 
-  \cdot  \\ 
-  \cdot 
-  \end{bmatrix}
-}
-\quad\quad\quad
-\hat{y} =
-\scriptsize{
-  \begin{matrix}
-  ↑ \\ 
-  \text{n_batch} \\ 
-  ↓
-  \end{matrix}
-}\normalsize{}
-\overset{\text{n_out}}{
-  \begin{bmatrix}
-  \cdot  \\ 
-  \cdot  \\ 
-  \cdot 
-  \end{bmatrix}
-}
-$$</p>
 
 </div>
 </div>
@@ -12262,7 +12184,25 @@ $$</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>$$ \frac{\partial J}{\partial b} = \frac{1}{\text{n_batch}} \sum_{t=1}^{\text{n_batch}} (\hat{y} - y) \tag{eq 7} $$</p>
+<p>$$ \frac{\partial J}{\partial b} = \frac{1}{\text{n_batch}} \sum_{t=1}^{\text{n_batch}} (\hat{y_t} - y_t) \tag{eq 7} $$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>As computational graph</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><img src="assets/0010_diag_back.png"/></p>
 
 </div>
 </div>
@@ -13272,6 +13212,160 @@ loss  0.5708
 </div>
 </div>
 
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Delete-below">Delete below<a class="anchor-link" href="#Delete-below">&#182;</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><font color="red">
+REMOVE: Shapes are as follows</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><font color="red">
+$$
+x = 
+\scriptsize{
+  \begin{matrix}
+  ↑ \\ 
+  \text{n_batch} \\ 
+  ↓
+  \end{matrix}
+}\normalsize{}
+\overset{\text{← n_in →}}{
+  \begin{bmatrix}
+  \cdot &amp; \cdot  \\  
+  \cdot &amp; \cdot \\ 
+  \cdot &amp; \cdot 
+  \end{bmatrix}
+}
+\quad\quad\quad
+W =
+\scriptsize{
+  \begin{matrix}
+  ↑ \\ 
+  \text{n_in} \\ 
+  ↓
+  \end{matrix}
+}\normalsize{}
+\overset{\text{n_out}}{
+  \begin{bmatrix}
+  \cdot  \\ 
+  \cdot  
+  \end{bmatrix}
+}
+\quad\quad\quad
+b =
+\scriptsize{\text{1}}\normalsize{}
+\overset{\text{n_out}}{
+  \begin{bmatrix}
+  \cdot \\ 
+  \end{bmatrix}
+}
+$$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><font color="red">
+REMOVE: Forward Pass</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><font color="red">
+$$ z = xW + b \tag{eq 2}$$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><font color="red">
+$$ \hat{y} = \sigma(z) \tag{eq 3}$$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><font color="red">
+Shapes are as follows</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><font color="red">
+$$
+J(y,\hat{y}) = 
+\begin{matrix}
+\scriptsize{\text{(scalar)}} \\ 
+\end{matrix}
+\quad\quad\quad
+y = 
+\scriptsize{
+  \begin{matrix}
+  ↑ \\ 
+  \text{n_batch} \\ 
+  ↓
+  \end{matrix}
+}\normalsize{}
+\overset{\text{n_out}}{
+  \begin{bmatrix}
+  \cdot  \\ 
+  \cdot  \\ 
+  \cdot 
+  \end{bmatrix}
+}
+\quad\quad\quad
+\hat{y} =
+\scriptsize{
+  \begin{matrix}
+  ↑ \\ 
+  \text{n_batch} \\ 
+  ↓
+  \end{matrix}
+}\normalsize{}
+\overset{\text{n_out}}{
+  \begin{bmatrix}
+  \cdot  \\ 
+  \cdot  \\ 
+  \cdot 
+  \end{bmatrix}
+}
+$$</p>
+
+</div>
+</div>
 </div>
     </div>
   </div>

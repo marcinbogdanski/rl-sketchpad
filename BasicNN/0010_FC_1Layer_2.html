@@ -11795,24 +11795,24 @@ $$ \huge{\underline{\textbf{ 1-Layer Neural Network }}} $$
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>This notebook presents reference implementation of <strong>1-layer neural network</strong> trained with backpropagation.</p>
-<p>Notebooks is split into parts:</p>
+<p>I say "neural network", but whole neural network is just single neuron with sigmoid activaiton function. This notebook is intended to demonstrate simplest possible neural network, hence we will use mean squared error loss function and full gradient descent (train on whole dataset all at once).</p>
+<p>I realise technically we should use cross entropy loss (beter convergence) and stochastic gradient descent (speed). These will be presented in future notebooks. Datasets used in this notebook are super simple and small, so neither really matters.</p>
+<p><strong>Contents</strong></p>
 <ul>
-<li><a href="#Neural-Network">Part 1</a>: define neural network</li>
-<li><a href="#Solve-AND">Part 2a</a>: solve AND mapping</li>
-<li><a href="#Solve-College-Admissions">Part 2b</a>: solve college admissions problem</li>
+<li><a href="#Neural-Network">Neural Network</a> - neural net, backprop, train function</li>
+<li><a href="#Example-1:Logical-AND">Example 1</a> - logical AND problem</li>
+<li><a href="#Example-2:-College-Admissions">Example 2</a> - college admissions problem</li>
 </ul>
-<p>I say "neural network", but whole neural network is just single neuron with sigmoid activaiton function. We are going to use binary cross-entropy loss function because it has better convergence properties than mean squared error (as explained <a href="http://neuralnetworksanddeeplearning.com/chap3.html#the_cross-entropy_cost_function">here</a>. Fitting such single-layer single-neuron model is also called binary logistic regression.</p>
 <p><strong>Model</strong></p>
 <ul>
 <li>one layer: <strong>fully connected</strong> with <strong>sigmoid</strong> activation</li>
-<li>loss: <strong>binary cross-entropy</strong></li>
-<li>optimizer: <strong>vanilla SGD</strong></li>
+<li>loss: <strong>mean squared error</strong></li>
+<li>optimizer: <strong>gradient descent</strong></li>
 </ul>
 <p><strong>Recommended Reading</strong></p>
 <ul>
 <li><a href="http://neuralnetworksanddeeplearning.com/">Neural Networks and Deep Learning</a> by Michael Nilsen - great introductory book on neural nets, free</li>
-<li><a href="https://gombru.github.io/2018/05/23/cross_entropy_loss/">Understanding Categorical Cross-Entropy Loss, Binary Cross-Entropy Loss, ...</a> - great post explaining various cross-entropy related loss functions</li>
-<li><a href="http://andyljones.tumblr.com/post/110998971763/an-explanation-of-xavier-initialization">An Explanation of Xavier Initialization</a> - very good <em>why</em> we use Xavier initialization</li>
+<li><a href="http://cs231n.github.io/">CS231n</a> - lecture notes from famous Stanford deep learning course</li>
 </ul>
 
 </div>
@@ -11822,30 +11822,7 @@ $$ \huge{\underline{\textbf{ 1-Layer Neural Network }}} $$
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Neural-Network">Neural Network<a class="anchor-link" href="#Neural-Network">&#182;</a></h1>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[1]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Symbols</strong></p>
-<p>All symbols are also defined in the text through the notebook.</p>
+<p><strong>Notation</strong></p>
 <table>
 <thead><tr>
 <th>math</th>
@@ -11892,6 +11869,12 @@ $$ \huge{\underline{\textbf{ 1-Layer Neural Network }}} $$
 <td>weights</td>
 </tr>
 <tr>
+<td>$w_{tk}$</td>
+<td>-</td>
+<td>scalar</td>
+<td>one weight</td>
+</tr>
+<tr>
 <td>$b$</td>
 <td>b</td>
 <td>(1, n_out)</td>
@@ -11922,6 +11905,12 @@ $$ \huge{\underline{\textbf{ 1-Layer Neural Network }}} $$
 <td>sigmoid function</td>
 </tr>
 <tr>
+<td>$\sigma'(z)$</td>
+<td>sigmoid_der()</td>
+<td>-</td>
+<td>sigmoid derivative</td>
+</tr>
+<tr>
 <td>$J(y, \hat{y})$</td>
 <td>loss()</td>
 <td>scalar</td>
@@ -11941,8 +11930,30 @@ $$ \huge{\underline{\textbf{ 1-Layer Neural Network }}} $$
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Neural-Network">Neural Network<a class="anchor-link" href="#Neural-Network">&#182;</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Overview</strong></p>
-<p>Assuming <em>single training example</em> and two inputs, one output, our neural network will look as follows</p>
+<p>Assuming <em>single training example</em>, two inputs and one output our neural network will look as follows</p>
 
 </div>
 </div>
@@ -11992,8 +12003,7 @@ $$</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Sigmoid</strong></p>
-<p>Sigmoid activation function - computed element wise</p>
+<p>Input matrix $x$ is arranged such that each <strong>training example</strong> occupies <strong>single row</strong>.</p>
 
 </div>
 </div>
@@ -12002,7 +12012,28 @@ $$</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>$$ \sigma(z) = \frac{1}{1+\epsilon^{-z}} \tag{eq. 1} $$</p>
+<p><strong>Row vs Column Arragement</strong></p>
+<p>Most (all?) modern frameworks (TensorFlow, Keras, PyTorch) reserve first dimension of input tensor to be mini-batch, which in 2d case results in training examples being arranged into rows in the code. To the best of my memory all real-world code (i.e. not educational) I seen follows this convention. I would like my notebooks to be compatible, and I like math notation to reflect code 1:1, hence I will use one-training-example-per-row arrangement everywhere.</p>
+<p>Alternative arrangement is to have training examples in columns. For example Michael Nilsen book and initial parts of Andrew Ng Deep Learning course use such arrangement. Andrew Ng course switches to row-arrangement in later exercises which use Keras. Of course actual information flow and results achieved are identical disregarding of which arrangement is being used.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Sigmoid</strong></p>
+<p>Sigmoid activation function and its derivate - both computed element wise. Derivative proof e.g. <a href="https://math.stackexchange.com/questions/78575/derivative-of-sigmoid-function-sigma-x-frac11e-x">here</a></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>$$ \sigma(z) = \frac{1}{1+\epsilon^{-z}} \quad\quad\quad\quad \frac{\partial\sigma}{\partial z} = \sigma'(z) = \sigma(z)(1-\sigma(z)) \tag{eq. 1} $$</p>
 
 </div>
 </div>
@@ -12014,6 +12045,9 @@ $$</p>
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">sigmoid</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
     <span class="k">return</span> <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">sigmoid_der</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">sigmoid</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">sigmoid</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>    <span class="c1"># result can be cached during forward pass and resued here for speed</span>
 </pre></div>
 
 </div>
@@ -12076,6 +12110,15 @@ $$</p>
 </div>
 </div>
 </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>@ denotes matrix multiplication</p>
+
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[3]:</div>
@@ -12096,7 +12139,16 @@ $$</p>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Loss</strong></p>
-<p>$J(y,\hat{y})$ is a loss function. As mentioned before, we are using binary cross-entropy loss function. Binary CE is calculated element-wise for each $y$ and $\hat{y}$. Then if there is more than one output, sum over all outputs - note that some examples on the internet use average instead of summing, this doesn't really make much difference. At the end average over batch size. It's best to average here so when we change batch size we won't affect loss magnitude.</p>
+<p>$J(y,\hat{y})$ is a loss function and it outputs a scalar. As mentioned before, we are using mean squared error loss function. Note that I sum over outputs and average only over batch size. Alternative is to average over both. It will change magnitude of loss values which will change magnitude of gradients. This doesn't make much difference in practice as we simply compensate with learning rate. But this is potentially important when e.g. trying to reproduce a paper, you might want to either match the method, or adjust learning rate accordingly to match results.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The ½ at the begining cancels out in derivative. In this notebook it is necessary because we do numerical gradient checks. Otherwise it can be omnited.</p>
 
 </div>
 </div>
@@ -12114,7 +12166,7 @@ $$</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>$$ J(y,\hat{y}) =  \frac{1}{\text{n_batch}} \sum_{t=1}^{\text{n_batch}}  \ \sum_{k=1}^{\text{n_out}} \  \big[ -y_{tk} \log(\hat{y_{tk}}) - (1-y_{tk})\log(1-\hat{y_{tk}}) \big] \tag{eq 4} $$</p>
+<p>$$ J(y,\hat{y}) = \frac{1}{2} \frac{1}{\text{n_batch}} \sum_{t=1}^{\text{n_batch}}  \ \sum_{k=1}^{\text{n_out}} \  (y_{tk} - \hat{y}_{tk})^2 \tag{eq 4} $$</p>
 
 </div>
 </div>
@@ -12125,9 +12177,8 @@ $$</p>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">loss</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">y_hat</span><span class="p">):</span>                                   <span class="c1">#                      y_hat, y.shape: (n_batch, n_out)</span>
-    <span class="n">result</span> <span class="o">=</span> <span class="o">-</span><span class="n">y</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">y_hat</span><span class="p">)</span> <span class="o">-</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">y</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">y_hat</span><span class="p">)</span>  <span class="c1">#                      result.shape: (n_batch, n_out)</span>
-    <span class="n">result</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>                  <span class="c1"># sum each example     result.shape: (n_batch, 1)</span>
-    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span> <span class="n">result</span> <span class="p">)</span>                          <span class="c1"># average over batch   shape: scalar</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span> <span class="p">(</span><span class="n">y</span><span class="o">-</span><span class="n">y_hat</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span> <span class="p">)</span>          <span class="c1"># sum over outputs     result.shape: (n_batch, 1)</span>
+    <span class="k">return</span> <span class="o">.</span><span class="mi">5</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span> <span class="n">result</span> <span class="p">)</span>                     <span class="c1"># average over batch   shape: scalar</span>
 </pre></div>
 
 </div>
@@ -12148,7 +12199,7 @@ $$</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Derivative of <em>both</em> sigmoid and binary cross-entropy. Proof is rather nice, see <a href="https://www.ics.uci.edu/~pjsadows/notes.pdf">here</a></p>
+<p>At each backprop step we want to update parameters $W$ and $b$ slightly to make output error (loss $J$) smaller. To do this efficiently we will compute corresponding derivatives $\frac{\partial J}{\partial W}$ and $\frac{\partial J}{\partial b}$. Both derivatives are matrices with shapes matching corresponding variables. I.e. $\frac{\partial J}{\partial W}$ is always the same shape as $W$. Elements of $\frac{\partial J}{\partial W}$ tell us how 'wiggling' corresponding element $W$ would affect output $J$.</p>
 
 </div>
 </div>
@@ -12157,7 +12208,14 @@ $$</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>$$ \frac{\partial J}{\partial z} = \frac{1}{\text{n_batch}} (\hat{y} - y) \tag{eq 5}$$</p>
+<p>Matrix calculus is beyond the scope of this notebook, good resources include:</p>
+<ul>
+<li><a href="https://www.khanacademy.org/math/multivariable-calculus">Multivariable Calculus</a> at Khan Academy - super basics</li>
+<li><a href="https://www.youtube.com/watch?v=d14TUNcbn1k&amp;list=PL3FW7Lu3i5JvHM8ljYj-zLfQRF3EO8sYv&amp;index=4">Computational Graphs</a> video from CS231n - introduction to computational graphs and why use them</li>
+<li><a href="https://arxiv.org/abs/1802.01528">The Matrix Calculus You Need For Deep Learning</a> - proper treatment of matrix calculus for deep learning</li>
+<li><a href="http://cs231n.stanford.edu/handouts/linear-backprop.pdf">Backpropagation for a Linary Layer</a> and <a href="http://cs231n.stanford.edu/handouts/derivatives.pdf">Derivatives, Backpropagation, and Vectorization</a> - detailed treatment of backprop through matrix multiplication</li>
+</ul>
+<p>Note: one could obtain derivatives by calculating them one-element-at-a-time (like e.g. <a href="https://theclevermachine.wordpress.com/2014/09/06/derivation-error-backpropagation-gradient-descent-for-neural-networks/">here</a>). This is good to know, but works only for small neural nets.</p>
 
 </div>
 </div>
@@ -12166,34 +12224,7 @@ $$</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Derivatives wrt $W$ and $b$. This is basically backpropagation through matrix multiplication. Note that we are <em>not</em> calculating intermediate Jacobians (which would be sparse 4d-tensors). Instead at each backprop step we compute derivative wrt output $J$, which is $\frac{\partial J}{\partial \dots}$. $J$ is a scalar, and every other intermediate variable ($W$, $z$, $\hat{y}$) is at most 2d-matrix ($b$ is a vector), as such every intermediate partial derivative $\frac{\partial J}{\partial \dots}$ will be at most 2d-matrix as well. For more details how to derive these equations, see <a href="http://cs231n.stanford.edu/handouts/linear-backprop.pdf">here</a> and <a href="http://cs231n.stanford.edu/handouts/derivatives.pdf">here</a></p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>$$ \frac{\partial J}{\partial W} = \frac{1}{\text{n_batch}} x^T (\hat{y} - y) \tag{backprop through matmul; eq 6} $$</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>$$ \frac{\partial J}{\partial b} = \frac{1}{\text{n_batch}} \sum_{t=1}^{\text{n_batch}} (\hat{y_t} - y_t) \tag{eq 7} $$</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>As computational graph</p>
+<p>Lets have a look at computational graph</p>
 
 </div>
 </div>
@@ -12211,7 +12242,105 @@ $$</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Shapes of all derivatives of course match shapes of corresponding variables.</p>
+<p>From the multivariable chain rule we obtain</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>$$ 
+\frac{\partial J}{\partial W} = \frac{\partial J}{\partial \hat{y}}   \frac{\partial \hat{y}}{\partial z}   \frac{\partial z}{\partial W} 
+$$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Note that $\frac{\partial J}{\partial \hat{y}}$ is derivative of scalar wrt matrix, which in itself is a matrix (easy peasy). But $\frac{\partial \hat{y}}{\partial z}$ and $\frac{\partial z}{\partial W}$ are both derivatives of matrix wrt matrix, which are 4d-tensorrs (not so easy peasy). Thankfully we don't have to (and will not) compute these explicitily. Instead at each backprop step we compute derivative of $J$ wrt intermediate variable (e.g. $\hat{y}$ or $z$) directly going deeper and deeper until we reach $W$ and $b$.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Backprop through loss funtion (<a href="#Proofs">proof</a>)</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>$$\frac{\partial J}{\partial \hat{y}} = \frac{1}{\text{n_batch}} (\hat{y} - y) \tag{eq 5}$$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Backprop through sigmoid - sigmoid is element wise, so combination ends up being element-wise (symbol $*$)</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>$$</p>
+<h1 id="\frac{\partial-J}{\partial-z}">\frac{\partial J}{\partial z}<a class="anchor-link" href="#\frac{\partial-J}{\partial-z}">&#182;</a></h1><h1 id="\frac{\partial-J}{\partial-\hat{y}}--\frac{\partial-\hat{y}}{\partial-z}">\frac{\partial J}{\partial \hat{y}}  \frac{\partial \hat{y}}{\partial z}<a class="anchor-link" href="#\frac{\partial-J}{\partial-\hat{y}}--\frac{\partial-\hat{y}}{\partial-z}">&#182;</a></h1><p>\frac{\partial J}{\partial \hat{y}} * \sigma'(z)  \tag{eq 6}
+$$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Backprop through linear layer combination (<a href="http://cs231n.stanford.edu/handouts/linear-backprop.pdf">proof</a>)</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>$$</p>
+<h1 id="\frac{\partial-J}{\partial-W}">\frac{\partial J}{\partial W}<a class="anchor-link" href="#\frac{\partial-J}{\partial-W}">&#182;</a></h1><h1 id="\frac{\partial-J}{\partial-z}--\frac{\partial-z}{\partial-W}">\frac{\partial J}{\partial z}  \frac{\partial z}{\partial W}<a class="anchor-link" href="#\frac{\partial-J}{\partial-z}--\frac{\partial-z}{\partial-W}">&#182;</a></h1><p>x^T \big(\frac{\partial J}{\partial z}\big)  \tag{eq 7}
+$$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Backprop into bias $b$ - because $b$ was broadcasted across batch there are multiple pathways it affects output. As per total derivative chain rule, we need to sum contributions over all pathways. This also makes shapes match.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>$$
+\frac{\partial J}{\partial b} = \sum_{t=1}^{\text{n_batch}} \frac{\partial J}{\partial z_k}  \tag{eq 8}
+$$</p>
 
 </div>
 </div>
@@ -12257,9 +12386,9 @@ $$</p>
         <span class="n">y_hat</span> <span class="o">=</span> <span class="n">sigmoid</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>                                      <span class="c1"># (eq 3)    y_hat.shape: (batch_size, nb_neurons)</span>
         
         <span class="c1"># Backward Pass</span>
-        <span class="n">rho</span> <span class="o">=</span> <span class="n">y_hat</span> <span class="o">-</span> <span class="n">y</span>                                         <span class="c1">#           combined sigmoid and binary CE derivative</span>
-        <span class="n">dW</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">rho</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>                               <span class="c1"># (eq 6)    backprop through matmul</span>
-        <span class="n">db</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">rho</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>        <span class="c1"># (eq 7)</span>
+        <span class="n">rho</span> <span class="o">=</span> <span class="p">(</span><span class="n">y_hat</span><span class="o">-</span><span class="n">y</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">*</span> <span class="n">sigmoid_der</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>               <span class="c1"># (eq 5, 6) backprop through MSE and sigmoid</span>
+        <span class="n">dW</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">rho</span><span class="p">)</span>                                        <span class="c1"># (eq 7)    backprop through matmul</span>
+        <span class="n">db</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">rho</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>                 <span class="c1"># (eq 8)    backprop into b</span>
         
         <span class="c1"># Gradient Check (defined at the end of the notebook)</span>
         <span class="c1"># ngW, ngb = numerical_gradient(x, y, W, b)</span>
@@ -12296,7 +12425,7 @@ $$</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Solve-AND">Solve AND<a class="anchor-link" href="#Solve-AND">&#182;</a></h1>
+<h1 id="Example-1:-Logical-AND">Example 1: Logical AND<a class="anchor-link" href="#Example-1:-Logical-AND">&#182;</a></h1>
 </div>
 </div>
 </div>
@@ -12478,16 +12607,16 @@ $$</p>
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>loss  0.8084
-loss  0.0793
-loss  0.0424
-loss  0.0287
-loss  0.0216
-loss  0.0173
-loss  0.0144
-loss  0.0124
-loss  0.0108
-loss  0.0096
+<pre>loss  0.1513
+loss  0.0271
+loss  0.0153
+loss  0.0103
+loss  0.0077
+loss  0.006
+loss  0.005
+loss  0.0042
+loss  0.0036
+loss  0.0032
 </pre>
 </div>
 </div>
@@ -12534,9 +12663,9 @@ loss  0.0096
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>x1, x2      target     model 
 [0, 0]   →   [0]       [0.]
-[0, 1]   →   [0]       [0.01]
-[1, 0]   →   [0]       [0.01]
-[1, 1]   →   [1]       [0.99]
+[0, 1]   →   [0]       [0.08]
+[1, 0]   →   [0]       [0.08]
+[1, 1]   →   [1]       [0.9]
 </pre>
 </div>
 </div>
@@ -12569,7 +12698,7 @@ loss  0.0096
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>[&lt;matplotlib.lines.Line2D at 0x7f06d6218860&gt;]</pre>
+<pre>[&lt;matplotlib.lines.Line2D at 0x7f06c12556d8&gt;]</pre>
 </div>
 
 </div>
@@ -12582,7 +12711,7 @@ loss  0.0096
 
 
 <div class="output_png output_subarea ">
-<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAXcAAAD8CAYAAACMwORRAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEgAACxIB0t1+/AAAADl0RVh0U29mdHdhcmUAbWF0cGxvdGxpYiB2ZXJzaW9uIDIuMi4yLCBodHRwOi8vbWF0cGxvdGxpYi5vcmcvhp/UCwAAHuNJREFUeJzt3XtwnHd97/H3d3e1kmXLN1lOHMu3OE4aE3JDmCRcTgskOOFg5xQoTukApxSfzuBSDvRMzYHJcMKZKbeW0uJDG0qmwAAmpQVU6tThVso9Vq6+xYniOLHi2FZkR77Juux+zx/Ps/Kj9a525exq9aw+r5mdfZ5nf3r2q2flz/Pzb5+LuTsiIlJfErUuQEREKk/hLiJShxTuIiJ1SOEuIlKHFO4iInVI4S4iUocU7iIidUjhLiJShxTuIiJ1KFWrN16wYIEvX768Vm8vIhJLDz744Avu3laqXc3Cffny5XR1ddXq7UVEYsnMnimnnYZlRETqkMJdRKQOKdxFROqQwl1EpA4p3EVE6pDCXUSkDincRUTqUFnhbmZrzWyfmXWb2eYCry81s5+Y2cNm9piZ3Vb5UgM7DhzjL+/fx9BItlpvISISeyXD3cySwBbgVmA1cIeZrc5r9jHgXne/DtgA/L9KF5rz4DPH+dsfdzOSVbiLiBRTTs99DdDt7vvdfQjYCqzPa+PA7HB6DnCociWOlbDwDXVfbxGRosoJ98XAwch8T7gs6uPAH5hZD7AN+JNCKzKzjWbWZWZdvb29F1AuGEG6Z5XuIiJFlRPuVmBZfrLeAfyju7cDtwFfM7Pz1u3ud7t7h7t3tLWVvO5N4WJyPfcL+mkRkemhnHDvAZZE5ts5f9jlvcC9AO7+K6AJWFCJAotRx11EpLhywn0HsMrMVphZmuAL0868Ns8CbwAwsysJwv3Cxl1KMHXdRURKKhnu7j4CbAK2A3sJjorZbWZ3mdm6sNmHgfeZ2aPAN4H3uFenbz36harSXUSkqLKu5+7u2wi+KI0uuzMyvQd4dWVLKyz3BUBW2S4iUlTszlDNDctU6T8GIiJ1IYbhHjwr2kVEiotfuIfP6riLiBQXv3DPDcuo7y4iUlQMwz14Vs9dRKS4+IU7uS9Ua1yIiMgUFr9w13HuIiIlxS/cw2f13EVEiotduCdMV4UUESklduGOvlAVESkpduFe6PrDIiIyVvzC3XS0jIhIKbELd10VUkSktNiFe+5QSF0VUkSkuPiFO7oqpIhIKWWFu5mtNbN9ZtZtZpsLvP45M3skfDxhZi9WvtTcewXPinYRkeJK3qzDzJLAFuBmgvup7jCzzvAGHQC4+/+MtP8T4Loq1DqGOu4iIsWV03NfA3S7+353HwK2AuvHaX8Hwa32qiJ3EpP67iIixZUT7ouBg5H5nnDZecxsGbAC+PFLL60wfaEqIlJaOeFe6LyhYtG6Afi2u2cKrshso5l1mVlXb29vuTXmFaPj3EVESikn3HuAJZH5duBQkbYbGGdIxt3vdvcOd+9oa2srv8oIXRVSRKS0csJ9B7DKzFaYWZogwDvzG5nZFcA84FeVLTHvfcJn9dxFRIorGe7uPgJsArYDe4F73X23md1lZusiTe8AtnqVD0DX5QdEREoreSgkgLtvA7blLbszb/7jlSuruHNfqCrdRUSKieEZqiIiUkr8wl3DMiIiJcUu3HVVSBGR0mIX7jqJSUSktPiFu64KKSJSUuzCHV0VUkSkpNiFu05iEhEpLXbhrqtCioiUFrtw1xeqIiKlxS/cdVVIEZGS4hfuuS9Ule4iIkXFL9zDZ0W7iEhx8Qt3XX5ARKSkGIZ78KxhGRGR4uIX7uGzol1EpLj4hbuGZURESior3M1srZntM7NuM9tcpM3vmdkeM9ttZt+obJnR9wmedVVIEZHiSt6JycySwBbgZoKbZe8ws0533xNpswr4CPBqdz9uZgurVXBCJzGJiJRUTs99DdDt7vvdfQjYCqzPa/M+YIu7Hwdw96OVLTNKV4UUESmlnHBfDByMzPeEy6IuBy43s1+Y2a/NbG2lCsxnuiqkiEhJ5dwgu9BtS/OzNQWsAn4baAd+ZmZXufuLY1ZkthHYCLB06dIJFzumGKW7iEhR5fTce4Alkfl24FCBNt9z92F3fxrYRxD2Y7j73e7e4e4dbW1tF1Zw7mgZpbuISFHlhPsOYJWZrTCzNLAB6Mxr813gdwDMbAHBMM3+ShaaM3pVyGw11i4iUh9Khru7jwCbgO3AXuBed99tZneZ2bqw2Xagz8z2AD8B/pe791Wj4NGrQlZj5SIidaKcMXfcfRuwLW/ZnZFpBz4UPqpKlx8QESktdmeo5ijaRUSKi124J3T5ARGRkmIX7hqWEREpLb7hXtsyRESmtPiFu+6hKiJSUvzCXVeFFBEpKXbhnhgdc69tHSIiU1nswj13dZms0l1EpKjYhXsq7LpndEF3EZGi4hfuySDcRxTuIiJFxS/cE0HJIxmFu4hIMfEL99Geuy4LKSJSTOzCvUE9dxGRkmIX7kn13EVESopduOeOlhlWz11EpKjYhXtDMihZh0KKiBRXVrib2Voz22dm3Wa2ucDr7zGzXjN7JHz8UeVLDeTOUB3JaFhGRKSYkndiMrMksAW4meBG2DvMrNPd9+Q1/Za7b6pCjfn10JA0htVzFxEpqpye+xqg2933u/sQsBVYX92yxpdKJNRzFxEZRznhvhg4GJnvCZfle6uZPWZm3zazJYVWZGYbzazLzLp6e3svoNxAKmE6Q1VEZBzlhLsVWJafrP8KLHf3q4EfAl8ptCJ3v9vdO9y9o62tbWKVRqSSpuPcRUTGUU649wDRnng7cCjawN373H0wnP0S8IrKlFdYKpnQce4iIuMoJ9x3AKvMbIWZpYENQGe0gZktisyuA/ZWrsTzpRLquYuIjKfk0TLuPmJmm4DtQBK4x913m9ldQJe7dwIfMLN1wAhwDHhPFWsOhmU05i4iUlTJcAdw923Atrxld0amPwJ8pLKlFdeQTDCko2VERIqK3RmqADMakpwdytS6DBGRKSu24T4wrHAXESkmnuGeTnJGPXcRkaLiGe4NSc6q5y4iUlQsw71ZPXcRkXHFMtw1LCMiMr54hntDSsMyIiLjiGe4pxOcGRrBXScyiYgUEstwb06nyDo6kUlEpIhYhntTQxKAAY27i4gUFMtwb04H4a4vVUVECotluLc0BZfEOXl2pMaViIhMTTEN9wYATp4drnElIiJTU0zDXT13EZHxxDLcZ4c99xPquYuIFBTTcA967ifUcxcRKaiscDeztWa2z8y6zWzzOO3eZmZuZh2VK/F8GnMXERlfyXA3sySwBbgVWA3cYWarC7RrAT4A/KbSReZrakiQSpjG3EVEiiin574G6Hb3/e4+BGwF1hdo9wng08DZCtZXkJkxe0aDeu4iIkWUE+6LgYOR+Z5w2Sgzuw5Y4u7fH29FZrbRzLrMrKu3t3fCxUa1NKU4MaCeu4hIIeWEuxVYNnrFLjNLAJ8DPlxqRe5+t7t3uHtHW1tb+VUW0NKUUs9dRKSIcsK9B1gSmW8HDkXmW4CrgP8wswPADUBntb9Und3UoDF3EZEiygn3HcAqM1thZmlgA9CZe9Hd+919gbsvd/flwK+Bde7eVZWKQ0HPXeEuIlJIyXB39xFgE7Ad2Avc6+67zewuM1tX7QKLmTOjgRcHhmr19iIiU1qqnEbuvg3YlrfsziJtf/ull1XavJlpjp8ext0xK/S1gIjI9BXLM1QBWmemGcpkOa3L/oqInCe24T6vOQ3AsVMamhERyRfbcG+dFYR73+nBGlciIjL1xDbccz3342fUcxcRyRfbcG+d2QhAn4ZlRETOE9twnx8Oyxw7rXAXEckX23CfmU6STiYU7iIiBcQ23M2M+TPTCncRkQJiG+4QnMikcBcROV+sw711ZpoXFO4iIueJdbgvnN3I0RNVvzeIiEjsxDrcL57dxNGTg2SyXrqxiMg0Eu9wn9NEJuv0ndJZqiIiUfEO99lNABzW0IyIyBjxDvc5Ybj3K9xFRKLKCnczW2tm+8ys28w2F3j9j81sp5k9YmY/N7PVlS/1fLme+xH13EVExigZ7maWBLYAtwKrgTsKhPc33P3l7n4t8GngrypeaQGtsxpJJkzDMiIiecrpua8But19v7sPAVuB9dEG7n4iMjsTmJTDV5IJY2FLI4f79YWqiEhUObfZWwwcjMz3AK/Kb2Rm7wc+BKSB11ekujJcMncGh14cmKy3ExGJhXJ67oVuUHpez9zdt7j7SuDPgY8VXJHZRjPrMrOu3t7eiVVaxNL5zTx77ExF1iUiUi/KCfceYElkvh04NE77rcDthV5w97vdvcPdO9ra2sqvchxL5zdzqH+AwRHdS1VEJKeccN8BrDKzFWaWBjYAndEGZrYqMvtm4MnKlTi+Za3NuEPPcQ3NiIjklBxzd/cRM9sEbAeSwD3uvtvM7gK63L0T2GRmbwSGgePAu6tZdNTS+c0APHvsDCvbZk3W24qITGnlfKGKu28DtuUtuzMy/acVrqtsS1vDcO/TuLuISE6sz1AFaJvVSHM6yTMKdxGRUbEPdzMLj5g5XetSRESmjNiHO8CKBTPZ36twFxHJqYtwv/yiFg70nebssA6HFBGBOgn3Ky5uIevQffRUrUsREZkS6iLcL7+oBYAnjpyscSUiIlNDXYT78tZm0skE+xTuIiJAnYR7Kplg5cJZPHFY4S4iAnUS7gC/dXELuw+dKN1QRGQaqJtwv7p9DkdPDuqWeyIi1FG4X7tkLgCPHHyxxpWIiNRe3YT7lYtm05A0hbuICHUU7k0NSa5cNJtHFe4iIvUT7gDXtM/lsZ4XyWQn5RauIiJTVl2Fe8fyeZweyrBHR82IyDRXV+F+46WtAPzyqRdqXImISG2VFe5mttbM9plZt5ltLvD6h8xsj5k9ZmY/MrNllS+1tIWzm7hs4Sx++VRfLd5eRGTKKBnuZpYEtgC3AquBO8xsdV6zh4EOd78a+Dbw6UoXWq6bVrbywNPHGBrJ1qoEEZGaK6fnvgbodvf97j4EbAXWRxu4+0/cPXcrpF8D7ZUts3w3rWxlYDjDw88er1UJIiI1V064LwYORuZ7wmXFvBe476UU9VK8+rIFNCSNH+49UqsSRERqrpxwtwLLCh5raGZ/AHQAnyny+kYz6zKzrt7e3vKrnICWpgZuWrmA+/ccwV2HRIrI9FROuPcASyLz7cCh/EZm9kbgo8A6dx8stCJ3v9vdO9y9o62t7ULqLcstL7uIZ/rO8KRu3iEi01Q54b4DWGVmK8wsDWwAOqMNzOw64O8Jgv1o5cucmJuvvAiA7bsO17gSEZHaKBnu7j4CbAK2A3uBe919t5ndZWbrwmafAWYB/2Rmj5hZZ5HVTYqFs5voWDaPzkcPaWhGRKalVDmN3H0bsC1v2Z2R6TdWuK6X7Hevb+d/f2cnO5/r5+r2ubUuR0RkUtXVGapRb756EY2pBN9+sKfWpYiITLq6Dfc5Mxp408supvPRQ5wdztS6HBGRSVW34Q7w+69ayotnhvnuw8/VuhQRkUlV1+H+qhXzWb1oNl/++dP6YlVEppW6Dncz472vWcGTR0/xn0/qSpEiMn3UdbgDvOWaS7hodiNf+PGT6r2LyLRR9+GeTiXY9PpV7DhwnJ8+UZ1LHoiITDV1H+4A7+hYQvu8GXz2/n1kdQs+EZkGpkW4p1MJPnzL5ex67oSOexeRaWFahDvA7dcu5pXL5/EX9+3l+OmhWpcjIlJV0ybczYxP3H4VJ86O8Mn7Hq91OSIiVTVtwh3gty6ezfteeynf6jrI9t26YqSI1K9pFe4AH7r5cq5aPJvN//wYR06crXU5IiJVMe3CPZ1K8NfvuI6B4Qzv//pDDI7oujMiUn+mXbgDXLZwFp9+2zV0PXOcj31nl05uEpG6U9b13OvRumsuofvISf7mx90sa21m0+tX1bokEZGKKavnbmZrzWyfmXWb2eYCr7/OzB4ysxEze1vly6yOD77xcm6/9hI+e/8T/MPP9te6HBGRiinZczezJLAFuJngZtk7zKzT3fdEmj0LvAf4s2oUWS2JhPHZt1/DUCbL//23vaMXGhMRibtyhmXWAN3uvh/AzLYC64HRcHf3A+Fr2SrUWFWpZILPb7iObPZhPvH9PRzuH+Ajt15JImG1Lk1E5IKVMyyzGDgYme8Jl02YmW00sy4z6+rtnToX8WpIJtjyzut5143L+NLPnmbTNx/i1OBIrcsSEblg5YR7oS7sBR1e4u53u3uHu3e0tbVdyCqqJpkw/s+6l/HR267k33cdZt3f/py9z5+odVkiIheknHDvAZZE5tuBQ9Upp7bMjPe97lK+/kc3cHJwhNu3/IJ7fv40GV1JUkRippxw3wGsMrMVZpYGNgCd1S2rtm5c2cq2D7yWm1a2ctf39/DWL/6SJ46crHVZIiJlKxnu7j4CbAK2A3uBe919t5ndZWbrAMzslWbWA7wd+Hsz213NoidDW0sj97znlfz1O67lmb7T3Pr5n3Hn93bRd2qw1qWJiJRktTo7s6Ojw7u6umry3hPVd2qQz/3wCb75wEFmNCT5H6+7lHfdtJw5MxpqXZqITDNm9qC7d5Rsp3AvX/fRU3zyvsf54d4jtDSmeOcNy/jD1yxnYUtTrUsTkWlC4V5Fu57r54s/fYr7dj5PKpHgTVddzO+vWcoNl87HTMfHi0j1KNwnwdMvnOYrvzzAvzzUw4mzI1zaNpO3Xt/OW66+hKWtzbUuT0TqkMJ9Eg0MZfi3nc+z9YFn6XrmOABXt8/hzS9fxC0vu5gVC2bWuEIRqRcK9xrpOX6GbTuf5/uPPc9jPf0ALGtt5neuWMh/uaKNGy9tpakhWeMqRSSuFO5TwMFjZ/jJvqP8x75efvnUC5wdzpJOJri6fQ6vXDGfNcvnc/2yeTrqRkTKpnCfYs4OZ3jg6WP8ovsFHjhwjJ09/YxkHTO44qIWrlo8h5cvnsNVi+ewetFsZqTVuxeR8yncp7iBoQwPHzzOjqeP89Czx9n1XD99p4cASFhwt6jVi2Zz2cJZXLawhcsWzmJZazMNyWl58ywRCZUb7tP2Tky1NiOd5KaVC7hp5QIA3J3DJ86ys6efXYdOsOu5fnYcOM53Hzl3GZ+GpLG8dWYY9DNZOr959LFobpOCX0RGKdynCDNj0ZwZLJozg1tedvHo8tODIzzVe4onj5yiO3x+/PBJfrj3CMOZc//rSiaMS+Y2sXR+M+1zm7l4TlPwmH3ueW5zg47DF5kmFO5T3MzGFFe3z+Xq9rljlmeyQU//2b4zHDx2hmcjjx89fpS+04Pkj7g1phKjQX/R7Cbmz0yzYFaa1lmNtM5M0zorTevMRlpnpZnVmNKOQCTGFO4xlUwYi+fOYPHcGdy4svW814czWY6eHORw/wCH+wc5fOJsMH1ikCP9Z3m050WOnRriZJGbkqRTidHAnzsjzZwZDcye0cCcAo+5zQ2jr7c0pnQXK5EpQOFepxqSidHwH8/gSIZjp4foOzXEC6cG6Ts1xLHTQ7xwOpjuOzXIiwPDHOof4MTAMP0Dw2OGg/IlDGY1pmhpamBmY5KZjSlmNaaYmU4xqymcjiwP5qPPSWakU8xoSDKjIUljKqGdhcgFULhPc42p5OhYfzncnYHhDP1h0PefGT43PTA8ugM4NZjh9OAIp4dGODU4wuH+s5weDKZPD2UmdAOUpoYEMxqSNKdTwXQ6CP6mcAcwZj6cDuYTNKaSpFMJGlOJ8DmYH7vs3GuNqQTppHYoEn8Kd5kQM6M5naI5nSp7h5DP3Tk7nA2CPgz86PTZ4QwDQxkGhrMMDGci88HjbDh9anCE3pODwfJw2dnhzLj/syhXQ9IK7BgiO4hkglTSaEgmaEgaqWSwU0gljIZUgoZE8FoqfL0hbD+2TYKGlJFKRNucm27ItY0sSyaMVMLC5wTJ5Ln5pJl2SjKqrHA3s7XA54Ek8A/u/sm81xuBrwKvAPqAd7j7gcqWKvXCzIIedjpJW0tjxdc/nMkGO4ThDEMj2eCRyTI4HH3OjJkfzGQZHM6UbDeUCdY3OJJhYNgZyWYZHnGGs1mGM1lGMs5wxsPpLMMZZyiTrfjvWIwZY8N/zM7ASCaDncCY15M2pl3wSIz9udHnYHnivPZGwoyEEZk2kong887tfCx8PZmwYHm0jeWWE2mfWzckcjswMxIJRndmiWgbO1dLMkGkjsLrTZphuXWF9eV+j9x8XA8sKBnuZpYEtgA3E9xPdYeZdbr7nkiz9wLH3f0yM9sAfAp4RzUKFikl1+ttaZoal3VwdzJZZyQbBP1IxhnJZEenh8OdwHAmG+wsRncOntcmO7qerDsjmXPrzWSz4XP4+ujyYAeUyea3L/6zw8NZRrKZyDoir0fWEdQQrDvjTtYhG07X6NzIqogGvkWCv/DOIPp62D5xfvsPvGEV6665pKp1l9NzXwN0u/v+4Be1rcB6IBru64GPh9PfBr5gZua1Ov1VZAoxC3rHqSTT5qJxHoZ9JtwJZKPz4bKMO9kswXQ2r034M0F7RtsHO8qgjYfLgmlGdzKjbUanI21ytWRz73nu/Z1g2sOdVO613O+Sq88jv89o+8gyj/xexdrPnYTrSZUT7ouBg5H5HuBVxdq4+4iZ9QOtwAuVKFJE4iUYZgmGQaQ2yjlfvdCnk98jL6cNZrbRzLrMrKu3t7ec+kRE5AKUE+49wJLIfDtwqFgbM0sBc4Bj+Sty97vdvcPdO9ra2i6sYhERKamccN8BrDKzFWaWBjYAnXltOoF3h9NvA36s8XYRkdopOeYejqFvArYTHAp5j7vvNrO7gC537wS+DHzNzLoJeuwbqlm0iIiMr6zj3N19G7Atb9mdkemzwNsrW5qIiFwoXQBcRKQOKdxFROqQwl1EpA7V7B6qZtYLPHOBP76AqXmClOqamKlaF0zd2lTXxNRjXcvcveSx5DUL95fCzLrKuUHsZFNdEzNV64KpW5vqmpjpXJeGZURE6pDCXUSkDsU13O+udQFFqK6Jmap1wdStTXVNzLStK5Zj7iIiMr649txFRGQcsQt3M1trZvvMrNvMNk/yey8xs5+Y2V4z221mfxou/7iZPWdmj4SP2yI/85Gw1n1m9qYq1nbAzHaG798VLptvZj8wsyfD53nhcjOzvwnreszMrq9STVdEtskjZnbCzD5Yi+1lZveY2VEz2xVZNuHtY2bvDts/aWbvLvReFajrM2b2ePje3zGzueHy5WY2ENlufxf5mVeEn393WPtLupB6kbom/LlV+t9rkbq+FanpgJk9Ei6fzO1VLBtq9zfm4Z1G4vAguHDZU8ClQBp4FFg9ie+/CLg+nG4BngBWE9yF6s8KtF8d1tgIrAhrT1aptgPAgrxlnwY2h9ObgU+F07cB9xFch/8G4DeT9NkdBpbVYnsBrwOuB3Zd6PYB5gP7w+d54fS8KtR1C5AKpz8VqWt5tF3eeh4Abgxrvg+4tQp1Tehzq8a/10J15b3+l8CdNdhexbKhZn9jceu5j97yz92HgNwt/yaFuz/v7g+F0yeBvQR3oSpmPbDV3Qfd/Wmgm+B3mCzrga+E018Bbo8s/6oHfg3MNbNFVa7lDcBT7j7eiWtV217u/p+cf4+BiW6fNwE/cPdj7n4c+AGwttJ1ufv97j4Szv6a4B4KRYW1zXb3X3mQEF+N/C4Vq2scxT63iv97Ha+usPf9e8A3x1tHlbZXsWyo2d9Y3MK90C3/xgvXqjGz5cB1wG/CRZvC/17dk/uvF5NbrwP3m9mDZrYxXHaRuz8PwR8fsLAGdeVsYOw/ulpvL5j49qnFdvtDgh5ezgoze9jMfmpmrw2XLQ5rmYy6JvK5Tfb2ei1wxN2fjCyb9O2Vlw01+xuLW7iXdTu/qhdhNgv4Z+CD7n4C+CKwErgWeJ7gv4YwufW+2t2vB24F3m9mrxun7aRuRwtu8rIO+Kdw0VTYXuMpVsdkb7ePAiPA18NFzwNL3f064EPAN8xs9iTWNdHPbbI/zzsY24GY9O1VIBuKNi1SQ8Vqi1u4l3PLv6oyswaCD+/r7v4vAO5+xN0z7p4FvsS5oYRJq9fdD4XPR4HvhDUcyQ23hM9HJ7uu0K3AQ+5+JKyx5tsrNNHtM2n1hV+k/VfgneHQAeGwR184/SDBePblYV3RoZuq1HUBn9tkbq8U8LvAtyL1Tur2KpQN1PBvLG7hXs4t/6omHNP7MrDX3f8qsjw6Xv3fgNw3+Z3ABjNrNLMVwCqCL3IqXddMM2vJTRN8IbeLsbc/fDfwvUhd7wq/sb8B6M/917FKxvSoar29Iia6fbYDt5jZvHBI4pZwWUWZ2Vrgz4F17n4msrzNzJLh9KUE22d/WNtJM7sh/Bt9V+R3qWRdE/3cJvPf6xuBx919dLhlMrdXsWygln9jL+Ub4lo8CL5lfoJgL/zRSX7v1xD8F+kx4JHwcRvwNWBnuLwTWBT5mY+Gte7jJX4jP05dlxIcifAosDu3XYBW4EfAk+Hz/HC5AVvCunYCHVXcZs1AHzAnsmzStxfBzuV5YJigd/TeC9k+BGPg3eHjv1eprm6Ccdfc39jfhW3fGn6+jwIPAW+JrKeDIGyfAr5AeIJiheua8OdW6X+vheoKl/8j8Md5bSdzexXLhpr9jekMVRGROhS3YRkRESmDwl1EpA4p3EVE6pDCXUSkDincRUTqkMJdRKQOKdxFROqQwl1EpA79f+YdWgFGoiwqAAAAAElFTkSuQmCC
+<img src="data:image/png;base64,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
 "
 >
 </div>
@@ -12597,7 +12726,7 @@ loss  0.0096
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Solve-College-Admissions">Solve College Admissions<a class="anchor-link" href="#Solve-College-Admissions">&#182;</a></h1>
+<h1 id="Example-2:-College-Admissions">Example 2: College Admissions<a class="anchor-link" href="#Example-2:-College-Admissions">&#182;</a></h1>
 </div>
 </div>
 </div>
@@ -13006,16 +13135,16 @@ memory usage: 12.6 KB
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>loss  0.8337
-loss  0.5708
-loss  0.5708
-loss  0.5708
-loss  0.5708
-loss  0.5708
-loss  0.5708
-loss  0.5708
-loss  0.5708
-loss  0.5708
+<pre>loss  0.1524
+loss  0.0974
+loss  0.0973
+loss  0.0972
+loss  0.0972
+loss  0.0972
+loss  0.0972
+loss  0.0972
+loss  0.0972
+loss  0.0972
 </pre>
 </div>
 </div>
@@ -13048,7 +13177,7 @@ loss  0.5708
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>[&lt;matplotlib.lines.Line2D at 0x7f06c2fa6908&gt;]</pre>
+<pre>[&lt;matplotlib.lines.Line2D at 0x7f06adfe8438&gt;]</pre>
 </div>
 
 </div>
@@ -13061,7 +13190,7 @@ loss  0.5708
 
 
 <div class="output_png output_subarea ">
-<img src="data:image/png;base64,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
+<img src="data:image/png;base64,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
 "
 >
 </div>
@@ -13080,7 +13209,7 @@ loss  0.5708
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">pred</span> <span class="o">=</span> <span class="n">forward</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">W</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
 <span class="n">pred</span> <span class="o">=</span> <span class="n">pred</span> <span class="o">&gt;</span> <span class="mf">0.5</span>
 <span class="n">acc</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">pred</span> <span class="o">==</span> <span class="n">y_train</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Accuracy on training set (expected ~0.7):&#39;</span><span class="p">,</span> <span class="n">acc</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Accuracy on training set (expected ~0.71):&#39;</span><span class="p">,</span> <span class="n">acc</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
 </pre></div>
 
 </div>
@@ -13097,7 +13226,7 @@ loss  0.5708
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Accuracy on training set (expected ~0.7): 0.7
+<pre>Accuracy on training set (expected ~0.71): 0.71
 </pre>
 </div>
 </div>
@@ -13145,6 +13274,100 @@ loss  0.5708
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Note: accuracy on test set is usually worse than training set. College admissions dataset is very small and we just got lucky with easy test set when splitting into train/test sets.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Proofs">Proofs<a class="anchor-link" href="#Proofs">&#182;</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Backprop through mean squared error</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>$$ J(y,\hat{y}) = \frac{1}{2} \frac{1}{\text{n_batch}} \sum_{t=1}^{\text{n_batch}}  \ \sum_{k=1}^{\text{n_out}} \  (y_{tk} - \hat{y}_{tk})^2 $$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Proof: let's take one element $\frac{\partial J}{\partial \hat{y}_{ij}}$, where $i$ is number of training example and $j$ is input feature</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>$$ 
+\frac{\partial J}{\partial \hat{y}_{ij}} \ = \
+\frac{\partial}{\partial \hat{y}_{ij}} \big[    \frac{1}{2} \frac{1}{\text{n_batch}} \sum_{t=1}^{\text{n_batch}}  \ \sum_{k=1}^{\text{n_out}} \  (y_{tk} - \hat{y}_{tk})^2 \big]
+\tag*{drop sums i≠t and j≠k}
+$$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>$$
+\\ \overset{\text{}}{=} \
+\frac{1}{2} \frac{1}{\text{n_batch}}  \  \frac{\partial}{\partial \hat{y}_{ij}}  (y_{ij} - \hat{y}_{ij})^2
+\tag*{chain rule}
+$$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>$$
+\\ = \
+\frac{1}{\text{n_batch}} (y_{ij} - \hat{y}_{ij} )(-1)
+$$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>$$
+\\ = \
+\frac{1}{\text{n_batch}} (\hat{y}_{ij} - y_{ij} )
+$$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We can drop both sums because output $\hat{y}_{ij}$ depends only on $\hat{y}_{tk}$ where $i=t, j=k$. Note that $y$ and $\hat{y}$ are swapped at the end due to minus sign.</p>
 
 </div>
 </div>

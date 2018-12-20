@@ -11794,9 +11794,10 @@ $$ \huge{\underline{\textbf{ 1-Layer Neural Network }}} $$
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>This notebook presents reference implementation of <strong>1-layer neural network</strong> trained with backpropagation.</p>
-<p>Presented neural network contains only one layer (output). While code in the notebook can support any number of neurons, both examples have single neuron. This notebook is intended to demonstrate simplest possible neural network, hence we will use mean squared error loss function and full gradient descent (train on whole dataset all at once).</p>
-<p>I realise technically we should use cross entropy loss (better convergence) and stochastic gradient descent (speed). These will be presented in future notebooks. Datasets used in this notebook are super simple and small, so neither really matters.</p>
+<p>Main purpose of this notebook is to provide <strong>consolidated graph view, math notation</strong> and <strong>python code</strong> along with links to relevant proofs.</p>
+<p>Presented neural network contains only one layer (output). While code in the notebook can support any number of neurons, both examples have single neuron. In this notebook I demonstrate simplest possible neural network, hence I will use mean squared error loss function and full gradient descent (train on whole dataset all at once).</p>
+<p>I realise technically we should use cross entropy loss (better convergence) and stochastic gradient descent (speed). These will be presented in future notebooks. Datasets used in this notebook are simple and small, so neither really matters.</p>
+<p>We are going to take <strong>computational graph approach</strong>. While it's possible to analyse small neural nets directly, computational graphs provide scalable mental framework to analyse and implement very deep and complex neural nets. They allows us to define forward operations and derive backpropagation formulas <strong>one operation at a time</strong>. Resulting implementation will be similarly modular. This will be indispensable when working with deeper, more complex architectures (convnets, recurrent, etc.). Intuitive introduction to computational graphs in this <a href="https://www.youtube.com/watch?v=d14TUNcbn1k&amp;list=PL3FW7Lu3i5JvHM8ljYj-zLfQRF3EO8sYv&amp;index=4">video from CS231n</a></p>
 <p><strong>Contents</strong></p>
 <ul>
 <li><a href="#Neural-Network">Neural Network</a> - neural net, backprop, train function</li>
@@ -11812,6 +11813,7 @@ $$ \huge{\underline{\textbf{ 1-Layer Neural Network }}} $$
 <p><strong>Recommended Reading</strong></p>
 <ul>
 <li><a href="http://neuralnetworksanddeeplearning.com/">Neural Networks and Deep Learning</a> by Michael Nilsen - great introductory book on neural nets, free</li>
+<li><a href="https://www.youtube.com/watch?v=d14TUNcbn1k&amp;list=PL3FW7Lu3i5JvHM8ljYj-zLfQRF3EO8sYv&amp;index=4">Computational Graphs</a> video from CS231n - introduction to computational graphs and why use them</li>
 <li><a href="http://cs231n.github.io/">CS231n</a> - lecture notes from famous Stanford deep learning course</li>
 </ul>
 
@@ -12006,7 +12008,7 @@ $$</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Row vs Column Arragement</strong></p>
+<p><u>Row vs Column Arragement</u></p>
 <p>Most (all?) modern frameworks (TensorFlow, Keras, PyTorch) reserve first dimension of input tensor to be mini-batch, which in 2d case results in training examples being arranged into rows in the code. To the best of my memory all real-world code (i.e. not educational) that I have seen follows this convention. I would like my notebooks to be compatible, and I like math notation to reflect code 1:1, hence I will use one-training-example-per-row arrangement everywhere.</p>
 <p>Alternative arrangement is to have training examples in columns. For example Michael Nilsen book and initial parts of Andrew Ng Deep Learning course use such arrangement. Andrew Ng course switches to row-arrangement in later exercises which use Keras. Of course actual information flow and results achieved are identical disregarding of which arrangement is being used.</p>
 
@@ -12027,7 +12029,7 @@ $$</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>$$ \sigma(z) = \frac{1}{1+\epsilon^{-z}} \quad\quad\quad\quad \frac{\partial\sigma}{\partial z} = \sigma'(z) = \sigma(z)(1-\sigma(z)) \tag{eq. 1} $$</p>
+<p>$$ \sigma(z) = \frac{1}{1+\epsilon^{-z}} \quad\quad\quad\quad \sigma'(z) = \sigma(z)(1-\sigma(z)) \tag{eq. 1} $$</p>
 
 </div>
 </div>
@@ -12204,7 +12206,7 @@ $$</p>
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Matrix calculus is beyond the scope of this notebook, good resources include:</p>
 <ul>
-<li><a href="https://www.khanacademy.org/math/multivariable-calculus">Multivariable Calculus</a> at Khan Academy - super basics</li>
+<li><a href="https://www.khanacademy.org/math/multivariable-calculus">Multivariable Calculus</a> at Khan Academy - intro and basics</li>
 <li><a href="https://www.youtube.com/watch?v=d14TUNcbn1k&amp;list=PL3FW7Lu3i5JvHM8ljYj-zLfQRF3EO8sYv&amp;index=4">Computational Graphs</a> video from CS231n - introduction to computational graphs and why use them</li>
 <li><a href="https://arxiv.org/abs/1802.01528">The Matrix Calculus You Need For Deep Learning</a> - proper treatment of matrix calculus for deep learning</li>
 <li><a href="http://cs231n.stanford.edu/handouts/linear-backprop.pdf">Backpropagation for a Linary Layer</a> and <a href="http://cs231n.stanford.edu/handouts/derivatives.pdf">Derivatives, Backpropagation, and Vectorization</a> - detailed treatment of backprop through matrix multiplication</li>
@@ -12303,7 +12305,7 @@ $$</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Backprop through linear layer combination (<a href="http://cs231n.stanford.edu/handouts/linear-backprop.pdf">proof</a>)</p>
+<p>Backprop through linear combination (<a href="http://cs231n.stanford.edu/handouts/linear-backprop.pdf">proof</a>)</p>
 
 </div>
 </div>
@@ -12352,7 +12354,7 @@ $$</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>This function contains everything. Pass in full dataset (inputs x, targets y) and randomly initialized weights $W$ and biases $b$. Because example problems in this notebook are super small, this function trains on whole dataset all at once, i.e. it doesn't pick mini-batches. $W$ and $b$ are updated in-place.</p>
+<p>This function contains everything. Pass in full dataset (inputs x, targets y) and randomly initialized weights $W$ and biases $b$. Because example problems in this notebook are very small, this function trains on whole dataset all at once, i.e. it doesn't pick mini-batches. $W$ and $b$ are updated in-place.</p>
 
 </div>
 </div>
@@ -13267,7 +13269,7 @@ loss  0.0972
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Note: accuracy on test set is usually worse than training set. College admissions dataset is very small and we just got lucky with easy test set when splitting into train/test sets.</p>
+<p>Note: accuracy on test set is usually worse than training set. College admissions dataset is very small and I think we just got lucky with easy test set when splitting into train/test sets.</p>
 
 </div>
 </div>

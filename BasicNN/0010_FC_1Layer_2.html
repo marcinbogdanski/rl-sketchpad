@@ -11796,7 +11796,7 @@ $$ \huge{\underline{\textbf{ 1-Layer Neural Network }}} $$
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>This notebook presents reference implementation of <strong>1-layer neural network</strong> trained with backpropagation.</p>
 <p>Presented neural network contains only one layer (output). While code in the notebook can support any number of neurons, both examples have single neuron. This notebook is intended to demonstrate simplest possible neural network, hence we will use mean squared error loss function and full gradient descent (train on whole dataset all at once).</p>
-<p>I realise technically we should use cross entropy loss (beter convergence) and stochastic gradient descent (speed). These will be presented in future notebooks. Datasets used in this notebook are super simple and small, so neither really matters.</p>
+<p>I realise technically we should use cross entropy loss (better convergence) and stochastic gradient descent (speed). These will be presented in future notebooks. Datasets used in this notebook are super simple and small, so neither really matters.</p>
 <p><strong>Contents</strong></p>
 <ul>
 <li><a href="#Neural-Network">Neural Network</a> - neural net, backprop, train function</li>
@@ -12041,7 +12041,7 @@ $$</p>
     <span class="k">return</span> <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="p">))</span>
 
 <span class="k">def</span> <span class="nf">sigmoid_der</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">sigmoid</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">sigmoid</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>    <span class="c1"># result can be cached during forward pass and resued here for speed</span>
+    <span class="k">return</span> <span class="n">sigmoid</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">sigmoid</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>    <span class="c1"># result can be cached during forward pass and reused here for speed</span>
 </pre></div>
 
 </div>
@@ -12142,7 +12142,7 @@ $$</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The ½ at the begining cancels out in derivative. In this notebook it is necessary because we do numerical gradient checks. Otherwise it can be omnited.</p>
+<p>The ½ at the beginning cancels out in derivative. In this notebook it is necessary because we do numerical gradient checks. Otherwise it can be omitted.</p>
 
 </div>
 </div>
@@ -12256,7 +12256,7 @@ $$</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Note that $\frac{\partial J}{\partial \hat{y}}$ is derivative of scalar wrt matrix, which in itself is a matrix (easy peasy). But $\frac{\partial \hat{y}}{\partial z}$ and $\frac{\partial z}{\partial W}$ are both derivatives of matrix wrt matrix, which are 4d-tensorrs (not so easy peasy). Thankfully we don't have to (and will not) compute these explicitily. Instead at each backprop step we compute derivative of $J$ wrt intermediate variable (e.g. $\hat{y}$ or $z$) directly going deeper and deeper until we reach $W$ and $b$.</p>
+<p>Note that $\frac{\partial J}{\partial \hat{y}}$ is derivative of scalar wrt matrix, which in itself is a matrix (easy peasy). But $\frac{\partial \hat{y}}{\partial z}$ and $\frac{\partial z}{\partial W}$ are both derivatives of matrix wrt matrix, which are 4d-tensors (not so easy peasy). Thankfully we don't have to (and will not) compute these explicitly. Instead at each backprop step we compute derivative of $J$ wrt intermediate variable (e.g. $\hat{y}$ or $z$) directly going deeper and deeper until we reach $W$ and $b$.</p>
 
 </div>
 </div>
@@ -12265,7 +12265,7 @@ $$</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Backprop through loss funtion (<a href="#Proofs">proof</a>)</p>
+<p>Backprop through loss function (<a href="#Proofs">proof</a>)</p>
 
 </div>
 </div>
@@ -12410,7 +12410,7 @@ $$</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>This concludes neural netwrok definiton.</p>
+<p>This concludes neural network definition.</p>
 
 </div>
 </div>
@@ -13046,7 +13046,7 @@ memory usage: 12.6 KB
 <span class="n">x_train</span> <span class="o">=</span> <span class="n">features_train</span><span class="o">.</span><span class="n">values</span>            <span class="c1"># features train set (numpy)</span>
 <span class="n">y_train</span> <span class="o">=</span> <span class="n">targets_train</span><span class="o">.</span><span class="n">values</span><span class="p">[:,</span><span class="kc">None</span><span class="p">]</span>     <span class="c1"># targets train set (numpy)</span>
 <span class="n">x_test</span> <span class="o">=</span> <span class="n">features_test</span><span class="o">.</span><span class="n">values</span>              <span class="c1"># features validation set (numpy)</span>
-<span class="n">y_test</span> <span class="o">=</span> <span class="n">targets_test</span><span class="o">.</span><span class="n">values</span><span class="p">[:,</span><span class="kc">None</span><span class="p">]</span>       <span class="c1"># targets valudation set (numpy)</span>
+<span class="n">y_test</span> <span class="o">=</span> <span class="n">targets_test</span><span class="o">.</span><span class="n">values</span><span class="p">[:,</span><span class="kc">None</span><span class="p">]</span>       <span class="c1"># targets validation set (numpy)</span>
 
 <span class="c1"># Assert shapes came right way around</span>
 <span class="k">assert</span> <span class="n">x_train</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="p">(</span><span class="mi">360</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>

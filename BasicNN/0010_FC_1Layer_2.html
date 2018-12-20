@@ -11839,19 +11839,19 @@ $$ \huge{\underline{\textbf{ 1-Layer Neural Network }}} $$
 <td>size of train dataset (*)</td>
 </tr>
 <tr>
-<td>n_batch</td>
+<td>$n_\text{batch}$</td>
 <td>n_batch</td>
 <td>int</td>
 <td>size of mini-batch (*)</td>
 </tr>
 <tr>
-<td>n_in</td>
+<td>$n_\text{in}$</td>
 <td>n_in</td>
 <td>int</td>
 <td>number of input features</td>
 </tr>
 <tr>
-<td>n_out</td>
+<td>$n_\text{out}$</td>
 <td>n_out</td>
 <td>int</td>
 <td>number of outputs (**)</td>
@@ -11867,12 +11867,6 @@ $$ \huge{\underline{\textbf{ 1-Layer Neural Network }}} $$
 <td>W</td>
 <td>(n_in, n_out)</td>
 <td>weights</td>
-</tr>
-<tr>
-<td>$w_{tk}$</td>
-<td>-</td>
-<td>scalar</td>
-<td>one weight</td>
 </tr>
 <tr>
 <td>$b$</td>
@@ -13282,100 +13276,6 @@ loss  0.0972
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Proofs">Proofs<a class="anchor-link" href="#Proofs">&#182;</a></h1>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Backprop through mean squared error</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>$$ J(y,\hat{y}) = \frac{1}{2} \frac{1}{\text{n_batch}} \sum_{t=1}^{\text{n_batch}}  \ \sum_{k=1}^{\text{n_out}} \  (y_{tk} - \hat{y}_{tk})^2 $$</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Proof: let's take one element $\frac{\partial J}{\partial \hat{y}_{ij}}$, where $i$ is number of training example and $j$ is input feature</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>$$ 
-\frac{\partial J}{\partial \hat{y}_{ij}} \ = \
-\frac{\partial}{\partial \hat{y}_{ij}} \big[    \frac{1}{2} \frac{1}{\text{n_batch}} \sum_{t=1}^{\text{n_batch}}  \ \sum_{k=1}^{\text{n_out}} \  (y_{tk} - \hat{y}_{tk})^2 \big]
-\tag*{drop sums i≠t and j≠k}
-$$</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>$$
-\\ \overset{\text{}}{=} \
-\frac{1}{2} \frac{1}{\text{n_batch}}  \  \frac{\partial}{\partial \hat{y}_{ij}}  (y_{ij} - \hat{y}_{ij})^2
-\tag*{chain rule}
-$$</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>$$
-\\ = \
-\frac{1}{\text{n_batch}} (y_{ij} - \hat{y}_{ij} )(-1)
-$$</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>$$
-\\ = \
-\frac{1}{\text{n_batch}} (\hat{y}_{ij} - y_{ij} )
-$$</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>We can drop both sums because output $\hat{y}_{ij}$ depends only on $\hat{y}_{tk}$ where $i=t, j=k$. Note that $y$ and $\hat{y}$ are swapped at the end due to minus sign.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Numerical-Gradient-Check">Numerical Gradient Check<a class="anchor-link" href="#Numerical-Gradient-Check">&#182;</a></h1>
 </div>
 </div>
@@ -13449,7 +13349,7 @@ $$</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Delete-below">Delete below<a class="anchor-link" href="#Delete-below">&#182;</a></h1>
+<h1 id="Proofs">Proofs<a class="anchor-link" href="#Proofs">&#182;</a></h1>
 </div>
 </div>
 </div>
@@ -13457,8 +13357,7 @@ $$</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><font color="red">
-REMOVE: Shapes are as follows</p>
+<p><strong>Backprop through mean squared error</strong></p>
 
 </div>
 </div>
@@ -13467,46 +13366,37 @@ REMOVE: Shapes are as follows</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><font color="red">
-$$
-x = 
-\scriptsize{
-  \begin{matrix}
-  ↑ \\ 
-  \text{n_batch} \\ 
-  ↓
-  \end{matrix}
-}\normalsize{}
-\overset{\text{← n_in →}}{
-  \begin{bmatrix}
-  \cdot &amp; \cdot  \\  
-  \cdot &amp; \cdot \\ 
-  \cdot &amp; \cdot 
-  \end{bmatrix}
-}
-\quad\quad\quad
-W =
-\scriptsize{
-  \begin{matrix}
-  ↑ \\ 
-  \text{n_in} \\ 
-  ↓
-  \end{matrix}
-}\normalsize{}
-\overset{\text{n_out}}{
-  \begin{bmatrix}
-  \cdot  \\ 
-  \cdot  
-  \end{bmatrix}
-}
-\quad\quad\quad
-b =
-\scriptsize{\text{1}}\normalsize{}
-\overset{\text{n_out}}{
-  \begin{bmatrix}
-  \cdot \\ 
-  \end{bmatrix}
-}
+<p>Forward pass</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>$$ J(y,\hat{y}) = \frac{1}{2} \frac{1}{\text{n_batch}} \sum_{t=1}^{\text{n_batch}}  \ \sum_{k=1}^{\text{n_out}} \  (y_{tk} - \hat{y}_{tk})^2 $$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Proof: let's take one element $\frac{\partial J}{\partial \hat{y}_{ij}}$, where $i$ is number of training example and $j$ is input feature</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>$$ 
+\frac{\partial J}{\partial \hat{y}_{ij}} \ = \
+\frac{\partial}{\partial \hat{y}_{ij}} \big[    \frac{1}{2} \frac{1}{\text{n_batch}} \sum_{t=1}^{\text{n_batch}}  \ \sum_{k=1}^{\text{n_out}} \  (y_{tk} - \hat{y}_{tk})^2 \big]
+\tag*{drop sums i≠t and j≠k}
 $$</p>
 
 </div>
@@ -13516,85 +13406,55 @@ $$</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><font color="red">
-REMOVE: Forward Pass</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><font color="red">
-$$ z = xW + b \tag{eq 2}$$</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><font color="red">
-$$ \hat{y} = \sigma(z) \tag{eq 3}$$</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><font color="red">
-Shapes are as follows</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><font color="red">
-$$
-J(y,\hat{y}) = 
-\begin{matrix}
-\scriptsize{\text{(scalar)}} \\ 
-\end{matrix}
-\quad\quad\quad
-y = 
-\scriptsize{
-  \begin{matrix}
-  ↑ \\ 
-  \text{n_batch} \\ 
-  ↓
-  \end{matrix}
-}\normalsize{}
-\overset{\text{n_out}}{
-  \begin{bmatrix}
-  \cdot  \\ 
-  \cdot  \\ 
-  \cdot 
-  \end{bmatrix}
-}
-\quad\quad\quad
-\hat{y} =
-\scriptsize{
-  \begin{matrix}
-  ↑ \\ 
-  \text{n_batch} \\ 
-  ↓
-  \end{matrix}
-}\normalsize{}
-\overset{\text{n_out}}{
-  \begin{bmatrix}
-  \cdot  \\ 
-  \cdot  \\ 
-  \cdot 
-  \end{bmatrix}
-}
+<p>$$
+\\ \overset{\text{}}{=} \
+\frac{1}{2} \frac{1}{\text{n_batch}}  \  \frac{\partial}{\partial \hat{y}_{ij}}  (y_{ij} - \hat{y}_{ij})^2
+\tag*{chain rule}
 $$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>$$
+\\ = \
+\frac{1}{\text{n_batch}} (y_{ij} - \hat{y}_{ij} )(-1)
+$$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>$$
+\\ = \
+\frac{1}{\text{n_batch}} (\hat{y}_{ij} - y_{ij} )  \tag*{combine elements}
+$$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>$$
+\frac{\partial J}{\partial \hat{y}} = \frac{1}{\text{n_batch}} (\hat{y} - y )
+$$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We can drop both sums because output $\hat{y}_{ij}$ depends only on $\hat{y}_{tk}$ where $i=t, j=k$. Note that $y$ and $\hat{y}$ are swapped at the end due to minus sign. At the last step we can combine $\frac{\partial J}{\partial \hat{y}_{ij}}$ back into single matrix $\frac{\partial J}{\partial \hat{y}}$</p>
 
 </div>
 </div>

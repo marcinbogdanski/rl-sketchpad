@@ -5,7 +5,7 @@ Implementations of various RL Algorithms
 Contents:
 <ul>
   <li><a href="#rl-introduction">Reinforcement Learning: An Introduction</a> (2nd ed, 2018) by Sutton and Barto</li>
-  <li><a href="#ucl-course-on-rl">UCL Course on RL</a> (2016) Youtube lectures by David Silver</li>
+  <li><a href="#ucl-course-on-rl">UCL Course on RL</a> (2016) YouTube lectures by David Silver</li>
   <li><a href="#mini-posts">Mini Posts</a> - other algorithms</li>
 </ul>
 

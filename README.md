@@ -253,24 +253,24 @@ A bit more in-depth explanation of selected concepts from David Sivler lectures 
   <li>
     Lecture 3 - Dynamic Programming
     <ul>
-      <li><a href="https://marcinbogdanski.github.io/ai_sketchpad/UCL_Course_on_RL/Lecture03_DP/DynamicProgramming.html">Dynamic Programming</a> - Iterative Policy Evaluation, Policy Iteration, Value Iteration</li>    
+      <li><a href="https://marcinbogdanski.github.io/rl-sketchpad/UCL_Course_on_RL/Lecture03_DP/DynamicProgramming.html">Dynamic Programming</a> - Iterative Policy Evaluation, Policy Iteration, Value Iteration</li>    
     </ul>
   </li>
   
   <li>
     Lecture 4 - Model Free Prediction
     <ul>
-      <li><a href="https://marcinbogdanski.github.io/ai_sketchpad/UCL_Course_on_RL/Lecture04_Pred/ModelFreePrediction_Part1.html">MC and TD Prediction</a></li>
-      <li><a href="https://marcinbogdanski.github.io/ai_sketchpad/UCL_Course_on_RL/Lecture04_Pred/ModelFreePrediction_Part2.html">N-Step and TD(λ) Prediction</a> - Forward TD(λ) and Backward TD(λ) with Eligibility Traces</li>    
+      <li><a href="https://marcinbogdanski.github.io/rl-sketchpad/UCL_Course_on_RL/Lecture04_Pred/ModelFreePrediction_Part1.html">MC and TD Prediction</a></li>
+      <li><a href="https://marcinbogdanski.github.io/rl-sketchpad/UCL_Course_on_RL/Lecture04_Pred/ModelFreePrediction_Part2.html">N-Step and TD(λ) Prediction</a> - Forward TD(λ) and Backward TD(λ) with Eligibility Traces</li>    
     </ul>
   </li>
   
   <li>
     Lecture 4 - Model-Free Control
     <ul>
-      <li><a href="https://marcinbogdanski.github.io/ai_sketchpad/UCL_Course_on_RL/Lecture05_Ctrl/ModelFreeControl_Part1.html">On-Policy Control</a> - MC, TD, N-Step, Forward TD(λ), Backward TD(λ) with Eligibility Traces</li>
-      <li><a href="https://marcinbogdanski.github.io/ai_sketchpad/UCL_Course_on_RL/Lecture05_Ctrl/ModelFreeControl_Part2.html">Off-Policy Control - Expectation Based</a> - Q-Learning, Expected SARSA, Tree Backup</li>
-      <li><a href="https://marcinbogdanski.github.io/ai_sketchpad/UCL_Course_on_RL/Lecture05_Ctrl/ModelFreeControl_Part3.html">Off-Policy Control - Importance Sampling</a> - I.S. SARSA, N-Step I.S. SARSA, Off-Policy MC Control</li>
+      <li><a href="https://marcinbogdanski.github.io/rl-sketchpad/UCL_Course_on_RL/Lecture05_Ctrl/ModelFreeControl_Part1.html">On-Policy Control</a> - MC, TD, N-Step, Forward TD(λ), Backward TD(λ) with Eligibility Traces</li>
+      <li><a href="https://marcinbogdanski.github.io/rl-sketchpad/UCL_Course_on_RL/Lecture05_Ctrl/ModelFreeControl_Part2.html">Off-Policy Control - Expectation Based</a> - Q-Learning, Expected SARSA, Tree Backup</li>
+      <li><a href="https://marcinbogdanski.github.io/rl-sketchpad/UCL_Course_on_RL/Lecture05_Ctrl/ModelFreeControl_Part3.html">Off-Policy Control - Importance Sampling</a> - I.S. SARSA, N-Step I.S. SARSA, Off-Policy MC Control</li>
     </ul>
   </li>
 </ul>
@@ -282,8 +282,8 @@ A bit more in-depth explanation of selected concepts from David Sivler lectures 
 
 
 <ul>
-  <li><a href="https://marcinbogdanski.github.io/ai_sketchpad/Mini_Posts/ANN_Correlated_Data.html">ANN and Correlated Data</a> - simplest possible example showing why <b>memory reply</b> is necessary</li>
-  <li><a href="https://marcinbogdanski.github.io/ai_sketchpad/Mini_Posts/Minimal_TF_Keras.html">Minimal TF Keras</a> - fit sine wave</li>
+  <li><a href="https://marcinbogdanski.github.io/rl-sketchpad/Mini_Posts/ANN_Correlated_Data.html">ANN and Correlated Data</a> - simplest possible example showing why <b>memory reply</b> is necessary</li>
+  <li><a href="https://marcinbogdanski.github.io/rl-sketchpad/Mini_Posts/Minimal_TF_Keras.html">Minimal TF Keras</a> - fit sine wave</li>
     
     
 </ul>

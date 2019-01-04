@@ -1,6 +1,6 @@
-<h1> AI Sketchpad </h1>
+<h1> RL Sketchpad </h1>
 
-Implementations of various AI Algorithms
+Implementations of various RL Algorithms
 
 Contents:
 <ul>
@@ -26,8 +26,8 @@ Implementation of selected algorithms from the book. I tried to make code snippe
       <div>
         Chapter 2: Multi-armed Bandits
         <ul>
-          <li> 2.4: <a href="https://marcinbogdanski.github.io/ai_sketchpad/RL_An_Introduction_2018/0204_Simple_Bandit.html">Simple Bandit</a> - fig. 2.1, 2.2 </li>
-          <li> 2.6: <a href="https://marcinbogdanski.github.io/ai_sketchpad/RL_An_Introduction_2018/0206_Tracking_Bandit.html"> Tracking Bandit</a> - fig. 2.3 </li>
+          <li> 2.4: <a href="https://marcinbogdanski.github.io/rl-sketchpad/RL_An_Introduction_2018/0204_Simple_Bandit.html">Simple Bandit</a> - fig. 2.1, 2.2 </li>
+          <li> 2.6: <a href="https://marcinbogdanski.github.io/rl-sketchpad/RL_An_Introduction_2018/0206_Tracking_Bandit.html"> Tracking Bandit</a> - fig. 2.3 </li>
         </ul>
       </div>
     </td>
@@ -41,9 +41,9 @@ Implementation of selected algorithms from the book. I tried to make code snippe
       <div>
         Chapter 4: Dynamic Programming
         <ul>
-          <li> 4.1: <a href="https://marcinbogdanski.github.io/ai_sketchpad/RL_An_Introduction_2018/0401_Iterative_Policy_Evaluation.html">Iterative Policy Evaluation</a> - FrozenLake-v0 <!--gw 4.1 --> </li>
-          <li> 4.3: <a href="https://marcinbogdanski.github.io/ai_sketchpad/RL_An_Introduction_2018/0403_Policy_Iteration.html">Policy Iteration</a> - FrozenLake-v0 <!--gw, car-re, e4.2 f4.2 --> </li>
-          <li> 4.4: <a href="https://marcinbogdanski.github.io/ai_sketchpad/RL_An_Introduction_2018/0404_Value_Iteration.html">Value Iteration</a> - FrozenLake-v0 <!-- gambler problem, fig 4.3 --> </li>
+          <li> 4.1: <a href="https://marcinbogdanski.github.io/rl-sketchpad/RL_An_Introduction_2018/0401_Iterative_Policy_Evaluation.html">Iterative Policy Evaluation</a> - FrozenLake-v0 <!--gw 4.1 --> </li>
+          <li> 4.3: <a href="https://marcinbogdanski.github.io/rl-sketchpad/RL_An_Introduction_2018/0403_Policy_Iteration.html">Policy Iteration</a> - FrozenLake-v0 <!--gw, car-re, e4.2 f4.2 --> </li>
+          <li> 4.4: <a href="https://marcinbogdanski.github.io/rl-sketchpad/RL_An_Introduction_2018/0404_Value_Iteration.html">Value Iteration</a> - FrozenLake-v0 <!-- gambler problem, fig 4.3 --> </li>
         </ul>
       </div>
     </td>
@@ -58,9 +58,9 @@ Implementation of selected algorithms from the book. I tried to make code snippe
       <div>
         Chapter 5: Monte Carlo Methods
         <ul>
-          <li> 5.1: <a href="https://marcinbogdanski.github.io/ai_sketchpad/RL_An_Introduction_2018/0501_First_Visit_MC_Prediction.html">First-Visit MC Prediction</a> - Blackjack-v0, fig. 5.1 </li>
-          <li> 5.3: <a href="https://marcinbogdanski.github.io/ai_sketchpad/RL_An_Introduction_2018/0503_Monte_Carlo_ES_Control.html">Monte Carlo ES Control</a> - Blackjack-v0, fig. 5.2 </li>
-          <li> 5.4: <a href="https://marcinbogdanski.github.io/ai_sketchpad/RL_An_Introduction_2018/0504_On_Policy_First_Visit_MC_Control.html">On-Policy First-Visit MC Control</a> - Blackjack-v0 </li>
+          <li> 5.1: <a href="https://marcinbogdanski.github.io/rl-sketchpad/RL_An_Introduction_2018/0501_First_Visit_MC_Prediction.html">First-Visit MC Prediction</a> - Blackjack-v0, fig. 5.1 </li>
+          <li> 5.3: <a href="https://marcinbogdanski.github.io/rl-sketchpad/RL_An_Introduction_2018/0503_Monte_Carlo_ES_Control.html">Monte Carlo ES Control</a> - Blackjack-v0, fig. 5.2 </li>
+          <li> 5.4: <a href="https://marcinbogdanski.github.io/rl-sketchpad/RL_An_Introduction_2018/0504_On_Policy_First_Visit_MC_Control.html">On-Policy First-Visit MC Control</a> - Blackjack-v0 </li>
         </ul>
       </div>
     </td>
@@ -74,11 +74,11 @@ Implementation of selected algorithms from the book. I tried to make code snippe
       <div>
         Chapter 6: Temporal-Difference Learning
         <ul>
-          <li> 6.1: <a href="https://marcinbogdanski.github.io/ai_sketchpad/RL_An_Introduction_2018/0601_TD_Prediction.html">TD Prediction</a> - Blackjack-v0, example 6.2 
-              <ul><li> Also: <a href="https://marcinbogdanski.github.io/ai_sketchpad/RL_An_Introduction_2018/0601_TD_Prediction.html">Running-Mean MC Prediction</a> </li></ul>
+          <li> 6.1: <a href="https://marcinbogdanski.github.io/rl-sketchpad/RL_An_Introduction_2018/0601_TD_Prediction.html">TD Prediction</a> - Blackjack-v0, example 6.2 
+              <ul><li> Also: <a href="https://marcinbogdanski.github.io/rl-sketchpad/RL_An_Introduction_2018/0601_TD_Prediction.html">Running-Mean MC Prediction</a> </li></ul>
           </li>
-          <li> 6.4: <a href="https://marcinbogdanski.github.io/ai_sketchpad/RL_An_Introduction_2018/0604_Sarsa.html">Sarsa</a> - WindyGridworld, example 6.5 </li>
-          <li> 6.5: <a href="https://marcinbogdanski.github.io/ai_sketchpad/RL_An_Introduction_2018/0605_Q_Learning.html">Q-Learning</a> - CliffWalking, example 6.6 </li>
+          <li> 6.4: <a href="https://marcinbogdanski.github.io/rl-sketchpad/RL_An_Introduction_2018/0604_Sarsa.html">Sarsa</a> - WindyGridworld, example 6.5 </li>
+          <li> 6.5: <a href="https://marcinbogdanski.github.io/rl-sketchpad/RL_An_Introduction_2018/0605_Q_Learning.html">Q-Learning</a> - CliffWalking, example 6.6 </li>
         </ul>
       </div>
     </td>
@@ -97,11 +97,11 @@ Implementation of selected algorithms from the book. I tried to make code snippe
       <div>
         Chapter 9: On-Policy Prediction with Approximation
         <ul>
-          <li> 9.3a: <a href="https://marcinbogdanski.github.io/ai_sketchpad/RL_An_Introduction_2018/0903a_Gradient_MC.html">Gradient Monte Carlo</a> - example 9.1, fig. 9.1 <!-- calc "true" --> </li>
-          <li> 9.3b: <a href="https://marcinbogdanski.github.io/ai_sketchpad/RL_An_Introduction_2018/0903b_Semi_Gradient_TD.html">Semi-Gradient TD</a> - example 9.2, fig. 9.2 (left) </li>
-          <li> 9.5a: <a href="https://marcinbogdanski.github.io/ai_sketchpad/RL_An_Introduction_2018/0905a_LM_Poly_Fourier.html">Linear Models - Polynomial and Fourier Bases</a> - fig. 9.5 </li>
-          <li> 9.5b: <a href="https://marcinbogdanski.github.io/ai_sketchpad/RL_An_Introduction_2018/0905b_LM_Agg_Tile.html">Linear Models - Tile Coding</a> - fig. 9.10 </li>
-          <li> 9.7: <a href="https://marcinbogdanski.github.io/ai_sketchpad/RL_An_Introduction_2018/0907_ANN.html">Neural Network with Memory Reply</a> </li>
+          <li> 9.3a: <a href="https://marcinbogdanski.github.io/rl-sketchpad/RL_An_Introduction_2018/0903a_Gradient_MC.html">Gradient Monte Carlo</a> - example 9.1, fig. 9.1 <!-- calc "true" --> </li>
+          <li> 9.3b: <a href="https://marcinbogdanski.github.io/rl-sketchpad/RL_An_Introduction_2018/0903b_Semi_Gradient_TD.html">Semi-Gradient TD</a> - example 9.2, fig. 9.2 (left) </li>
+          <li> 9.5a: <a href="https://marcinbogdanski.github.io/rl-sketchpad/RL_An_Introduction_2018/0905a_LM_Poly_Fourier.html">Linear Models - Polynomial and Fourier Bases</a> - fig. 9.5 </li>
+          <li> 9.5b: <a href="https://marcinbogdanski.github.io/rl-sketchpad/RL_An_Introduction_2018/0905b_LM_Agg_Tile.html">Linear Models - Tile Coding</a> - fig. 9.10 </li>
+          <li> 9.7: <a href="https://marcinbogdanski.github.io/rl-sketchpad/RL_An_Introduction_2018/0907_ANN.html">Neural Network with Memory Reply</a> </li>
         </ul>
       </div>
     </td>
@@ -115,7 +115,7 @@ Implementation of selected algorithms from the book. I tried to make code snippe
       <div>
         Chapter 10: On-Policy Control with Approximation
         <ul>
-          <li> 10.1: <a href="https://marcinbogdanski.github.io/ai_sketchpad/RL_An_Introduction_2018/1001_Episodic_Semi_Gradient_Sarsa.html">Episodic Semi-Gradient Sarsa</a> - MountainCar, fig 10.1, 10.2 </li>
+          <li> 10.1: <a href="https://marcinbogdanski.github.io/rl-sketchpad/RL_An_Introduction_2018/1001_Episodic_Semi_Gradient_Sarsa.html">Episodic Semi-Gradient Sarsa</a> - MountainCar, fig 10.1, 10.2 </li>
         </ul>
       </div>
     </td>

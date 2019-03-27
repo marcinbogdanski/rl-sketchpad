@@ -1,3 +1,4 @@
+import datetime
 import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import axes3d
@@ -13,6 +14,32 @@ def running_mean(x, n):
         
     return res
 
+
+def plot_all(env, model, memory, trace, print_=False):
+    
+    st = trace.states[-1]
+    eps = trace.epsilons[-1]
+    
+    if print_:
+        print(f'wall: {datetime.datetime.now().strftime("%H:%M:%S")}   '
+              f'ep: {len(trace.ep_rewards):3}   tstep: {trace.tstep:4}   '
+              f'total tstep: {trace.total_tstep:6}   '
+              f'eps: {eps:5.3f}   reward: {trace.last_ep_reward}   ')
+    
+    if len(st) == 2:
+        # We are working with 2D environment,
+        # plot whole Q-Value functions across whole state space
+        plot_2d_environment(env, trace.total_tstep-1,
+                            1000, trace, memory,
+                            axis_labels=['state[0]', 'state[1]'],
+                            action_labels=['Act 0', 'Act 1', 'Act 2'],
+                            action_colors=['red', 'blue', 'green'])
+    else:
+        # Environment is not 2D, so we can't plot whole Q-Value function
+        # Instead we plot state on standard graph,
+        # which is still better than nothing
+        plot_generic_environment(env, trace.total_tstep, 1000, trace, memory)
+        
 
 def plot_generic_environment(env, total_tstep, steps_to_plot, trace, mem):
     
@@ -51,7 +78,8 @@ def plot_generic_environment(env, total_tstep, steps_to_plot, trace, mem):
 def plot_2d_environment(env, total_tstep, steps_to_plot, trace, mem,
     axis_labels, action_labels, action_colors):
     
-    q_arr = trace.q_values[total_tstep]
+    last_q_key = list(trace.q_values.keys())[-1]
+    q_arr = trace.q_values[last_q_key]
     states = trace.states[-steps_to_plot:]
     actions = trace.actions[-steps_to_plot:]
     

@@ -41,37 +41,71 @@ def plot_all(env, model, memory, trace, print_=False):
         plot_generic_environment(env, trace.total_tstep, 1000, trace, memory)
         
 
+# def plot_generic_environment(env, total_tstep, steps_to_plot, trace, mem):
+    
+#     # Plot test states
+#     fig, ax = plt.subplots(figsize=[16,4])
+#     tmp_x = np.array(list(trace.q_values.keys()))
+#     if len(tmp_x) > 0:
+#         tmp_y_hat = np.array(list(trace.q_values.values()))
+#         tmp_y_hat = np.average(tmp_y_hat, axis=-1)           # average over actions
+#         lines = ax.plot(tmp_x, tmp_y_hat, alpha=.5)
+#         ax.grid()
+#     ax.set_title('Q-Values')
+#     ax.set_xlabel('Time Step')
+#     ax.set_ylabel('Q-Values')
+#     plt.show()
+
+#     fig, ax = plt.subplots(figsize=[16,4])
+#     plot_episode_rewards(trace.ep_rewards, ax)
+#     plt.show()
+
+#     fig, ax = plt.subplots(figsize=[16,4])
+#     states_tmp = np.array(trace.states[-1000:])
+#     tsteps_tmp = np.array(range(len(states_tmp))) + trace.total_tstep - trace.eval_every
+#     lines = ax.plot(tsteps_tmp, states_tmp, alpha=.5)
+#     if trace.state_labels is not None:
+#         ax.legend(lines, trace.state_labels)
+#     ax.grid()
+#     ax.set_title('Trajectory')
+#     ax.set_xlabel('Time Step')
+#     ax.set_ylabel('State Values')
+#     plt.show()
+
 def plot_generic_environment(env, total_tstep, steps_to_plot, trace, mem):
     
     # Plot test states
-    fig, ax = plt.subplots(figsize=[16,4])
+    fig, (ax1, ax2, ax3) = plt.subplots(nrows=3, ncols=1, figsize=[16,12])
     tmp_x = np.array(list(trace.q_values.keys()))
     if len(tmp_x) > 0:
         tmp_y_hat = np.array(list(trace.q_values.values()))
         tmp_y_hat = np.average(tmp_y_hat, axis=-1)           # average over actions
-        lines = ax.plot(tmp_x, tmp_y_hat, alpha=.5)
-        ax.grid()
-    ax.set_title('Q-Values')
-    ax.set_xlabel('Time Step')
-    ax.set_ylabel('Q-Values')
-    plt.show()
+        lines = ax1.plot(tmp_x, tmp_y_hat, alpha=.5)
+        ax1.grid()
+    ax1.set_title('Q-Values')
+    #ax1.set_xlabel('Time Step')
+    ax1.set_ylabel('Q-Values')
+    #plt.show()
 
-    fig, ax = plt.subplots(figsize=[16,4])
-    plot_episode_rewards(trace.ep_rewards, ax)
-    plt.show()
+    #fig, ax = plt.subplots(figsize=[16,4])
+    plot_episode_rewards(trace.ep_rewards, ax2)
+    ax2.grid()
+    ax2.set_ylabel('Episode Reward')
+    ax2.set_title('Episode Rewards')
+    #plt.show()
 
-    fig, ax = plt.subplots(figsize=[16,4])
+    #fig, ax = plt.subplots(figsize=[16,4])
     states_tmp = np.array(trace.states[-1000:])
     tsteps_tmp = np.array(range(len(states_tmp))) + trace.total_tstep - trace.eval_every
-    lines = ax.plot(tsteps_tmp, states_tmp, alpha=.5)
+    lines = ax3.plot(tsteps_tmp, states_tmp, alpha=.5)
     if trace.state_labels is not None:
-        ax.legend(lines, trace.state_labels)
-    ax.grid()
-    ax.set_title('Trajectory')
-    ax.set_xlabel('Time Step')
-    ax.set_ylabel('State Values')
+        ax3.legend(lines, trace.state_labels)
+    ax3.grid()
+    ax3.set_title('Trajectory')
+    ax3.set_xlabel('Time Step')
+    ax3.set_ylabel('State Values')
+    #plt.tight_layout()
     plt.show()
-    
     
     
 
@@ -117,6 +151,10 @@ def plot_2d_environment(env, total_tstep, steps_to_plot, trace, mem,
     
     ax = fig.add_subplot(236)
     plot_episode_rewards(trace.ep_rewards, ax)
+    ax.grid()
+    ax.set_xlabel('Time Step')
+    ax.set_ylabel('Episode Reward')
+    ax.set_title('Episode Rewards')
 
     plt.tight_layout()
     plt.show()
@@ -141,12 +179,6 @@ def plot_episode_rewards(episode_rewards_dict, axis=None):
     if len(tsteps) > 0:
         axis.scatter(tsteps, rewards, alpha=1, s=1, label='Episode reward')
         axis.plot(tsteps, rewards_avg, alpha=1, color='orange', label='Avg. 100 episodes')
-        
-    axis.grid()
-    axis.set_xlabel('Time Step')
-    axis.set_ylabel('Episode Reward')
-    axis.set_title('Episode Rewards')
-
 
 
 

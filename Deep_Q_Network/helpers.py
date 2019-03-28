@@ -21,10 +21,12 @@ def plot_all(env, model, memory, trace, print_=False):
     eps = trace.epsilons[-1]
     
     if print_:
+        last_ep_rew = trace.last_ep_reward
+        reward_str = str(round(last_ep_rew, 3)) if last_ep_rew is not None else 'None'
         print(f'wall: {datetime.datetime.now().strftime("%H:%M:%S")}   '
               f'ep: {len(trace.ep_rewards):3}   tstep: {trace.tstep:4}   '
               f'total tstep: {trace.total_tstep:6}   '
-              f'eps: {eps:5.3f}   reward: {trace.last_ep_reward:.3f}   ')
+              f'eps: {eps:5.3f}   reward: {reward_str}')
     
     if len(st) == 2:
         # We are working with 2D environment,
@@ -40,37 +42,6 @@ def plot_all(env, model, memory, trace, print_=False):
         # which is still better than nothing
         plot_generic_environment(env, trace.total_tstep, 1000, trace, memory)
         
-
-# def plot_generic_environment(env, total_tstep, steps_to_plot, trace, mem):
-    
-#     # Plot test states
-#     fig, ax = plt.subplots(figsize=[16,4])
-#     tmp_x = np.array(list(trace.q_values.keys()))
-#     if len(tmp_x) > 0:
-#         tmp_y_hat = np.array(list(trace.q_values.values()))
-#         tmp_y_hat = np.average(tmp_y_hat, axis=-1)           # average over actions
-#         lines = ax.plot(tmp_x, tmp_y_hat, alpha=.5)
-#         ax.grid()
-#     ax.set_title('Q-Values')
-#     ax.set_xlabel('Time Step')
-#     ax.set_ylabel('Q-Values')
-#     plt.show()
-
-#     fig, ax = plt.subplots(figsize=[16,4])
-#     plot_episode_rewards(trace.ep_rewards, ax)
-#     plt.show()
-
-#     fig, ax = plt.subplots(figsize=[16,4])
-#     states_tmp = np.array(trace.states[-1000:])
-#     tsteps_tmp = np.array(range(len(states_tmp))) + trace.total_tstep - trace.eval_every
-#     lines = ax.plot(tsteps_tmp, states_tmp, alpha=.5)
-#     if trace.state_labels is not None:
-#         ax.legend(lines, trace.state_labels)
-#     ax.grid()
-#     ax.set_title('Trajectory')
-#     ax.set_xlabel('Time Step')
-#     ax.set_ylabel('State Values')
-#     plt.show()
 
 def plot_generic_environment(env, total_tstep, steps_to_plot, trace, mem):
     

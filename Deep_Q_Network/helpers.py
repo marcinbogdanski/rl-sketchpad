@@ -103,6 +103,7 @@ def plot_2d_environment(env, total_tstep, steps_to_plot, trace, mem,
         values = values_tmp[:,values_tmp.shape[1]//2, values_tmp.shape[2]//2,:]
         for i in range(values.shape[-1]):
             ax.plot(values[:,i], color=action_colors[i])
+        ax.set_title('Q Values')
         ax.grid()
     
     if q_arr is not None:

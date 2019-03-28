@@ -24,7 +24,7 @@ def plot_all(env, model, memory, trace, print_=False):
         print(f'wall: {datetime.datetime.now().strftime("%H:%M:%S")}   '
               f'ep: {len(trace.ep_rewards):3}   tstep: {trace.tstep:4}   '
               f'total tstep: {trace.total_tstep:6}   '
-              f'eps: {eps:5.3f}   reward: {trace.last_ep_reward}   ')
+              f'eps: {eps:5.3f}   reward: {trace.last_ep_reward:.3f}   ')
     
     if len(st) == 2:
         # We are working with 2D environment,

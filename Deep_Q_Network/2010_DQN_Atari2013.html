@@ -13143,9 +13143,9 @@ I recommend to check my cleaned up **Classic Control with DQN** notebook instead
 <p>This notebook presents reproduction of pivotal <strong>Playing Atari with Deep Reinforcement Learning</strong> paper by <strong>DeepMind</strong> published in 2013.</p>
 <p>Note that:</p>
 <ul>
-<li>DeepMind has not published code for this paper</li>
-<li>Paper does not describe all hyperparameters and implementation details</li>
-<li>Architecture <strong>does not</strong> use target network which makes everything much easier</li>
+<li>DeepMind has not published source code for this paper</li>
+<li>Paper does not include all hyperparameters and implementation details</li>
+<li>Architecture <strong>does not</strong> use target network which makes everything much more difficult</li>
 </ul>
 
 </div>
@@ -13154,17 +13154,211 @@ I recommend to check my cleaned up **Classic Control with DQN** notebook instead
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<div class="alert alert-success">
+<p><strong>Resources</strong></p>
+<ul>
+<li><a href="https://github.com/spragunr/deep_q_rl">deep_q_rl</a> - reproduction by Prof. Nathan Sprague in Theano. As far as I know this is the closest in spirit to original work on the internet. This was invaluable resource during development of this notebook.</li>
+</ul>
 
-Great thanks to Nathan Sprague for providing his Theano implementation on [github](https://github.com/spragunr/deep_q_rl). Wile there are a lot of replications on the internet they tend to deviate a lot. I believe Nathans is the closest in spirit to original work. It was invaluable resource for myself.
-
-</div>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Results">Results<a class="anchor-link" href="#Results">&#182;</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>DeepMind run all games for 10M iterations, due to limited resources I only ran for 5M each game. I repeated each run twice. Table below show comparison of my results along with Prof. Sprague code and original DeepMind as reported in their paper.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<table>
+<thead><tr>
+<th>&nbsp;</th>
+<th>Beam Rider</th>
+<th>Breakout</th>
+<th>Enduro</th>
+<th>Pong</th>
+<th>Q*bert</th>
+<th>Seaquest</th>
+<th>Space Invaders</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Deep Mind (10M)</td>
+<td>4092</td>
+<td>168</td>
+<td>470</td>
+<td>20</td>
+<td>1952</td>
+<td>1805</td>
+<td>581</td>
+</tr>
+<tr>
+<td>Prof. Spraque (5M)</td>
+<td>1658</td>
+<td>134</td>
+<td>552</td>
+<td>18</td>
+<td>3210</td>
+<td>1192</td>
+<td>221</td>
+</tr>
+<tr>
+<td>This Notebook (5M)</td>
+<td>1765</td>
+<td>140</td>
+<td>549</td>
+<td>19</td>
+<td>2562</td>
+<td>2150</td>
+<td>357</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Beam Rider</strong></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><img style="float:left" src="assets/atari2013_beamrider.png" />
+<img style="float:left" src="assets/atari_beamrider_game.png" /></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Breakout</strong></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><img style="float:left" src="assets/atari2013_breakout.png" />
+<img style="float:left" src="assets/atari_breakout_game.png" /></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Enduro</strong></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><img style="float:left" src="assets/atari2013_enduro.png" />
+<img style="float:left" src="assets/atari_enduro_game.png" /></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Pong</strong></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><img style="float:left" src="assets/atari2013_pong.png" />
+<img style="float:left" src="assets/atari_pong_game.png" /></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Q*bert</strong></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><img style="float:left" src="assets/atari2013_qbert.png" />
+<img style="float:left" src="assets/atari_qbert_game.png" /></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Seaquest</strong></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><img style="float:left" src="assets/atari2013_seaquest.png" />
+<img style="float:left" src="assets/atari_seaquest_game.png" /></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Space Invaders</strong></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><img style="float:left" src="assets/atari2013_space_invaders.png" />
+<img style="float:left" src="assets/atari_space_invaders_game.png" /></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Notes">Notes<a class="anchor-link" href="#Notes">&#182;</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Preprocessing in 2013 vs 2015 papers</p>
 <table>
 <thead><tr>
 <th>Modification</th>
@@ -13226,53 +13420,7 @@ Great thanks to Nathan Sprague for providing his Theano implementation on [githu
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Results</p>
-<table>
-<thead><tr>
-<th>d</th>
-<th>Beam Rider</th>
-<th>Breakout</th>
-<th>Enduro</th>
-<th>Pong</th>
-<th>Q*bert</th>
-<th>Seaquest</th>
-<th>Space Invaders</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Deep Mind (10M)</td>
-<td>4092</td>
-<td>168</td>
-<td>470</td>
-<td>20</td>
-<td>1952</td>
-<td>1805</td>
-<td>581</td>
-</tr>
-<tr>
-<td>Prof       (5M)</td>
-<td>1658</td>
-<td>134</td>
-<td>552</td>
-<td>18</td>
-<td>3210</td>
-<td>1192*</td>
-<td>221</td>
-</tr>
-<tr>
-<td>This Impl. (5M)</td>
-<td>1765</td>
-<td>140</td>
-<td>549</td>
-<td>19</td>
-<td>2562</td>
-<td>2150*</td>
-<td>357</td>
-</tr>
-</tbody>
-</table>
-<p>Eyeball:</p>
+<p>Comments to table with results:</p>
 <ul>
 <li>Beam Rider - similar</li>
 <li>Breakout - similar</li>
@@ -13283,6 +13431,13 @@ Great thanks to Nathan Sprague for providing his Theano implementation on [githu
 <li>Space Invaders - mine significantly better</li>
 </ul>
 
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Code">Code<a class="anchor-link" href="#Code">&#182;</a></h1>
 </div>
 </div>
 </div>
